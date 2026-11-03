@@ -1,0 +1,32 @@
+{
+  "name": "Destination Parcs",
+  "tagline": "Extraordinary places. Lasting memories.",
+  "heroLine": "More than a getaway. More than just a destination.",
+  "description": "Family breaks, adventure, relaxation, corporate retreats and celebrations at The Farm in Katuulo, along Bujuuko-Mityana Road, Uganda.",
+  "contact": {
+    "phone": "",
+    "whatsapp": "",
+    "email": "",
+    "address": "The Farm, Katuulo, along Bujuuko-Mityana Road, Uganda",
+    "hours": ""
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "x": "",
+    "youtube": "",
+    "tiktok": ""
+  },
+  "mapEmbed": {
+    "lat": null,
+    "lng": null,
+    "zoom": 15
+  },
+  "mapSearchQuery": "Katuulo Bujuuko Mityana Road Uganda",
+  "otaLinks": {
+    "bookingCom": "",
+    "agoda": "",
+    "airbnb": ""
+  },
+  "depositNote": "A deposit confirms your booking. Our team will contact you with payment details once your request is received."
+}

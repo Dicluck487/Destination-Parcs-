@@ -1,0 +1,63 @@
+{
+  "_note": "PLACEHOLDER CONTENT. The planner lists 'Room types, rates, availability' and 'Camping or Glamping' but gives no details. Replace the entries below with the real room types, unit counts and rates. Leave 'rate' empty to show 'Rates on request'.",
+  "options": [
+    {
+      "slug": "no-stay",
+      "name": "Day visit (no overnight stay)",
+      "kind": "none",
+      "units": 0,
+      "sleeps": 0,
+      "rate": "",
+      "bookable": true,
+      "blurb": "Come for the day. Activities, meals and meetings without an overnight stay."
+    },
+    {
+      "slug": "farm-rooms",
+      "name": "Farm Rooms",
+      "kind": "room",
+      "units": 10,
+      "sleeps": 2,
+      "rate": "",
+      "bookable": true,
+      "confirmed": false,
+      "blurb": "Comfortable rooms at The Farm, ideal for couples, families and retreat delegates.",
+      "features": ["Private bathroom", "Breakfast available", "Short walk to activities"]
+    },
+    {
+      "slug": "family-cottages",
+      "name": "Family Cottages",
+      "kind": "room",
+      "units": 4,
+      "sleeps": 6,
+      "rate": "",
+      "bookable": true,
+      "confirmed": false,
+      "blurb": "More space for families and small groups travelling together.",
+      "features": ["Multiple sleeping areas", "Sitting area", "Close to the children's activities"]
+    },
+    {
+      "slug": "glamping-tents",
+      "name": "Glamping Tents",
+      "kind": "glamping",
+      "units": 6,
+      "sleeps": 2,
+      "rate": "",
+      "bookable": true,
+      "confirmed": false,
+      "blurb": "Sleep among the trees in a furnished tent, with the comfort of a real bed.",
+      "features": ["Real beds", "Shaded setting", "Near the campfire area"]
+    },
+    {
+      "slug": "camping",
+      "name": "Camping",
+      "kind": "camping",
+      "units": 15,
+      "sleeps": 4,
+      "rate": "",
+      "bookable": true,
+      "confirmed": false,
+      "blurb": "Pitch a tent in the open camping area and share the campfire.",
+      "features": ["Open camping area", "Shared washrooms", "Campfire access"]
+    }
+  ]
+}
