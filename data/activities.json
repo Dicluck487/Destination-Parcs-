@@ -1,0 +1,1418 @@
+{
+  "activities": [
+    {
+      "slug": "pool",
+      "name": "Pool",
+      "categories": [
+        "Indoor",
+        "Family",
+        "Relaxing"
+      ],
+      "setting": "Indoor",
+      "description": "Splash about in a clean, lifeguarded pool with fresh passion-fruit juice and snacks poolside.",
+      "suitableFor": "All ages; children supervised",
+      "duration": "1 - 3 hrs",
+      "needs": "Lifeguard, towels, safety signage, first aid",
+      "corporate": false,
+      "durationBucket": "long",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "waves",
+      "safety": "The pool is lifeguarded. Children must be supervised by an adult.",
+      "bring": "Swimwear and a change of clothes. Towels are provided.",
+      "provided": "Lifeguard, towels, safety signage, first aid",
+      "related": [
+        "build-nature-house",
+        "crazy-pool",
+        "festive-cosy-nights",
+        "fire-building-and-campfire"
+      ]
+    },
+    {
+      "slug": "crazy-pool",
+      "name": "Crazy Pool",
+      "categories": [
+        "Indoor",
+        "Children",
+        "Family"
+      ],
+      "setting": "Indoor",
+      "description": "Silly pool games: floating-mat races, water relays and a splash-down finale with prizes.",
+      "suitableFor": "Children, teens, families",
+      "duration": "1 - 2 hrs",
+      "needs": "Lifeguard, floats, games gear",
+      "corporate": false,
+      "isNew": true,
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "waves",
+      "safety": "The pool is lifeguarded and all games are supervised.",
+      "bring": "Swimwear and a change of clothes.",
+      "provided": "Lifeguard, floats, games gear",
+      "related": [
+        "build-nature-house",
+        "chef-academy",
+        "jim-jam-pyjama-party",
+        "nickelodeon-pyjama-party"
+      ]
+    },
+    {
+      "slug": "mini-crossbow-archery",
+      "name": "Mini Crossbow Archery",
+      "categories": [
+        "Indoor",
+        "Sports & Fitness"
+      ],
+      "setting": "Indoor",
+      "description": "Aim at colourful targets with a coach beside you. Easy for first-timers.",
+      "suitableFor": "Age 8+ with instructor",
+      "duration": "45 - 60 min",
+      "needs": "Instructor, targets, safety nets",
+      "corporate": false,
+      "durationBucket": "short",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "target",
+      "safety": "An instructor stands beside you throughout. Safety nets are in place.",
+      "bring": "Comfortable clothes and flat shoes. Everything else is provided.",
+      "provided": "Instructor, targets, safety nets",
+      "related": [
+        "badminton",
+        "table-tennis",
+        "build-nature-house",
+        "crazy-pool"
+      ]
+    },
+    {
+      "slug": "badminton",
+      "name": "Badminton",
+      "categories": [
+        "Indoor",
+        "Sports & Fitness"
+      ],
+      "setting": "Indoor",
+      "description": "Quick doubles games, ending in a friendly family-vs-family or office-vs-office mini tournament.",
+      "suitableFor": "Ages 6+",
+      "duration": "1 hr per slot",
+      "needs": "Court, net, rackets, shuttles",
+      "corporate": false,
+      "durationBucket": "short",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "racket",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable clothes and flat shoes. Everything else is provided.",
+      "provided": "Court, net, rackets, shuttles",
+      "related": [
+        "mini-crossbow-archery",
+        "table-tennis",
+        "build-nature-house",
+        "crazy-pool"
+      ]
+    },
+    {
+      "slug": "table-tennis",
+      "name": "Table Tennis",
+      "categories": [
+        "Indoor",
+        "Sports & Fitness"
+      ],
+      "setting": "Indoor",
+      "description": "Winner-stays-on ping-pong ladder, with a trophy for the champion of the day.",
+      "suitableFor": "Ages 6+",
+      "duration": "1 hr per slot",
+      "needs": "Tables, bats, balls",
+      "corporate": false,
+      "durationBucket": "short",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "racket",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable clothes and flat shoes. Everything else is provided.",
+      "provided": "Tables, bats, balls",
+      "related": [
+        "badminton",
+        "mini-crossbow-archery",
+        "build-nature-house",
+        "crazy-pool"
+      ]
+    },
+    {
+      "slug": "jim-jam-pyjama-party",
+      "name": "Jim Jam Pyjama Party",
+      "categories": [
+        "Indoor",
+        "Children"
+      ],
+      "setting": "Indoor",
+      "description": "Kids in pyjamas enjoy a movie, dance contest, popcorn and mandazi, then folk tales before bed.",
+      "suitableFor": "Children 4 - 12",
+      "duration": "Evening / overnight",
+      "needs": "Bedding, supervisors, snacks",
+      "corporate": false,
+      "durationBucket": "evening",
+      "ages": [
+        "kids"
+      ],
+      "icon": "moon",
+      "safety": "Supervisors stay with the children all evening.",
+      "bring": "Your child's pyjamas. Bedding is provided.",
+      "provided": "Bedding, supervisors, snacks",
+      "related": [
+        "build-nature-house",
+        "crazy-pool",
+        "nickelodeon-pyjama-party",
+        "badminton"
+      ]
+    },
+    {
+      "slug": "nickelodeon-pyjama-party",
+      "name": "Nickelodeon Pyjama Party",
+      "categories": [
+        "Indoor",
+        "Children"
+      ],
+      "setting": "Indoor",
+      "description": "Cartoon-themed night with costume parade, games and a dance-off. Themed decor only unless licensed.",
+      "suitableFor": "Children 4 - 12",
+      "duration": "Evening / overnight",
+      "needs": "Bedding, supervisors, themed decor",
+      "corporate": false,
+      "durationBucket": "evening",
+      "ages": [
+        "kids"
+      ],
+      "icon": "moon",
+      "safety": "Supervisors stay with the children all evening. Decor is themed only.",
+      "bring": "Your child's pyjamas, and a costume if you like. Bedding is provided.",
+      "provided": "Bedding, supervisors, themed decor",
+      "related": [
+        "build-nature-house",
+        "crazy-pool",
+        "jim-jam-pyjama-party",
+        "badminton"
+      ]
+    },
+    {
+      "slug": "build-nature-house",
+      "name": "Build Nature House",
+      "categories": [
+        "Indoor",
+        "Creative",
+        "Children",
+        "Family"
+      ],
+      "setting": "Indoor",
+      "description": "Kids build a bug hotel from sticks, bamboo and banana fibre, name it and take a photo.",
+      "suitableFor": "Children and families",
+      "duration": "1 - 2 hrs",
+      "needs": "Wood, twigs, simple tools, guide",
+      "corporate": false,
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "home",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable clothes and flat shoes. Everything else is provided.",
+      "provided": "Wood, twigs, simple tools, guide",
+      "related": [
+        "chef-academy",
+        "crazy-pool",
+        "xmas-events-academy",
+        "den-building-and-decorating"
+      ]
+    },
+    {
+      "slug": "interactive-forest-challenge",
+      "name": "Interactive Forest Challenge",
+      "categories": [
+        "Outdoor",
+        "Family"
+      ],
+      "setting": "Outdoor",
+      "description": "Teams follow clues through the trees, solve puzzles and cross rope obstacles to win the Forest Flag.",
+      "suitableFor": "Teens, families, corporate teams",
+      "duration": "1.5 - 3 hrs",
+      "needs": "Course set-up, guides, scoring",
+      "corporate": true,
+      "teamValue": "Problem-solving under pressure",
+      "durationBucket": "long",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "compass",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Course set-up, guides, scoring",
+      "related": [
+        "adventure-golf",
+        "family-challenge",
+        "farm-visits",
+        "fire-building-and-campfire"
+      ]
+    },
+    {
+      "slug": "laser-combat",
+      "name": "Laser Combat",
+      "categories": [
+        "Outdoor",
+        "Sports & Fitness"
+      ],
+      "setting": "Outdoor",
+      "description": "Team tag in the bush with laser gear: hide behind trees, capture the flag, cheer loudly.",
+      "suitableFor": "Age 8+",
+      "duration": "1 hr",
+      "needs": "Laser sets, marshals, safety briefing",
+      "corporate": true,
+      "teamValue": "Strategy and friendly rivalry",
+      "durationBucket": "short",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "zap",
+      "safety": "A marshal gives a safety briefing before every game.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Laser sets, marshals, safety briefing",
+      "related": [
+        "adventure-golf",
+        "aerial-tree-trekking",
+        "field-archery",
+        "foot-golf-challenge"
+      ]
+    },
+    {
+      "slug": "adventure-golf",
+      "name": "Adventure Golf",
+      "categories": [
+        "Outdoor",
+        "Sports & Fitness",
+        "Family"
+      ],
+      "setting": "Outdoor",
+      "description": "Nine mini-golf holes themed on Uganda: crested crane, source of the Nile, boda boda, Rwenzori.",
+      "suitableFor": "All ages",
+      "duration": "1 - 1.5 hrs",
+      "needs": "Course, putters, balls, scorecards",
+      "corporate": true,
+      "teamValue": "Light, social icebreaker",
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "flag",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Course, putters, balls, scorecards",
+      "related": [
+        "foot-golf-challenge",
+        "football-fun-challenge",
+        "aerial-tree-trekking",
+        "family-challenge"
+      ]
+    },
+    {
+      "slug": "aerial-tree-trekking",
+      "name": "Aerial Tree Trekking",
+      "categories": [
+        "Outdoor",
+        "Sports & Fitness"
+      ],
+      "setting": "Outdoor",
+      "description": "Balance, walk and swing between treetop platforms in a harness, with a guide at every stage.",
+      "suitableFor": "Age 8+ (height limits apply)",
+      "duration": "1.5 - 2.5 hrs",
+      "needs": "Certified course, harnesses, trained instructors",
+      "corporate": true,
+      "teamValue": "Trust and courage",
+      "durationBucket": "long",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "tree",
+      "safety": "Height limits apply. You are in a harness at all times with a trained guide at every stage.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Certified course, harnesses, trained instructors",
+      "related": [
+        "adventure-golf",
+        "field-archery",
+        "foot-golf-challenge",
+        "football-fun-challenge"
+      ]
+    },
+    {
+      "slug": "field-archery",
+      "name": "Field Archery",
+      "categories": [
+        "Outdoor",
+        "Sports & Fitness"
+      ],
+      "setting": "Outdoor",
+      "description": "Shoot at animal-shaped targets along a shaded forest path.",
+      "suitableFor": "Age 8+",
+      "duration": "1 hr",
+      "needs": "Bows, targets, instructor, safe range",
+      "corporate": true,
+      "teamValue": "Focus and friendly competition",
+      "durationBucket": "short",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "target",
+      "safety": "Shooting takes place on a safe range, supervised by an instructor.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Bows, targets, instructor, safe range",
+      "related": [
+        "adventure-golf",
+        "aerial-tree-trekking",
+        "foot-golf-challenge",
+        "football-fun-challenge"
+      ]
+    },
+    {
+      "slug": "tree-discovery-experience",
+      "name": "Tree Discovery Experience",
+      "categories": [
+        "Outdoor",
+        "Family",
+        "Children",
+        "Relaxing"
+      ],
+      "setting": "Outdoor",
+      "description": "A guided walk meeting the grounds trees: fruit, medicine and shade trees, with local names and uses.",
+      "suitableFor": "All ages",
+      "duration": "1 - 2 hrs",
+      "needs": "Guide, tree labels, guidebook",
+      "corporate": false,
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "tree",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Guide, tree labels, guidebook",
+      "related": [
+        "christmas-hunt",
+        "den-building-and-decorating",
+        "easter-egg-hunt",
+        "farm-visits"
+      ]
+    },
+    {
+      "slug": "den-building-and-decorating",
+      "name": "Den Building & Decorating",
+      "categories": [
+        "Outdoor",
+        "Creative",
+        "Children",
+        "Family"
+      ],
+      "setting": "Outdoor",
+      "description": "Build a den from poles, reeds and kitenge cloth, then decorate it. Best den wins.",
+      "suitableFor": "Children and families",
+      "duration": "1 - 2 hrs",
+      "needs": "Poles, cloth, rope, decorating items",
+      "corporate": false,
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "home",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Poles, cloth, rope, decorating items",
+      "related": [
+        "christmas-hunt",
+        "easter-egg-hunt",
+        "farm-visits",
+        "festive-pony-painting"
+      ]
+    },
+    {
+      "slug": "easter-egg-hunt",
+      "name": "Easter Egg Hunt",
+      "categories": [
+        "Outdoor",
+        "Children",
+        "Family",
+        "Seasonal"
+      ],
+      "setting": "Outdoor",
+      "description": "Kids race around the garden with baskets hunting painted eggs, then enjoy a picnic.",
+      "suitableFor": "Children and families",
+      "duration": "1 hr",
+      "needs": "Eggs, baskets, prizes, route markers",
+      "corporate": false,
+      "durationBucket": "short",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "egg",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Eggs, baskets, prizes, route markers",
+      "related": [
+        "christmas-hunt",
+        "den-building-and-decorating",
+        "farm-visits",
+        "festive-pony-painting"
+      ]
+    },
+    {
+      "slug": "christmas-hunt",
+      "name": "Christmas Hunt",
+      "categories": [
+        "Outdoor",
+        "Children",
+        "Family",
+        "Seasonal"
+      ],
+      "setting": "Outdoor",
+      "description": "A festive clue trail ending at a surprise gift spot, with carols and sodas after.",
+      "suitableFor": "Children and families",
+      "duration": "1 - 1.5 hrs",
+      "needs": "Clue cards, prizes, decor",
+      "corporate": false,
+      "isUpcoming": true,
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "gift",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Clue cards, prizes, decor",
+      "related": [
+        "easter-egg-hunt",
+        "den-building-and-decorating",
+        "farm-visits",
+        "festive-pony-painting"
+      ]
+    },
+    {
+      "slug": "fire-building-and-campfire",
+      "name": "Fire Building & Campfire",
+      "categories": [
+        "Outdoor",
+        "Family",
+        "Relaxing"
+      ],
+      "setting": "Outdoor",
+      "description": "Learn to build a safe fire, then gather for roasted maize, marshmallows, drumming and stories under the stars.",
+      "suitableFor": "Age 8+, families, groups",
+      "duration": "1.5 - 3 hrs (evening)",
+      "needs": "Fire pit, firewood, seating, extinguisher",
+      "corporate": true,
+      "teamValue": "Bonding and storytelling",
+      "durationBucket": "evening",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "flame",
+      "safety": "A fire pit and an extinguisher are on hand. Children join with an adult.",
+      "bring": "A warm layer for the evening and closed shoes.",
+      "provided": "Fire pit, firewood, seating, extinguisher",
+      "related": [
+        "forest-discovery-trail",
+        "nature-walks",
+        "tree-discovery-experience",
+        "adventure-golf"
+      ]
+    },
+    {
+      "slug": "silent-trust-walks",
+      "name": "Silent Trust Walks",
+      "categories": [
+        "Outdoor",
+        "Relaxing"
+      ],
+      "setting": "Outdoor",
+      "description": "Walk quietly in pairs, one guiding the other with eyes closed, and listen to birds, wind and water.",
+      "suitableFor": "Adults, teams",
+      "duration": "45 - 90 min",
+      "needs": "Guide, blindfolds (optional)",
+      "corporate": true,
+      "teamValue": "Trust and listening",
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "teens"
+      ],
+      "icon": "footprints",
+      "safety": "A guide leads the session. Blindfolds are optional.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Guide, blindfolds (optional)",
+      "related": [
+        "bird-watching",
+        "fire-building-and-campfire",
+        "forest-walks-and-trekking",
+        "forest-discovery-trail"
+      ]
+    },
+    {
+      "slug": "compass-and-night-hikes",
+      "name": "Compass & Night Hikes",
+      "categories": [
+        "Outdoor",
+        "Sports & Fitness"
+      ],
+      "setting": "Outdoor",
+      "description": "Learn to read a compass by day, then follow a torch-lit trail at dusk with a guide.",
+      "suitableFor": "Teens and adults",
+      "duration": "2 - 3 hrs",
+      "needs": "Compasses, torches, guides, first aid",
+      "corporate": false,
+      "durationBucket": "long",
+      "ages": [
+        "adults",
+        "teens"
+      ],
+      "icon": "compass",
+      "safety": "A guide leads the night trail and first aid is carried.",
+      "bring": "Sturdy closed shoes, a light jacket and a water bottle. Torches are provided.",
+      "provided": "Compasses, torches, guides, first aid",
+      "related": [
+        "adventure-golf",
+        "aerial-tree-trekking",
+        "cycling-and-off-road-explorer",
+        "field-archery"
+      ]
+    },
+    {
+      "slug": "festive-pony-painting",
+      "name": "Festive Pony Painting",
+      "categories": [
+        "Creative",
+        "Children",
+        "Family",
+        "Seasonal"
+      ],
+      "setting": "Outdoor",
+      "description": "A festive art session where kids paint pony-themed pictures to take home.",
+      "suitableFor": "Children and families",
+      "duration": "1 hr",
+      "needs": "Paints, brushes, aprons",
+      "corporate": false,
+      "isUpcoming": true,
+      "durationBucket": "short",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "brush",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Clothes that can get messy. Aprons are provided.",
+      "provided": "Paints, brushes, aprons",
+      "related": [
+        "xmas-events-academy",
+        "christmas-hunt",
+        "den-building-and-decorating",
+        "easter-egg-hunt"
+      ]
+    },
+    {
+      "slug": "festive-cosy-nights",
+      "name": "Festive Cosy Nights",
+      "categories": [
+        "Seasonal",
+        "Family",
+        "Relaxing"
+      ],
+      "setting": "Outdoor",
+      "description": "Fairy lights, a warm fire, festive music and local snacks for a relaxed holiday evening.",
+      "suitableFor": "Families, couples, groups",
+      "duration": "Evening / overnight",
+      "needs": "Decor, lighting, fire, refreshments",
+      "corporate": false,
+      "isUpcoming": true,
+      "durationBucket": "evening",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "flame",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Decor, lighting, fire, refreshments",
+      "related": [
+        "christmas-hunt",
+        "easter-egg-hunt",
+        "festive-pony-painting",
+        "fire-building-and-campfire"
+      ]
+    },
+    {
+      "slug": "football-fun-challenge",
+      "name": "Football Fun Challenge",
+      "categories": [
+        "Outdoor",
+        "Sports & Fitness",
+        "Family",
+        "Children"
+      ],
+      "setting": "Outdoor",
+      "description": "Penalty shoot-outs, dribble courses and a mini-match: kids versus parents.",
+      "suitableFor": "All ages",
+      "duration": "1 hr",
+      "needs": "Pitch, goals, balls, bibs",
+      "corporate": true,
+      "teamValue": "Team spirit",
+      "durationBucket": "short",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "ball",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Pitch, goals, balls, bibs",
+      "related": [
+        "adventure-golf",
+        "farm-visits",
+        "foot-golf-challenge",
+        "christmas-hunt"
+      ]
+    },
+    {
+      "slug": "foot-golf-challenge",
+      "name": "Foot Golf Challenge",
+      "categories": [
+        "Outdoor",
+        "Sports & Fitness",
+        "Family"
+      ],
+      "setting": "Outdoor",
+      "description": "Kick a football around a golf-style course into big holes. Fewest kicks wins.",
+      "suitableFor": "All ages",
+      "duration": "1 - 1.5 hrs",
+      "needs": "Course, size-5 balls, cups",
+      "corporate": true,
+      "teamValue": "Easy, inclusive fun",
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "ball",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Course, size-5 balls, cups",
+      "related": [
+        "adventure-golf",
+        "football-fun-challenge",
+        "aerial-tree-trekking",
+        "family-challenge"
+      ]
+    },
+    {
+      "slug": "insect-safari",
+      "name": "Insect Safari",
+      "categories": [
+        "Outdoor",
+        "Children",
+        "Family"
+      ],
+      "setting": "Outdoor",
+      "description": "Hunt butterflies, beetles and ants with nets and magnifiers while a guide explains each find.",
+      "suitableFor": "Children and families",
+      "duration": "1 hr",
+      "needs": "Nets, magnifiers, guide",
+      "corporate": false,
+      "durationBucket": "short",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "bug",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Nets, magnifiers, guide",
+      "related": [
+        "christmas-hunt",
+        "den-building-and-decorating",
+        "easter-egg-hunt",
+        "farm-visits"
+      ]
+    },
+    {
+      "slug": "nature-walks",
+      "name": "Nature Walks",
+      "categories": [
+        "Outdoor",
+        "Family",
+        "Relaxing"
+      ],
+      "setting": "Outdoor",
+      "description": "An easy stroll with a local guide pointing out plants, birds and butterflies.",
+      "suitableFor": "All ages",
+      "duration": "1 - 2 hrs",
+      "needs": "Guide, trail markers",
+      "corporate": false,
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "footprints",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Guide, trail markers",
+      "related": [
+        "fire-building-and-campfire",
+        "forest-discovery-trail",
+        "tree-discovery-experience",
+        "adventure-golf"
+      ]
+    },
+    {
+      "slug": "cycling-and-off-road-explorer",
+      "name": "Cycling & Off-Road Explorer",
+      "categories": [
+        "Outdoor",
+        "Sports & Fitness"
+      ],
+      "setting": "Outdoor",
+      "description": "Ride village paths, farmland and trails with a guide and photo stops.",
+      "suitableFor": "Age 10+",
+      "duration": "1 - 3 hrs",
+      "needs": "Bikes, helmets, route guide",
+      "corporate": false,
+      "durationBucket": "long",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "bike",
+      "safety": "Helmets are provided and a guide leads the route.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Bikes, helmets, route guide",
+      "related": [
+        "adventure-golf",
+        "aerial-tree-trekking",
+        "compass-and-night-hikes",
+        "field-archery"
+      ]
+    },
+    {
+      "slug": "quad-bike-safari",
+      "name": "Quad-Bike Safari",
+      "categories": [
+        "Outdoor",
+        "Sports & Fitness"
+      ],
+      "setting": "Outdoor",
+      "description": "Guided ride on dusty trails past farms and trees. Helmets on and safety briefing first.",
+      "suitableFor": "Adults; minors only with guide per operator rules",
+      "duration": "1 - 2 hrs",
+      "needs": "Quad bikes, helmets, guides, waivers",
+      "corporate": true,
+      "teamValue": "Reward and adventure",
+      "durationBucket": "medium",
+      "ages": [
+        "adults"
+      ],
+      "icon": "bike",
+      "safety": "Helmets are worn and a safety briefing comes first. Riders sign a waiver. Minors ride only with a guide, per operator rules.",
+      "bring": "Long trousers, closed shoes and sunglasses. Helmets are provided.",
+      "provided": "Quad bikes, helmets, guides, waivers",
+      "related": [
+        "adventure-golf",
+        "aerial-tree-trekking",
+        "field-archery",
+        "foot-golf-challenge"
+      ]
+    },
+    {
+      "slug": "forest-walks-and-trekking",
+      "name": "Forest Walks & Trekking",
+      "categories": [
+        "Outdoor",
+        "Sports & Fitness",
+        "Relaxing"
+      ],
+      "setting": "Outdoor",
+      "description": "A longer trek into the forest with a guide, water breaks and a picnic stop.",
+      "suitableFor": "Teens and adults",
+      "duration": "2 - 4 hrs",
+      "needs": "Guide, water, first aid",
+      "corporate": true,
+      "durationBucket": "long",
+      "ages": [
+        "adults",
+        "teens"
+      ],
+      "icon": "footprints",
+      "safety": "A guide leads the walk, water breaks are built in and first aid is carried.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Guide, water, first aid",
+      "related": [
+        "adventure-golf",
+        "aerial-tree-trekking",
+        "bird-watching",
+        "field-archery"
+      ]
+    },
+    {
+      "slug": "bird-watching",
+      "name": "Bird Watching",
+      "categories": [
+        "Outdoor",
+        "Relaxing"
+      ],
+      "setting": "Outdoor",
+      "description": "Early-morning walk with binoculars to spot turacos, kingfishers, weavers and maybe a fish eagle.",
+      "suitableFor": "All ages",
+      "duration": "2 hrs (early morning)",
+      "needs": "Binoculars, bird guidebook, guide",
+      "corporate": true,
+      "isNew": true,
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "bird",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Neutral-coloured clothes and closed shoes. Binoculars are provided.",
+      "provided": "Binoculars, bird guidebook, guide",
+      "related": [
+        "fire-building-and-campfire",
+        "forest-walks-and-trekking",
+        "silent-trust-walks",
+        "forest-discovery-trail"
+      ]
+    },
+    {
+      "slug": "forest-discovery-trail",
+      "name": "Forest Discovery Trail",
+      "categories": [
+        "Outdoor",
+        "Relaxing",
+        "Family"
+      ],
+      "setting": "Outdoor",
+      "description": "A marked trail with fun stops: listening spot, animal tracks, viewpoint and a quiz card.",
+      "suitableFor": "All ages",
+      "duration": "1 - 2 hrs",
+      "needs": "Trail signs, map, guide",
+      "corporate": false,
+      "isNew": true,
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "compass",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Trail signs, map, guide",
+      "related": [
+        "fire-building-and-campfire",
+        "nature-walks",
+        "tree-discovery-experience",
+        "adventure-golf"
+      ]
+    },
+    {
+      "slug": "community-tourism",
+      "name": "Community Tourism",
+      "categories": [
+        "Outdoor"
+      ],
+      "setting": "Outdoor",
+      "description": "Meet local people: visit a craft group, taste local food, learn a dance and buy handmade gifts.",
+      "suitableFor": "Groups, families, corporate",
+      "duration": "Half / full day",
+      "needs": "Local guides, transport, community agreements",
+      "corporate": true,
+      "isNew": true,
+      "durationBucket": "day",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "users",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Local guides, transport, community agreements",
+      "related": [
+        "adventure-golf",
+        "aerial-tree-trekking",
+        "bird-watching",
+        "family-challenge"
+      ]
+    },
+    {
+      "slug": "farm-visits",
+      "name": "Farm Visits",
+      "categories": [
+        "Outdoor",
+        "Family",
+        "Children"
+      ],
+      "setting": "Outdoor",
+      "description": "Pick vegetables, feed chickens or goats, then cook what you harvested.",
+      "suitableFor": "Families, schools, corporate",
+      "duration": "2 - 4 hrs",
+      "needs": "Farm guide, protective wear, hand-wash points",
+      "corporate": true,
+      "durationBucket": "long",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "leaf",
+      "safety": "Hand-wash points are available and protective wear is provided.",
+      "bring": "Old clothes and closed shoes you do not mind getting dirty.",
+      "provided": "Farm guide, protective wear, hand-wash points",
+      "related": [
+        "football-fun-challenge",
+        "christmas-hunt",
+        "den-building-and-decorating",
+        "easter-egg-hunt"
+      ]
+    },
+    {
+      "slug": "freestyle-yoga",
+      "name": "Freestyle Yoga",
+      "categories": [
+        "Sports & Fitness",
+        "Relaxing"
+      ],
+      "setting": "Outdoor",
+      "description": "Relaxed open-air yoga at sunrise or sunset to gentle music. No experience needed.",
+      "suitableFor": "Adults and teens",
+      "duration": "45 - 60 min",
+      "needs": "Yoga mats, instructor",
+      "corporate": false,
+      "isNew": true,
+      "durationBucket": "short",
+      "ages": [
+        "adults",
+        "teens"
+      ],
+      "icon": "sun",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Loose, comfortable clothes. Mats are provided.",
+      "provided": "Yoga mats, instructor",
+      "related": [
+        "forest-walks-and-trekking",
+        "adventure-golf",
+        "aerial-tree-trekking",
+        "bird-watching"
+      ]
+    },
+    {
+      "slug": "sound-bathing",
+      "name": "Sound Bathing",
+      "categories": [
+        "Relaxing"
+      ],
+      "setting": "Indoor",
+      "description": "Lie back as sound bowls, drums and nature sounds melt the stress away.",
+      "suitableFor": "Adults",
+      "duration": "45 - 60 min",
+      "needs": "Sound bowls, mats, quiet space",
+      "corporate": false,
+      "durationBucket": "short",
+      "ages": [
+        "adults"
+      ],
+      "icon": "waves",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Loose, comfortable clothes. Mats are provided.",
+      "provided": "Sound bowls, mats, quiet space",
+      "related": [
+        "pool",
+        "bird-watching",
+        "festive-cosy-nights",
+        "fire-building-and-campfire"
+      ]
+    },
+    {
+      "slug": "xmas-events-academy",
+      "name": "Xmas Events Academy",
+      "categories": [
+        "Creative",
+        "Children",
+        "Family",
+        "Seasonal"
+      ],
+      "setting": "Indoor",
+      "description": "Make Christmas decorations from bark cloth, raffia and banana fibre, and join a mini choir.",
+      "suitableFor": "Children and families",
+      "duration": "1 - 2 hrs",
+      "needs": "Craft materials, decor, facilitator",
+      "corporate": false,
+      "isUpcoming": true,
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "gift",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable clothes and flat shoes. Everything else is provided.",
+      "provided": "Craft materials, decor, facilitator",
+      "related": [
+        "festive-pony-painting",
+        "build-nature-house",
+        "chef-academy",
+        "christmas-hunt"
+      ]
+    },
+    {
+      "slug": "face-painting",
+      "name": "Face Painting",
+      "categories": [
+        "Creative",
+        "Children"
+      ],
+      "setting": "Indoor",
+      "description": "Kids choose animals or crested crane designs and an artist paints them in minutes.",
+      "suitableFor": "Children",
+      "duration": "15 - 30 min each",
+      "needs": "Face paints, brushes, artist",
+      "corporate": false,
+      "durationBucket": "short",
+      "ages": [
+        "kids"
+      ],
+      "icon": "brush",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Nothing special. The artist brings everything.",
+      "provided": "Face paints, brushes, artist",
+      "related": [
+        "build-nature-house",
+        "chef-academy",
+        "xmas-events-academy",
+        "den-building-and-decorating"
+      ]
+    },
+    {
+      "slug": "family-handprint",
+      "name": "Family Handprint",
+      "categories": [
+        "Creative",
+        "Family"
+      ],
+      "setting": "Indoor",
+      "description": "Everyone dips a hand in paint to make a keepsake canvas with the family name and date.",
+      "suitableFor": "Families",
+      "duration": "30 - 45 min",
+      "needs": "Paints, canvas or paper",
+      "corporate": false,
+      "durationBucket": "short",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "hand",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Clothes that can get messy.",
+      "provided": "Paints, canvas or paper",
+      "related": [
+        "build-nature-house",
+        "chef-academy",
+        "family-nature-journal",
+        "xmas-events-academy"
+      ]
+    },
+    {
+      "slug": "family-nature-journal",
+      "name": "Family Nature Journal",
+      "categories": [
+        "Creative",
+        "Family"
+      ],
+      "setting": "Indoor",
+      "description": "Collect leaves and sketches to build a family journal of the visit.",
+      "suitableFor": "Families",
+      "duration": "1 hr",
+      "needs": "Journals, pencils, nature items",
+      "corporate": false,
+      "durationBucket": "short",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "book",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable clothes and flat shoes. Everything else is provided.",
+      "provided": "Journals, pencils, nature items",
+      "related": [
+        "build-nature-house",
+        "chef-academy",
+        "family-handprint",
+        "xmas-events-academy"
+      ]
+    },
+    {
+      "slug": "family-challenge",
+      "name": "Family Challenge",
+      "categories": [
+        "Outdoor",
+        "Family"
+      ],
+      "setting": "Outdoor",
+      "description": "Families compete in sack races, tug-of-war, egg-and-spoon and a quick trivia round.",
+      "suitableFor": "Families",
+      "duration": "1 - 2 hrs",
+      "needs": "Game props, scoreboard, host",
+      "corporate": true,
+      "teamValue": "Departments or families compete together",
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "users",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable closed shoes, a hat, sunscreen and a bottle of water. Bring a light rain jacket in the wet season.",
+      "provided": "Game props, scoreboard, host",
+      "related": [
+        "adventure-golf",
+        "farm-visits",
+        "fire-building-and-campfire",
+        "foot-golf-challenge"
+      ]
+    },
+    {
+      "slug": "chef-academy",
+      "name": "Chef Academy",
+      "categories": [
+        "Creative",
+        "Family",
+        "Children"
+      ],
+      "setting": "Indoor",
+      "description": "Cook local favourites such as rolex, luwombo or mandazi, then eat your creation.",
+      "suitableFor": "Children, families, teams",
+      "duration": "1.5 - 2 hrs",
+      "needs": "Kitchen kit, ingredients, chef",
+      "corporate": true,
+      "teamValue": "Collaboration and creativity",
+      "durationBucket": "medium",
+      "ages": [
+        "adults",
+        "kids",
+        "teens"
+      ],
+      "icon": "chef",
+      "safety": "A trained guide briefs every group before the activity begins.",
+      "bring": "Comfortable clothes and flat shoes. Everything else is provided.",
+      "provided": "Kitchen kit, ingredients, chef",
+      "related": [
+        "build-nature-house",
+        "xmas-events-academy",
+        "den-building-and-decorating",
+        "festive-pony-painting"
+      ]
+    }
+  ],
+  "groups": {
+    "outdoor": [
+      {
+        "name": "Adventure & Thrills",
+        "items": [
+          "laser-combat",
+          "aerial-tree-trekking",
+          "quad-bike-safari",
+          "cycling-and-off-road-explorer",
+          "interactive-forest-challenge",
+          "field-archery"
+        ]
+      },
+      {
+        "name": "Nature & Wildlife",
+        "items": [
+          "bird-watching",
+          "insect-safari",
+          "nature-walks",
+          "forest-walks-and-trekking",
+          "tree-discovery-experience",
+          "forest-discovery-trail"
+        ]
+      },
+      {
+        "name": "Games & Golf",
+        "items": [
+          "adventure-golf",
+          "foot-golf-challenge",
+          "football-fun-challenge",
+          "family-challenge"
+        ]
+      }
+    ],
+    "indoor": [
+      {
+        "name": "Games",
+        "items": [
+          "pool",
+          "crazy-pool",
+          "table-tennis",
+          "badminton"
+        ]
+      },
+      {
+        "name": "Archery",
+        "items": [
+          "mini-crossbow-archery"
+        ]
+      },
+      {
+        "name": "Parties",
+        "items": [
+          "jim-jam-pyjama-party",
+          "nickelodeon-pyjama-party"
+        ]
+      }
+    ],
+    "creative": [
+      {
+        "name": "Nature Crafts",
+        "items": [
+          "build-nature-house",
+          "den-building-and-decorating",
+          "family-nature-journal"
+        ]
+      },
+      {
+        "name": "Art",
+        "items": [
+          "face-painting",
+          "festive-pony-painting",
+          "family-handprint"
+        ]
+      },
+      {
+        "name": "Chef Academy",
+        "items": [
+          "chef-academy"
+        ]
+      }
+    ],
+    "sports-and-fitness": [
+      {
+        "name": "Team Sports",
+        "items": [
+          "football-fun-challenge",
+          "foot-golf-challenge",
+          "adventure-golf",
+          "laser-combat",
+          "badminton",
+          "table-tennis"
+        ]
+      },
+      {
+        "name": "Archery",
+        "items": [
+          "mini-crossbow-archery",
+          "field-archery"
+        ]
+      },
+      {
+        "name": "Trekking & Cycling",
+        "items": [
+          "forest-walks-and-trekking",
+          "compass-and-night-hikes",
+          "cycling-and-off-road-explorer",
+          "quad-bike-safari",
+          "aerial-tree-trekking"
+        ]
+      },
+      {
+        "name": "Yoga",
+        "items": [
+          "freestyle-yoga"
+        ]
+      }
+    ],
+    "relaxing": [
+      {
+        "name": "Walks & Trails",
+        "items": [
+          "nature-walks",
+          "forest-walks-and-trekking",
+          "forest-discovery-trail",
+          "tree-discovery-experience",
+          "silent-trust-walks",
+          "bird-watching"
+        ]
+      },
+      {
+        "name": "Yoga",
+        "items": [
+          "freestyle-yoga"
+        ]
+      },
+      {
+        "name": "Sound Bathing",
+        "items": [
+          "sound-bathing"
+        ]
+      },
+      {
+        "name": "Campfire",
+        "items": [
+          "fire-building-and-campfire",
+          "festive-cosy-nights"
+        ]
+      }
+    ]
+  }
+}

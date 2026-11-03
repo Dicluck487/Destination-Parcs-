@@ -1,0 +1,371 @@
+{
+  "seasonal": [
+    {
+      "name": "Christmas Break",
+      "slug": "christmas-break",
+      "timing": "Late December",
+      "guests": "Families and groups",
+      "inclusions": [
+        {
+          "label": "Christmas Hunt",
+          "slug": "christmas-hunt"
+        },
+        {
+          "label": "Xmas crafts",
+          "slug": "xmas-events-academy"
+        },
+        {
+          "label": "Festive nights",
+          "slug": "festive-cosy-nights"
+        },
+        {
+          "label": "Campfire",
+          "slug": "fire-building-and-campfire"
+        }
+      ],
+      "kind": "seasonal"
+    },
+    {
+      "name": "New Year Breaks",
+      "slug": "new-year-breaks",
+      "timing": "Around 31 December - 2 January",
+      "guests": "Families, friends, couples",
+      "inclusions": [
+        {
+          "label": "Campfire countdown",
+          "slug": null
+        },
+        {
+          "label": "Festive meal",
+          "slug": null
+        },
+        {
+          "label": "Relaxing activities",
+          "slug": null
+        }
+      ],
+      "kind": "seasonal"
+    },
+    {
+      "name": "Easter Breaks",
+      "slug": "easter-breaks",
+      "timing": "Easter weekend",
+      "guests": "Families",
+      "inclusions": [
+        {
+          "label": "Easter Egg Hunt",
+          "slug": "easter-egg-hunt"
+        },
+        {
+          "label": "Family challenge",
+          "slug": "family-challenge"
+        },
+        {
+          "label": "Nature walks",
+          "slug": "nature-walks"
+        }
+      ],
+      "kind": "seasonal"
+    },
+    {
+      "name": "Valentine Breaks",
+      "slug": "valentine-breaks",
+      "timing": "Around 14 February",
+      "guests": "Couples",
+      "inclusions": [
+        {
+          "label": "Sunset waterfront",
+          "slug": null
+        },
+        {
+          "label": "Campfire",
+          "slug": "fire-building-and-campfire"
+        },
+        {
+          "label": "Yoga",
+          "slug": "freestyle-yoga"
+        },
+        {
+          "label": "Private dining",
+          "slug": null
+        }
+      ],
+      "kind": "seasonal"
+    },
+    {
+      "name": "Wedding Breaks",
+      "slug": "wedding-breaks",
+      "timing": "Any time, by booking",
+      "guests": "Couples and wedding parties",
+      "inclusions": [
+        {
+          "label": "Venue",
+          "slug": null
+        },
+        {
+          "label": "Accommodation",
+          "slug": null
+        },
+        {
+          "label": "Photo sessions",
+          "slug": null
+        },
+        {
+          "label": "Celebrations",
+          "slug": null
+        }
+      ],
+      "kind": "seasonal"
+    },
+    {
+      "name": "School Visits & Holiday Breaks",
+      "slug": "school-visits-and-holiday-breaks",
+      "timing": "School holidays",
+      "guests": "Schools, parents and children",
+      "inclusions": [
+        {
+          "label": "Insect safari",
+          "slug": "insect-safari"
+        },
+        {
+          "label": "Pool",
+          "slug": "pool"
+        },
+        {
+          "label": "Kids parties",
+          "slug": null
+        },
+        {
+          "label": "Farm visits",
+          "slug": "farm-visits"
+        },
+        {
+          "label": "Crafts",
+          "slug": null
+        }
+      ],
+      "kind": "seasonal"
+    }
+  ],
+  "other": [
+    {
+      "name": "Child-Friendly Breaks",
+      "slug": "child-friendly-breaks",
+      "timing": "Any time",
+      "guests": "Parents with young children",
+      "inclusions": [
+        {
+          "label": "Baby inflatables",
+          "slug": null
+        },
+        {
+          "label": "Pool",
+          "slug": "pool"
+        },
+        {
+          "label": "Face painting",
+          "slug": "face-painting"
+        },
+        {
+          "label": "Den building",
+          "slug": "den-building-and-decorating"
+        }
+      ],
+      "kind": "family"
+    },
+    {
+      "name": "Family Breaks",
+      "slug": "family-breaks",
+      "timing": "Weekends and holidays",
+      "guests": "Families",
+      "inclusions": [
+        {
+          "label": "Family challenge",
+          "slug": "family-challenge"
+        },
+        {
+          "label": "Handprint",
+          "slug": "family-handprint"
+        },
+        {
+          "label": "Nature journal",
+          "slug": "family-nature-journal"
+        },
+        {
+          "label": "Pool",
+          "slug": "pool"
+        }
+      ],
+      "kind": "family"
+    }
+  ],
+  "durations": [
+    {
+      "name": "Day Visit",
+      "length": "6 - 10 hrs",
+      "use": "Activities, meals and meetings without overnight stay"
+    },
+    {
+      "name": "Overnight",
+      "length": "1 night",
+      "use": "Short getaway, pyjama parties, campfire evening"
+    },
+    {
+      "name": "Weekend",
+      "length": "2 nights",
+      "use": "Family breaks, couples, wedding guests"
+    },
+    {
+      "name": "Mid-week Stay",
+      "length": "3 nights",
+      "use": "Corporate retreats, longer holidays"
+    },
+    {
+      "name": "Week Stay",
+      "length": "5 - 7 nights",
+      "use": "School holidays, extended retreats"
+    }
+  ],
+  "signature": [
+    {
+      "name": "Lakeside Family Day",
+      "slug": "lakeside-family-day",
+      "feel": "A relaxed Sunday: games, a picnic and sunset by the water",
+      "inclusions": [
+        {
+          "label": "Family Challenge",
+          "slug": "family-challenge"
+        },
+        {
+          "label": "Insect Safari",
+          "slug": "insect-safari"
+        },
+        {
+          "label": "Pool",
+          "slug": "pool"
+        },
+        {
+          "label": "Face Painting",
+          "slug": "face-painting"
+        },
+        {
+          "label": "Nature Walk",
+          "slug": "nature-walks"
+        }
+      ],
+      "kind": "signature"
+    },
+    {
+      "name": "Campfire & Stories Night",
+      "slug": "campfire-and-stories-night",
+      "feel": "Fire, drums, roasted maize and Ugandan folk tales under the stars",
+      "inclusions": [
+        {
+          "label": "Fire Building & Campfire",
+          "slug": "fire-building-and-campfire"
+        },
+        {
+          "label": "Silent Trust Walk",
+          "slug": "silent-trust-walks"
+        },
+        {
+          "label": "Festive Cosy Nights",
+          "slug": "festive-cosy-nights"
+        }
+      ],
+      "kind": "signature"
+    },
+    {
+      "name": "Farm-to-Fork Day",
+      "slug": "farm-to-fork-day",
+      "feel": "Harvest, cook and eat together",
+      "inclusions": [
+        {
+          "label": "Farm Visit",
+          "slug": "farm-visits"
+        },
+        {
+          "label": "Chef Academy",
+          "slug": "chef-academy"
+        },
+        {
+          "label": "Community Tourism",
+          "slug": "community-tourism"
+        }
+      ],
+      "kind": "signature"
+    },
+    {
+      "name": "Adventure Bonanza",
+      "slug": "adventure-bonanza",
+      "feel": "A full day of thrills for teens and teams",
+      "inclusions": [
+        {
+          "label": "Laser Combat",
+          "slug": "laser-combat"
+        },
+        {
+          "label": "Aerial Trekking",
+          "slug": "aerial-tree-trekking"
+        },
+        {
+          "label": "Quad-Bike Safari",
+          "slug": "quad-bike-safari"
+        },
+        {
+          "label": "Foot Golf",
+          "slug": "foot-golf-challenge"
+        }
+      ],
+      "kind": "signature"
+    },
+    {
+      "name": "Calm Weekend Reset",
+      "slug": "calm-weekend-reset",
+      "feel": "Slow mornings and quiet evenings",
+      "inclusions": [
+        {
+          "label": "Freestyle Yoga",
+          "slug": "freestyle-yoga"
+        },
+        {
+          "label": "Sound Bathing",
+          "slug": "sound-bathing"
+        },
+        {
+          "label": "Bird Watching",
+          "slug": "bird-watching"
+        },
+        {
+          "label": "Forest Trail",
+          "slug": "forest-discovery-trail"
+        }
+      ],
+      "kind": "signature"
+    },
+    {
+      "name": "Little Explorers Break",
+      "slug": "little-explorers-break",
+      "feel": "Safe, gentle fun for young children",
+      "inclusions": [
+        {
+          "label": "Baby Inflatables",
+          "slug": null
+        },
+        {
+          "label": "Crazy Pool",
+          "slug": "crazy-pool"
+        },
+        {
+          "label": "Face Painting",
+          "slug": "face-painting"
+        },
+        {
+          "label": "Easter or Christmas Hunt",
+          "slug": "easter-egg-hunt"
+        }
+      ],
+      "kind": "signature"
+    }
+  ]
+}

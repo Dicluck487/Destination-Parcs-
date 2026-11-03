@@ -1,0 +1,30 @@
+{
+  "destinations": [
+    {
+      "slug": "the-farm",
+      "name": "The Farm",
+      "bookable": true,
+      "area": "Katuulo, along Bujuuko-Mityana Road",
+      "short": "Forest trails, open fields, farm life and campfire evenings, a short drive from the city.",
+      "overview": [
+        "The Farm is our home ground in Katuulo, along Bujuuko-Mityana Road. It is a working farm with forest trails, open lawns, quiet corners and plenty of room for children to run.",
+        "Spend a day on the adventure courses, join a family challenge, harvest vegetables and cook them yourself, or slow down with yoga, bird watching and a campfire under the stars.",
+        "Whether you come with children, colleagues or a partner, every visit is built around time outdoors and time together."
+      ],
+      "highlights": ["Forest and farm trails", "Adventure and family activities", "Campfire evenings", "Meeting and retreat spaces", "Weddings and celebrations"],
+      "gallery": ["farm-1", "farm-2", "farm-3", "farm-4", "farm-5", "farm-6"]
+    },
+    {
+      "slug": "mmk-garden-waterfront",
+      "name": "MMK Garden & Waterfront",
+      "bookable": false,
+      "area": "Details to be announced",
+      "short": "Our waterfront location. Full details are coming soon.",
+      "overview": [
+        "MMK Garden & Waterfront will be our second Destination Parcs location. We will publish its activities, stays and directions here as soon as they are confirmed."
+      ],
+      "highlights": [],
+      "gallery": []
+    }
+  ]
+}

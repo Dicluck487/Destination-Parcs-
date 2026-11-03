@@ -1,0 +1,158 @@
+{
+  "meetings": [
+    {
+      "name": "Board Retreats",
+      "involves": "Private strategic sessions for boards and senior teams away from the office.",
+      "requirements": "Quiet meeting space, projector, catering, accommodation, privacy"
+    },
+    {
+      "name": "Corporate Meetings",
+      "involves": "Day meetings, workshops and trainings.",
+      "requirements": "Seating, screen, sound, Wi-Fi, tea breaks and lunch"
+    },
+    {
+      "name": "Corporate Retreats",
+      "involves": "Multi-day team retreats mixing work sessions and activities.",
+      "requirements": "Accommodation, meeting space, activity programme, meals"
+    },
+    {
+      "name": "Concentrated Tasks",
+      "involves": "Focused work sessions for writing, planning or deadlines in a calm setting.",
+      "requirements": "Quiet area, power, internet, minimal interruption"
+    }
+  ],
+  "teamBuilding": [
+    {
+      "name": "Interactive Forest Challenge",
+      "involves": "Teams follow clues through the trees, solve puzzles and cross rope obstacles to win the Forest Flag.",
+      "duration": "1.5 - 3 hrs",
+      "value": "Problem-solving under pressure",
+      "slug": "interactive-forest-challenge"
+    },
+    {
+      "name": "Laser Combat",
+      "involves": "Team tag in the bush with laser gear: hide behind trees, capture the flag, cheer loudly.",
+      "duration": "1 hr",
+      "value": "Strategy and friendly rivalry",
+      "slug": "laser-combat"
+    },
+    {
+      "name": "Adventure Golf",
+      "involves": "Nine mini-golf holes themed on Uganda: crested crane, source of the Nile, boda boda, Rwenzori.",
+      "duration": "1 - 1.5 hrs",
+      "value": "Light, social icebreaker",
+      "slug": "adventure-golf"
+    },
+    {
+      "name": "Aerial Tree Trekking",
+      "involves": "Balance, walk and swing between treetop platforms in a harness, with a guide at every stage.",
+      "duration": "1.5 - 2.5 hrs",
+      "value": "Trust and courage",
+      "slug": "aerial-tree-trekking"
+    },
+    {
+      "name": "Field Archery",
+      "involves": "Shoot at animal-shaped targets along a shaded forest path.",
+      "duration": "1 hr",
+      "value": "Focus and friendly competition",
+      "slug": "field-archery"
+    },
+    {
+      "name": "Fire Building & Campfire",
+      "involves": "Learn to build a safe fire, then gather for roasted maize, marshmallows, drumming and stories under the stars.",
+      "duration": "1.5 - 3 hrs (Evening)",
+      "value": "Bonding and storytelling",
+      "slug": "fire-building-and-campfire"
+    },
+    {
+      "name": "Silent Trust Walks",
+      "involves": "Walk quietly in pairs, one guiding the other with eyes closed, and listen to birds, wind and water.",
+      "duration": "45 - 90 min",
+      "value": "Trust and listening",
+      "slug": "silent-trust-walks"
+    },
+    {
+      "name": "Football Fun Challenge",
+      "involves": "Penalty shoot-outs, dribble courses and a mini-match: kids versus parents.",
+      "duration": "1 hr",
+      "value": "Team spirit",
+      "slug": "football-fun-challenge"
+    },
+    {
+      "name": "Foot Golf Challenge",
+      "involves": "Kick a football around a golf-style course into big holes. Fewest kicks wins.",
+      "duration": "1 - 1.5 hrs",
+      "value": "Easy, inclusive fun",
+      "slug": "foot-golf-challenge"
+    },
+    {
+      "name": "Family Challenge",
+      "involves": "Families compete in sack races, tug-of-war, egg-and-spoon and a quick trivia round.",
+      "duration": "1 - 2 hrs",
+      "value": "Departments or families compete together",
+      "slug": "family-challenge"
+    },
+    {
+      "name": "Quad-Bike Safari",
+      "involves": "Guided ride on dusty trails past farms and trees. Helmets on and safety briefing first.",
+      "duration": "1 - 2 hrs",
+      "value": "Reward and adventure",
+      "slug": "quad-bike-safari"
+    },
+    {
+      "name": "Chef Academy",
+      "involves": "Cook local favourites such as rolex, luwombo or mandazi, then eat your creation.",
+      "duration": "1.5 - 2 hrs",
+      "value": "Collaboration and creativity",
+      "slug": "chef-academy"
+    }
+  ],
+  "social": [
+    {
+      "name": "Wedding Celebrations",
+      "involves": "Receptions, photo sessions and celebrations at the venue.",
+      "requirements": "Tents, seating, sound, catering, parking, decor"
+    },
+    {
+      "name": "Traditional Weddings",
+      "involves": "Cultural ceremonies and introductions.",
+      "requirements": "Cultural programme, seating, catering, MC, parking"
+    },
+    {
+      "name": "Anniversary Parties",
+      "involves": "Family, couple and company anniversary events.",
+      "requirements": "Decor, catering, music, cake area"
+    }
+  ],
+  "nature": [
+    {
+      "name": "Bird Watching",
+      "duration": "2 hrs (early morning)",
+      "use": "Wellbeing, learning and CSR themed outings"
+    },
+    {
+      "name": "Farm Visits (Experiential)",
+      "duration": "2 - 4 hrs",
+      "use": "Wellbeing, learning and CSR themed outings"
+    },
+    {
+      "name": "Forest Walks & Trekking",
+      "duration": "2 - 4 hrs",
+      "use": "Wellbeing, learning and CSR themed outings"
+    },
+    {
+      "name": "Community Tourism",
+      "duration": "Half / full day",
+      "use": "Wellbeing, learning and CSR themed outings"
+    }
+  ],
+  "checklist": [
+    "Group size and dates",
+    "Meeting space and equipment needed",
+    "Accommodation and meals",
+    "Activity programme and timing",
+    "Transport and parking",
+    "Safety briefing and insurance",
+    "Invoice, deposit and cancellation terms"
+  ]
+}
