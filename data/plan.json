@@ -1,0 +1,61 @@
+{
+  "_note": "Drafted from the planner's list of required sections (how to get there, what to bring, hours, FAQs, safety tips). Confirm opening hours, contact numbers and accessibility details with the operations team.",
+  "firstTime": {
+    "getThere": [
+      "The Farm is in Katuulo, along Bujuuko-Mityana Road.",
+      "Look for the Destination Parcs signboard at the entrance. Photos of the entrance, parking and signboard will be added here so first-time visitors know what to look for.",
+      "Use the map on the Contact & Directions page, or call us if you need help finding the turn-off."
+    ],
+    "bring": [
+      "Closed, comfortable shoes",
+      "A hat, sunscreen and a refillable water bottle",
+      "A change of clothes, and swimwear if you plan to use the pool",
+      "A light jacket for evenings and a rain jacket in the wet season",
+      "Any personal medication, and a copy of any special care instructions for children"
+    ],
+    "expect": [
+      "A warm welcome at reception and a short orientation",
+      "A safety briefing and your activity schedule",
+      "Trained guides, instructors and lifeguards at every activity",
+      "Food and drinks available on site"
+    ],
+    "hours": "Opening hours to be confirmed. Please contact us before travelling.",
+    "safety": [
+      "Follow the guide's instructions at every activity.",
+      "Children must stay with a responsible adult unless they are in a supervised session such as a pyjama party.",
+      "Wear closed shoes on trails and courses.",
+      "Drink water often, especially on long walks and treks.",
+      "Tell a team member about any medical condition, allergy or injury before you start an activity."
+    ],
+    "faqs": [
+      {"q": "Do I need to book in advance?", "a": "Yes. Request a booking online so we can prepare your activities, meals and stay. Our team will confirm with you."},
+      {"q": "Can I visit for just a day?", "a": "Yes. Day visits run for 6 to 10 hours and include activities, meals and meetings without an overnight stay."},
+      {"q": "Are activities suitable for young children?", "a": "Many are. Use the age filter on the Things To Do page, and check the 'Suitable for' line on each activity."},
+      {"q": "Are there height or age limits?", "a": "Some activities have them. Aerial Tree Trekking has height limits, Laser Combat and archery start at age 8, and Quad-Bike Safari is for adults, with minors only when guided and permitted by operator rules."},
+      {"q": "What if the weather is bad?", "a": "Indoor activities such as pool, table tennis and badminton are available, and our team will help you adjust your schedule."},
+      {"q": "How do I change or cancel a booking?", "a": "Sign in, open My Bookings and send a change or cancel request. Our team will respond."},
+      {"q": "Can I hold a wedding or corporate event?", "a": "Yes. See Corporate & Events, or send us a quote request."}
+    ]
+  },
+  "experience": {
+    "story": [
+      "Destination Parcs began with a simple idea: give families, friends and colleagues a place to put the phone down and spend real time together in nature.",
+      "At The Farm, a forest trail, a campfire and a shared meal do more than any meeting room. Children discover insects and trees, parents rediscover play, and teams learn to trust one another.",
+      "Our logo says it well. A bird for freedom and new beginnings, a leaf for nature and wellbeing, and two forms that come together in harmony."
+    ],
+    "pillars": [
+      {"title": "Freedom", "text": "Open space, fresh air and time that is not scheduled to the minute."},
+      {"title": "Nature", "text": "Forests, birds, farm life and the plants that grow around us."},
+      {"title": "Together", "text": "Activities designed to be shared across ages and teams."}
+    ]
+  },
+  "accessibility": {
+    "intro": "We want every guest to enjoy The Farm. The details below are a starting point, and we will confirm specific needs before you travel.",
+    "sections": [
+      {"title": "Roads and parking", "text": "The Farm is reached from Bujuuko-Mityana Road. Parking is available on site. Ask us about drop-off points close to reception if someone in your group has difficulty walking."},
+      {"title": "Wheelchair access", "text": "Please tell us in advance if you use a wheelchair or mobility aid so we can plan a suitable route, stay and set of activities. Many forest trails are uneven, while some activities and spaces are easier to reach than others."},
+      {"title": "Toilets", "text": "Washrooms are available near the main activity areas. Please ask us about step-free facilities when you book."},
+      {"title": "Families and children", "text": "Gentle options are available for young children, including nature walks, face painting, the Little Explorers Break and supervised pyjama parties. Please tell us about prams, car seats and any special care needs."}
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "hero": [
+    {"key": "forest", "label": "Forest", "headline": "Extraordinary places.", "sub": "Lasting memories under the trees.", "alt": "Sunlight through forest canopy"},
+    {"key": "waterfront", "label": "Waterfront", "headline": "More than a getaway.", "sub": "Golden hours by the water.", "alt": "Golden hour over the water"},
+    {"key": "families", "label": "Families", "headline": "Bring everyone together.", "sub": "Games, trails and long lunches for every age.", "alt": "Family outdoors"},
+    {"key": "campfire", "label": "Campfire", "headline": "Stories under the stars.", "sub": "Roasted maize, drums and folk tales.", "alt": "Campfire at dusk"}
+  ],
+  "experiences": [
+    {"key": "family", "name": "Family", "blurb": "Games and discoveries for every age.", "icon": "users", "href": "/things-to-do/type/family"},
+    {"key": "adventure", "name": "Adventure", "blurb": "Treetops, quad bikes and laser tag.", "icon": "zap", "href": "/things-to-do?type=outdoor&cat=adventure"},
+    {"key": "relax", "name": "Relax", "blurb": "Yoga, sound baths and quiet trails.", "icon": "sun", "href": "/things-to-do/type/relaxing"},
+    {"key": "corporate", "name": "Corporate", "blurb": "Retreats, meetings and team challenges.", "icon": "briefcase", "href": "/corporate"},
+    {"key": "celebrations", "name": "Celebrations", "blurb": "Weddings, anniversaries and parties.", "icon": "gift", "href": "/corporate/weddings-and-celebrations"}
+  ],
+  "featuredSignature": ["lakeside-family-day", "campfire-and-stories-night", "adventure-bonanza"],
+  "seasonalBanner": {
+    "title": "Christmas and New Year Breaks",
+    "text": "Christmas Hunt, Xmas crafts, festive cosy nights and a campfire countdown to the new year.",
+    "href": "/breaks/seasonal",
+    "badge": "Festive season"
+  },
+  "highlights": [
+    {"title": "Safe, guided adventure", "text": "Every activity starts with a safety briefing and a trained guide or instructor."},
+    {"title": "Built for families", "text": "Activities for toddlers through grandparents, so nobody is left on the sidelines."},
+    {"title": "Rooted in Uganda", "text": "Local food, local guides and games themed on the places we love."},
+    {"title": "Room to work and rest", "text": "Meeting spaces, quiet corners and calm evenings for retreats that actually reset the team."}
+  ],
+  "firstTime": [
+    {"title": "Getting here", "text": "The Farm is in Katuulo, along Bujuuko-Mityana Road."},
+    {"title": "What to bring", "text": "Closed shoes, a hat, sunscreen, water and a change of clothes."},
+    {"title": "What to expect", "text": "A welcome, a safety briefing and your activity schedule on arrival."}
+  ]
+}
