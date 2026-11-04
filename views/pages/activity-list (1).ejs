@@ -1,0 +1,5 @@
+<%- include('../partials/page-hero', { title: pageTitle, eyebrow: eyebrow, lead: lead, crumbs: [['Breaks & Packages', '/breaks'], [pageTitle]] }) %>
+<section class="section"><div class="container">
+  <div class="grid grid--3"><% list.forEach(function (b) { %><%- include('../partials/break-card', { b: b }) %><% }) %></div>
+</div></section>
+<%- include('../partials/cta-band', { title: 'Ready to choose?', text: 'Pick a break, set your dates and send your request.', primary: ['Book Now', '/book'], secondary: ['All breaks', '/breaks'] }) %>

@@ -1,0 +1,27 @@
+<%- include('../partials/page-hero', { title: 'Corporate & Events', eyebrow: 'Work, together', lead: 'Retreats, meetings, team challenges, celebrations and conferences at The Farm.', crumbs: [['Corporate & Events']], image: media.photo('pages', 'corporate'), tone: 'forest' }) %>
+<section class="section"><div class="container">
+  <div class="grid grid--3 corp-cards">
+    <% [
+      ['Meetings & Retreats', 'Board retreats, meetings, multi-day retreats and focused work sessions.', 'briefcase', '/corporate/meetings-and-retreats'],
+      ['Team Building & Challenges', corp.teamBuilding.length + ' activities that build trust, strategy and spirit.', 'users', '/corporate/team-building'],
+      ['Nature & CSR Outings', 'Bird watching, farm visits, forest walks and community tourism.', 'leaf', '/corporate/nature-and-csr'],
+      ['Weddings & Celebrations', 'Weddings, traditional ceremonies and anniversary parties.', 'heart', '/corporate/weddings-and-celebrations'],
+      ['Conferences & Venues', 'Venue options, capacity and packages.', 'home', '/corporate/conferences-and-venues'],
+      ['Planning Checklist', 'A downloadable checklist to plan with confidence.', 'download', '/corporate/checklist']
+    ].forEach(function (c) { %>
+      <a class="ccard" href="<%= c[3] %>"><span class="ccard__icon"><%- icon(c[2]) %></span><h3><%= c[0] %></h3><p><%= c[1] %></p><span class="link-arrow">Explore <%- icon('arrow-right') %></span></a>
+    <% }) %>
+  </div>
+</div></section>
+<section class="section section--tint curve-top"><div class="container two-col">
+  <div>
+    <p class="eyebrow">Why The Farm</p><h2>Step out of the office, think clearer</h2>
+    <ul class="ticks">
+      <li><%- icon('check') %>Quiet spaces for deep work and private strategy sessions</li>
+      <li><%- icon('check') %>Activity programmes that match your goals and timing</li>
+      <li><%- icon('check') %>Accommodation, meals and parking handled in one booking</li>
+      <li><%- icon('check') %>Safety briefings and trained guides at every activity</li>
+    </ul>
+  </div>
+  <div class="callout callout--stack"><%- icon('briefcase') %><h3>Planning an event?</h3><p>Tell us your group size and dates. We will send a tailored quote.</p><a class="btn btn--gold" href="/corporate/quote">Request a quote</a></div>
+</div></section>

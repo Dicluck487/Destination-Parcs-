@@ -1,0 +1,11 @@
+<%- include('../partials/page-hero', { title: 'Upcoming Activities', eyebrow: 'Coming next', lead: 'Festive and seasonal experiences on the way. Dates will be added as soon as they are confirmed.', crumbs: [['Things To Do', '/things-to-do'], ['Upcoming']] }) %>
+<section class="section"><div class="container">
+  <div class="grid grid--3"><% list.forEach(function (a) { %><%- include('../partials/activity-card', { a: a }) %><% }) %></div>
+  <div class="callout">
+    <%- icon('calendar') %>
+    <div><h3>Dates to be announced</h3><p>We will publish dates for each upcoming activity once they are confirmed. Send us a message if you would like to be first to know.</p></div>
+    <a class="btn btn--gold" href="/plan-your-visit/contact">Ask us</a>
+  </div>
+  <h2 class="block">Also on the horizon</h2>
+  <ul class="rows"><% extras.forEach(function (x) { %><li><a href="<%= x.href %>"><strong><%= x.name %></strong><span><%= x.note %></span><%- icon('arrow-right') %></a></li><% }) %></ul>
+</div></section>

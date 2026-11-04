@@ -1,0 +1,57 @@
+<%- include('../partials/page-hero', { title: dest.name, eyebrow: dest.area, lead: dest.short, crumbs: [['Destinations', '/destinations'], [dest.name]], image: media.photo('destinations', dest.slug) }) %>
+<% if (dest.bookable) { %>
+<section class="section subnav-wrap">
+  <div class="container">
+    <nav class="subnav" aria-label="On this page"><a href="#overview">Overview</a><a href="#things">Things to do here</a><a href="#stay">Stay here</a><a href="#getting-here">How to get here</a><a href="#gallery">Gallery</a></nav>
+
+    <div id="overview" class="two-col">
+      <div>
+        <p class="eyebrow">Overview</p><h2>Welcome to <%= dest.name %></h2>
+        <% dest.overview.forEach(function (p) { %><p><%= p %></p><% }) %>
+        <ul class="ticks"><% dest.highlights.forEach(function (h) { %><li><%- icon('check') %><%= h %></li><% }) %></ul>
+        <p class="btn-row"><a class="btn btn--gold" href="/book">Book your visit</a><a class="btn btn--ghost" href="/plan-your-visit/first-time">First time here?</a></p>
+      </div>
+      <div class="photo-frame"><%- include('../partials/photo', { src: media.photo('destinations', dest.slug + '-overview'), alt: dest.name, tone: 'leaf', iconName: 'tree' }) %></div>
+    </div>
+
+    <div id="things" class="block">
+      <header class="section__head split"><div><p class="eyebrow">Things to do here</p><h2>A few favourites</h2></div><a class="link-arrow" href="/things-to-do">All <%= data.activities.length %> activities <%- icon('arrow-right') %></a></header>
+      <div class="grid grid--3"><% topActs.slice(0, 3).forEach(function (a) { %><%- include('../partials/activity-card', { a: a }) %><% }) %></div>
+    </div>
+
+    <div id="stay" class="block">
+      <header class="section__head split"><div><p class="eyebrow">Stay here</p><h2>Rooms, glamping and camping</h2></div><a class="link-arrow" href="/stay">Accommodation <%- icon('arrow-right') %></a></header>
+      <div class="grid grid--4">
+        <% data.stayOptions.filter(function (s) { return s.units > 0; }).forEach(function (s) { %>
+          <a class="mini" href="/stay/<%= s.kind === 'room' ? 'rooms' : 'camping-and-glamping' %>"><span class="mini__icon"><%- icon(s.kind === 'room' ? 'bed' : 'tent') %></span><strong><%= s.name %></strong><span>Sleeps <%= s.sleeps %></span></a>
+        <% }) %>
+      </div>
+    </div>
+
+    <div id="getting-here" class="block two-col">
+      <div>
+        <p class="eyebrow">How to get here</p><h2>Finding The Farm</h2>
+        <p><%= site.contact.address %>.</p>
+        <p>Look for the Destination Parcs signboard at the entrance. See our directions page for what to look for and who to call.</p>
+        <p class="btn-row"><a class="btn btn--leaf" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=<%= encodeURIComponent(site.mapSearchQuery) %>">Open in maps</a><a class="btn btn--ghost" href="/plan-your-visit/contact">Contact &amp; directions</a></p>
+      </div>
+      <div class="map-card__art"><%- include('../partials/art', { tone: 'forest', iconName: 'map-pin', label: 'Map' }) %></div>
+    </div>
+
+    <div id="gallery" class="block">
+      <header class="section__head"><p class="eyebrow">Gallery</p><h2>The Farm in pictures</h2></header>
+      <div class="gallery gallery--plain">
+        <% dest.gallery.forEach(function (g, i) { const ph = media.photo('destinations', dest.slug + '-' + (i + 1)); %>
+          <figure class="gallery__item gallery__item--<%= i + 1 %>"><%- include('../partials/photo', { src: ph, alt: dest.name + ' photo ' + (i + 1), tone: ['leaf','forest','fresh','gold','leaf','bronze'][i % 6], iconName: ['tree','leaf','sun','bird','flame','waves'][i % 6] }) %></figure>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</section>
+<% } else { %>
+<section class="section"><div class="container narrow">
+  <% dest.overview.forEach(function (p) { %><p class="lead"><%= p %></p><% }) %>
+  <p class="btn-row"><a class="btn btn--leaf" href="/destinations/the-farm">Explore The Farm</a><a class="btn btn--ghost" href="/plan-your-visit/contact">Ask us about MMK Garden &amp; Waterfront</a></p>
+</div></section>
+<% } %>
+<%- include('../partials/cta-band', { title: 'Ready to come and play?', text: 'Choose your dates and we will take care of the rest.', primary: ['Book Now', '/book'], secondary: ['Browse activities', '/things-to-do'] }) %>

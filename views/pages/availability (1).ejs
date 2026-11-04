@@ -1,0 +1,19 @@
+<%- include('../partials/page-hero', { title: 'Room Types & Rates', eyebrow: 'Stay', lead: 'Pick the room type that fits your group. Rates are shared on request so we can match them to your dates and break.', crumbs: [['Stay', '/stay'], ['Room Types & Rates']] }) %>
+<section class="section"><div class="container">
+  <div class="table-wrap"><table class="table">
+    <thead><tr><th>Room type</th><th>Sleeps</th><th>Good to know</th><th>Rate</th><th></th></tr></thead>
+    <tbody>
+      <% options.forEach(function (s) { %>
+        <tr>
+          <th scope="row"><%= s.name %><small><%= s.blurb %></small></th>
+          <td data-label="Sleeps"><%= s.sleeps %></td>
+          <td data-label="Good to know"><%= (s.features || []).join(', ') %></td>
+          <td data-label="Rate"><%= s.rate ? s.rate : 'On request' %></td>
+          <td><a class="btn btn--sm btn--ghost" href="/stay/availability?type=<%= s.slug %>">Availability</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table></div>
+  <p class="note"><%- icon('info') %><%= site.depositNote %></p>
+  <p class="btn-row"><a class="btn btn--gold" href="/book">Book Now</a><a class="btn btn--ghost" href="/stay/camping-and-glamping">Camping or glamping</a></p>
+</div></section>

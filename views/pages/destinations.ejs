@@ -1,0 +1,12 @@
+<%- include('../partials/page-hero', { title: 'Break Durations', eyebrow: 'Breaks & Packages', lead: 'From a single day to a full week. Pick the length that fits your plans.', crumbs: [['Breaks & Packages', '/breaks'], ['Break Durations']] }) %>
+<section class="section"><div class="container narrow-wide">
+  <div class="dur-list">
+    <% durations.forEach(function (x) { %>
+      <article class="dur" id="<%= x.slug %>">
+        <div class="dur__len"><strong><%= x.length %></strong></div>
+        <div><h2><%= x.name %></h2><p><%= x.use %></p></div>
+        <a class="btn btn--gold btn--sm" href="/book?duration=<%= x.slug %>">Book a <%= x.name.toLowerCase() %></a>
+      </article>
+    <% }) %>
+  </div>
+</div></section>

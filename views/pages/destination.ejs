@@ -1,0 +1,23 @@
+<%- include('../partials/page-hero', { title: mode === 'signin' ? 'Sign in' : 'Create your account', eyebrow: 'My account', lead: 'Sign in to book, manage and change your stays and activities.', crumbs: [[mode === 'signin' ? 'Sign in' : 'Register']] }) %>
+<section class="section"><div class="container auth">
+  <div class="auth__tabs" role="tablist"><a role="tab" aria-selected="<%= mode === 'signin' %>" href="/account/signin?next=<%= encodeURIComponent(next) %>" class="<%= mode === 'signin' ? 'is-active' : '' %>">Sign in</a><a role="tab" aria-selected="<%= mode === 'register' %>" href="/account/register?next=<%= encodeURIComponent(next) %>" class="<%= mode === 'register' ? 'is-active' : '' %>">Register</a></div>
+  <% if (mode === 'signin') { %>
+    <form class="form form--card" method="post" action="/account/signin">
+      <input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="next" value="<%= next %>">
+      <label>Email or phone<input name="login" required autocomplete="username" maxlength="150" autofocus></label>
+      <label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+      <button class="btn btn--gold btn--block btn--lg" type="submit">Sign in</button>
+      <p class="form__hint center">New here? <a href="/account/register?next=<%= encodeURIComponent(next) %>">Create an account</a></p>
+    </form>
+  <% } else { const f = typeof form !== 'undefined' && form ? form : {}; %>
+    <form class="form form--card" method="post" action="/account/register">
+      <input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="next" value="<%= next %>">
+      <label>Full name<input name="name" required maxlength="100" autocomplete="name" value="<%= f.name || '' %>" autofocus></label>
+      <div class="form__row"><label>Email<input name="email" type="email" maxlength="150" autocomplete="email" value="<%= f.email || '' %>"></label><label>Phone<input name="phone" type="tel" maxlength="30" autocomplete="tel" value="<%= f.phone || '' %>" placeholder="e.g. 0700 000000"></label></div>
+      <p class="form__hint">Add an email, a phone number, or both. You can sign in with either.</p>
+      <label>Password<input name="password" type="password" required minlength="8" autocomplete="new-password"></label>
+      <button class="btn btn--gold btn--block btn--lg" type="submit">Create account</button>
+      <p class="form__hint center">Already registered? <a href="/account/signin?next=<%= encodeURIComponent(next) %>">Sign in</a></p>
+    </form>
+  <% } %>
+</div></section>

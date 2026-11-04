@@ -1,0 +1,5 @@
+<%- include('../partials/page-hero', { title: 'Accessibility', eyebrow: 'Plan Your Visit', lead: p.intro, crumbs: [['Plan Your Visit', '/plan-your-visit'], ['Accessibility']] }) %>
+<section class="section"><div class="container">
+  <div class="grid grid--2"><% p.sections.forEach(function (s) { %><section class="panel"><h2><%= s.title %></h2><p><%= s.text %></p></section><% }) %></div>
+  <div class="callout block"><%- icon('phone') %><div><h3>Tell us what you need</h3><p>The more we know before you travel, the better we can prepare.</p></div><a class="btn btn--gold" href="/plan-your-visit/contact">Contact us</a></div>
+</div></section>

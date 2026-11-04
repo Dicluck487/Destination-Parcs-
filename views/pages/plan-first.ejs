@@ -1,0 +1,13 @@
+<%- include('../partials/page-hero', { title: 'Plan Your Visit', eyebrow: 'Before you come', lead: 'Everything you need for a smooth first trip and a better return one.', crumbs: [['Plan Your Visit']], image: media.photo('pages', 'plan') }) %>
+<section class="section"><div class="container">
+  <div class="grid grid--2">
+    <% [
+      ['First Time at Destination Parcs', 'How to get there, what to bring, opening hours, FAQs and safety tips.', 'compass', '/plan-your-visit/first-time'],
+      ['The D.P Experience', 'The story, the feel and the people behind the place.', 'heart', '/plan-your-visit/experience'],
+      ['Accessibility', 'Roads, parking, wheelchair access, toilets and family needs.', 'users', '/plan-your-visit/accessibility'],
+      ['Contact & Directions', 'Call, message or find us on the map.', 'map-pin', '/plan-your-visit/contact']
+    ].forEach(function (c) { %>
+      <a class="ccard" href="<%= c[3] %>"><span class="ccard__icon"><%- icon(c[2]) %></span><h3><%= c[0] %></h3><p><%= c[1] %></p><span class="link-arrow">Read more <%- icon('arrow-right') %></span></a>
+    <% }) %>
+  </div>
+</div></section>

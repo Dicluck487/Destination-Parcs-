@@ -1,0 +1,16 @@
+<%- include('../partials/page-hero', { title: type.name + ' Activities', eyebrow: count + ' activities', lead: type.blurb, crumbs: [['Things To Do', '/things-to-do'], [type.name]], image: cover, tone: type.tone }) %>
+<section class="section section--tight">
+  <div class="container">
+    <nav class="subnav" aria-label="Sections"><% groups.forEach(function (g, i) { %><a href="#g<%= i %>"><%= g.name %></a><% }) %></nav>
+    <% groups.forEach(function (g, i) { %>
+      <div class="group" id="g<%= i %>">
+        <header class="section__head"><h2><%= g.name %></h2><p class="muted"><%= pluralise(g.items.length, 'activity', 'activities') %></p></header>
+        <div class="grid grid--3"><% g.items.forEach(function (a) { %><%- include('../partials/activity-card', { a: a }) %><% }) %></div>
+      </div>
+    <% }) %>
+    <div class="other-types">
+      <h2>Other ways to browse</h2>
+      <ul class="chips"><% others.forEach(function (t) { %><li><a class="chip tone-<%= t.tone %>" href="/things-to-do/type/<%= t.slug %>"><%- icon(t.icon) %><%= t.name %></a></li><% }) %><li><a class="chip" href="/things-to-do">Browse all</a></li></ul>
+    </div>
+  </div>
+</section>

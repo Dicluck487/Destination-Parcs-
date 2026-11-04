@@ -1,0 +1,29 @@
+<%- include('../partials/page-hero', { title: brk.name, eyebrow: brk.group, lead: brk.blurb, crumbs: [['Breaks & Packages', '/breaks'], [brk.group, brk.kind === 'seasonal' ? '/breaks/seasonal' : (brk.kind === 'signature' ? '/breaks/signature' : '/breaks/family')], [brk.name]], image: cover, tone: brk.kind === 'seasonal' ? 'bronze' : 'forest' }) %>
+<section class="section"><div class="container detail">
+  <div class="detail__main">
+    <h2>What is included</h2>
+    <ul class="incl">
+      <% brk.inclusions.forEach(function (i) { %>
+        <li>
+          <% if (i.activity) { %>
+            <a href="/things-to-do/<%= i.activity.slug %>"><span class="incl__icon tone-<%= i.activity.tone %>"><%- icon(i.activity.icon) %></span><span><strong><%= i.activity.name %></strong><small><%= i.activity.duration %> &middot; <%= i.activity.suitableFor %></small></span><%- icon('chevron-right') %></a>
+          <% } else { %>
+            <div><span class="incl__icon"><%- icon('check') %></span><span><strong><%= i.label %></strong><small>Arranged with our team</small></span></div>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+    <% if (brk.timing) { %><div class="facts">
+      <div><%- icon('calendar') %><h3>Suggested timing</h3><p><%= brk.timing %></p></div>
+      <div><%- icon('users') %><h3>Best for</h3><p><%= brk.guests %></p></div>
+    </div><% } %>
+  </div>
+  <aside class="detail__side"><div class="book-box">
+    <p class="eyebrow">Book this break</p><h2><%= brk.name %></h2>
+    <p>We will load these activities into your booking. You can change them before you submit.</p>
+    <form method="post" action="/trip/package"><input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="slug" value="<%= brk.slug %>"><button class="btn btn--gold btn--block" type="submit">Plan this break</button></form>
+    <a class="btn btn--light-outline btn--block" href="/breaks/durations">Choose a duration</a>
+  </div></aside>
+</div>
+<% if (others.length) { %><div class="container block"><header class="section__head"><h2>More breaks like this</h2></header><div class="grid grid--3"><% others.forEach(function (b) { %><%- include('../partials/break-card', { b: b }) %><% }) %></div></div><% } %>
+</section>

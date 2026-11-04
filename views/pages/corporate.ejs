@@ -1,0 +1,18 @@
+<%- include('../partials/page-hero', { title: 'Camping or Glamping', eyebrow: 'Stay', lead: 'Sleep close to the trees and the campfire, with or without the extra comfort.', crumbs: [['Stay', '/stay'], ['Camping or Glamping']] }) %>
+<section class="section"><div class="container">
+  <div class="grid grid--2">
+    <% options.forEach(function (s) { %>
+      <article class="scard">
+        <div class="scard__media"><%- include('../partials/photo', { src: media.photo('stay', s.slug), alt: s.name, tone: 'leaf', iconName: 'tent' }) %></div>
+        <div class="scard__body">
+          <h2><%= s.name %></h2>
+          <p><%= s.blurb %></p>
+          <ul class="ticks"><% (s.features || []).forEach(function (f) { %><li><%- icon('check') %><%= f %></li><% }) %></ul>
+          <p class="scard__meta"><%- icon('users') %>Sleeps up to <%= s.sleeps %> <span class="dot"></span> <strong><%= s.rate ? s.rate : 'Rates on request' %></strong></p>
+          <a class="btn btn--sm btn--ghost" href="/stay/availability?type=<%= s.slug %>">Check availability</a>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+  <p class="btn-row"><a class="btn btn--gold" href="/book">Book Now</a><a class="btn btn--ghost" href="/breaks/campfire-and-stories-night">Campfire &amp; Stories Night</a></p>
+</div></section>

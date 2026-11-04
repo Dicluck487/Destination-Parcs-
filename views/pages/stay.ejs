@@ -1,0 +1,14 @@
+<%- include('../partials/page-hero', { title: 'Nature & CSR Outings', eyebrow: 'Corporate & Events', lead: 'Wellbeing, learning and CSR-themed outings for your team.', crumbs: [['Corporate & Events', '/corporate'], ['Nature & CSR']] }) %>
+<section class="section"><div class="container">
+  <div class="grid grid--2">
+    <% items.forEach(function (n) { %>
+      <article class="panel">
+        <% if (n.activity) { %><span class="panel__icon tone-<%= n.activity.tone %>"><%- icon(n.activity.icon) %></span><% } %>
+        <h2><% if (n.activity) { %><a href="/things-to-do/<%= n.activity.slug %>"><%= n.name %></a><% } else { %><%= n.name %><% } %></h2>
+        <% if (n.activity) { %><p><%= n.activity.description %></p><% } %>
+        <p class="panel__meta"><span><%- icon('clock') %><%= n.duration %></span><span class="pill"><%= n.use %></span></p>
+      </article>
+    <% }) %>
+  </div>
+  <p class="btn-row block"><a class="btn btn--gold" href="/corporate/quote">Plan a CSR outing</a></p>
+</div></section>

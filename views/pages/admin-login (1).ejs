@@ -1,0 +1,9 @@
+<%- include('../partials/page-hero', { title: 'Meetings & Retreats', eyebrow: 'Corporate & Events', lead: 'Space to think, decide and reset, away from the office.', crumbs: [['Corporate & Events', '/corporate'], ['Meetings & Retreats']] }) %>
+<section class="section"><div class="container">
+  <div class="grid grid--2">
+    <% items.forEach(function (m) { %>
+      <article class="panel"><h2><%= m.name %></h2><p><%= m.involves %></p><h3>Plan for</h3><p class="muted"><%= m.requirements %></p></article>
+    <% }) %>
+  </div>
+  <p class="btn-row block"><a class="btn btn--gold" href="/corporate/quote">Request a quote</a><a class="btn btn--ghost" href="/corporate/checklist">Planning checklist</a></p>
+</div></section>

@@ -1,0 +1,15 @@
+<%- include('../partials/page-hero', { title: 'First Time at Destination Parcs', eyebrow: 'Plan Your Visit', lead: 'A short guide so your first visit feels easy.', crumbs: [['Plan Your Visit', '/plan-your-visit'], ['First Time']] }) %>
+<section class="section"><div class="container">
+  <nav class="subnav" aria-label="On this page"><a href="#get-there">How to get there</a><a href="#bring">What to bring</a><a href="#expect">What to expect</a><a href="#hours">Opening hours</a><a href="#safety">Safety tips</a><a href="#faqs">FAQs</a></nav>
+  <div class="grid grid--2 first-grid">
+    <section id="get-there" class="panel"><span class="panel__icon"><%- icon('map-pin') %></span><h2>How to get there</h2><% p.getThere.forEach(function (t) { %><p><%= t %></p><% }) %><a class="link-arrow" href="/plan-your-visit/contact">Directions <%- icon('arrow-right') %></a></section>
+    <section id="bring" class="panel"><span class="panel__icon"><%- icon('briefcase') %></span><h2>What to bring</h2><ul class="ticks"><% p.bring.forEach(function (t) { %><li><%- icon('check') %><%= t %></li><% }) %></ul></section>
+    <section id="expect" class="panel"><span class="panel__icon"><%- icon('star') %></span><h2>What to expect</h2><ul class="ticks"><% p.expect.forEach(function (t) { %><li><%- icon('check') %><%= t %></li><% }) %></ul></section>
+    <section id="hours" class="panel"><span class="panel__icon"><%- icon('clock') %></span><h2>Opening hours</h2><p><%= site.contact.hours || p.hours %></p></section>
+  </div>
+  <section id="safety" class="block panel panel--wide"><span class="panel__icon"><%- icon('shield') %></span><h2>Safety tips</h2><ul class="ticks"><% p.safety.forEach(function (t) { %><li><%- icon('check') %><%= t %></li><% }) %></ul></section>
+  <section id="faqs" class="block"><header class="section__head"><p class="eyebrow">FAQs</p><h2>Questions we hear a lot</h2></header>
+    <div class="faq"><% p.faqs.forEach(function (f) { %><details><summary><%= f.q %><%- icon('chevron-down') %></summary><p><%= f.a %></p></details><% }) %></div>
+  </section>
+</div></section>
+<%- include('../partials/cta-band', { title: 'All set?', text: 'Choose your dates and tell us who is coming.', primary: ['Book Now', '/book'], secondary: ['Browse activities', '/things-to-do'] }) %>

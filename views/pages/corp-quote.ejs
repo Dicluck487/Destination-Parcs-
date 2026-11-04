@@ -1,0 +1,6 @@
+<%- include('../partials/page-hero', { title: 'Request received', eyebrow: 'Reference ' + b.ref, lead: 'Thank you, ' + user.name.split(' ')[0] + '. Our team will confirm your booking shortly.', crumbs: [['Booking confirmation']] }) %>
+<section class="section"><div class="container narrow">
+  <div class="success"><%- icon('check') %><div><h2>You are on our list</h2><p><%= site.depositNote %></p></div></div>
+  <%- include('../partials/booking-summary', { b: b }) %>
+  <p class="btn-row"><a class="btn btn--gold" href="/account/bookings/<%= b.ref %>">Manage this booking</a><a class="btn btn--ghost" href="/account/bookings">All my bookings</a><a class="btn btn--ghost" href="/plan-your-visit/first-time">First time? Read this</a></p>
+</div></section>

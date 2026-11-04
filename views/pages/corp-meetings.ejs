@@ -1,0 +1,15 @@
+<%- include('../partials/page-hero', { title: 'Breaks & Packages', eyebrow: 'Plan a break', lead: 'Seasonal breaks, family favourites and signature experiences, in lengths from a day to a week.', crumbs: [['Breaks & Packages']], image: media.photo('pages', 'breaks') }) %>
+<section class="section"><div class="container">
+  <header class="section__head split"><div><p class="eyebrow">Signature experiences</p><h2>Six ways to spend your time</h2></div><a class="link-arrow" href="/breaks/signature">View all <%- icon('arrow-right') %></a></header>
+  <div class="grid grid--3"><% signature.forEach(function (b) { %><%- include('../partials/break-card', { b: b }) %><% }) %></div>
+
+  <header class="section__head split block"><div><p class="eyebrow">Seasonal breaks</p><h2>Through the year</h2></div><a class="link-arrow" href="/breaks/seasonal">View all <%- icon('arrow-right') %></a></header>
+  <div class="grid grid--3"><% seasonal.forEach(function (b) { %><%- include('../partials/break-card', { b: b }) %><% }) %></div>
+
+  <header class="section__head split block"><div><p class="eyebrow">Family</p><h2>Family &amp; child-friendly breaks</h2></div><a class="link-arrow" href="/breaks/family">View all <%- icon('arrow-right') %></a></header>
+  <div class="grid grid--3"><% family.forEach(function (b) { %><%- include('../partials/break-card', { b: b }) %><% }) %></div>
+
+  <header class="section__head block"><p class="eyebrow">Break durations</p><h2>How long would you like to stay?</h2></header>
+  <div class="durations"><% durations.forEach(function (x) { %><a class="duration" href="/breaks/durations#<%= x.slug %>"><strong><%= x.name %></strong><span><%= x.length %></span></a><% }) %></div>
+</div></section>
+<%- include('../partials/cta-band', { title: 'Not sure which break to pick?', text: 'Tell us who is coming and what you enjoy. We will point you to the right one.', primary: ['Book Now', '/book'], secondary: ['Talk to us', '/plan-your-visit/contact'] }) %>

@@ -1,0 +1,41 @@
+<%- include('../partials/page-hero', { title: 'Destinations', eyebrow: 'Where we are', lead: 'Starting with The Farm in Katuulo. Our waterfront location follows soon.', crumbs: [['Destinations']] }) %>
+<section class="section">
+  <div class="container">
+    <div class="dest-grid">
+      <% data.destinations.forEach(function (x) { %>
+        <article class="dcard <%= x.bookable ? '' : 'is-soon' %>">
+          <a class="dcard__media" href="/destinations/<%= x.slug %>" tabindex="-1" aria-hidden="true">
+            <%- include('../partials/photo', { src: media.photo('destinations', x.slug), alt: x.name, tone: x.bookable ? 'leaf' : 'forest', iconName: x.bookable ? 'tree' : 'waves' }) %>
+            <% if (!x.bookable) { %><span class="badge badge--soon">Coming soon</span><% } %>
+          </a>
+          <div class="dcard__body">
+            <p class="eyebrow"><%- icon('map-pin') %><%= x.area %></p>
+            <h2><a href="/destinations/<%= x.slug %>"><%= x.name %></a></h2>
+            <p><%= x.short %></p>
+            <a class="link-arrow" href="/destinations/<%= x.slug %>"><%= x.bookable ? 'Explore The Farm' : 'Read more' %> <%- icon('arrow-right') %></a>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+
+    <div class="map-card">
+      <div>
+        <p class="eyebrow">Find us</p>
+        <h2>The Farm, Katuulo</h2>
+        <p><%= site.contact.address %></p>
+        <p class="btn-row"><a class="btn btn--leaf" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=<%= encodeURIComponent(site.mapSearchQuery) %>">Open in maps</a><a class="btn btn--ghost" href="/plan-your-visit/contact">Directions</a></p>
+      </div>
+      <% if (site.mapEmbed.lat && site.mapEmbed.lng) { %>
+        <iframe title="Map of The Farm" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=<%= site.mapEmbed.lng - 0.02 %>%2C<%= site.mapEmbed.lat - 0.012 %>%2C<%= site.mapEmbed.lng + 0.02 %>%2C<%= site.mapEmbed.lat + 0.012 %>&amp;layer=mapnik&amp;marker=<%= site.mapEmbed.lat %>%2C<%= site.mapEmbed.lng %>"></iframe>
+      <% } else { %>
+        <div class="map-card__art"><%- include('../partials/art', { tone: 'leaf', iconName: 'map-pin', label: 'Map placeholder' }) %></div>
+      <% } %>
+    </div>
+
+    <div class="callout">
+      <%- icon('home') %>
+      <div><h3>Need a space for a gathering?</h3><p>Our Rendezvous Spaces can be hired for birthdays, family days and small events.</p></div>
+      <a class="btn btn--gold" href="/destinations/rendezvous-spaces">See Rendezvous Spaces</a>
+    </div>
+  </div>
+</section>
