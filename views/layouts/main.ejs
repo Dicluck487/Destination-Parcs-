@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= pageTitle ? pageTitle + ' | ' + site.name : site.name + ' | ' + site.tagline %></title>
+  <meta name="description" content="<%= metaDescription %>">
+  <meta name="theme-color" content="#0B3D2A">
+  <link rel="canonical" href="<%= canonical %>">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="<%= site.name %>">
+  <meta property="og:title" content="<%= pageTitle ? pageTitle + ' | ' + site.name : site.name %>">
+  <meta property="og:description" content="<%= metaDescription %>">
+  <meta property="og:image" content="<%= ogImage %>">
+  <meta property="og:url" content="<%= canonical %>">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/images/brand/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="64x64" href="/images/brand/favicon-64.png">
+  <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/playfair-display-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="/js/boot.js"></script>
+  <link rel="stylesheet" href="/css/main.css">
+  <% if (jsonLd) { %><script type="application/ld+json"><%- JSON.stringify(jsonLd).replace(/</g, '\\u003c') %></script><% } %>
+</head>
+<body class="<%= bodyClass %>">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <%- include('../partials/header') %>
+  <% if (flash) { %>
+    <div class="flash flash--<%= flash.type %>" role="status"><div class="container"><%- icon(flash.type === 'error' ? 'info' : 'check') %><span><%= flash.text %></span></div></div>
+  <% } %>
+  <main id="main"><%- body %></main>
+  <%- include('../partials/footer') %>
+  <script src="/js/main.js" defer></script>
+  <% extraScripts.forEach(function (s) { %><script src="<%= s %>" defer></script><% }) %>
+</body>
+</html>

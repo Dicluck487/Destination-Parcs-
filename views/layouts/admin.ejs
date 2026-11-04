@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title><%= pageTitle %> | <%= site.name %></title>
+  <link rel="icon" href="/images/brand/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body class="admin">
+  <% if (flash) { %><div class="flash flash--<%= flash.type %>" role="status"><div class="container"><span><%= flash.text %></span></div></div><% } %>
+  <%- body %>
+</body>
+</html>
