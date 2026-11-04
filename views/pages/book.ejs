@@ -1,0 +1,81 @@
+<%- include('../partials/page-hero', { title: 'Book your break', eyebrow: 'Four quick steps', lead: 'Choose where, pick your break and duration, select your stay and activities, then submit. Our team confirms every request.', crumbs: [['Book']] }) %>
+<section class="section section--tight">
+  <div class="container">
+    <ol class="steps" data-steps aria-label="Booking progress">
+      <li data-step-ind="1"><span>1</span>Location</li><li data-step-ind="2"><span>2</span>Break &amp; duration</li><li data-step-ind="3"><span>3</span>Stay &amp; activities</li><li data-step-ind="4"><span>4</span>Review</li>
+    </ol>
+    <form class="wizard" method="post" action="/book" data-wizard data-today="<%= today %>" data-break-map='<%= JSON.stringify(breakMap).replace(/'/g, "&#39;") %>' data-stay='<%= JSON.stringify(stayOptions.map(function (s) { return { slug: s.slug, name: s.name, sleeps: s.sleeps, units: s.units }; })).replace(/'/g, "&#39;") %>' novalidate>
+      <input type="hidden" name="_csrf" value="<%= csrf %>">
+
+      <%# STEP 1 %>
+      <fieldset class="step" data-step="1"><legend><span class="step__n">1</span>Choose location</legend>
+        <div class="choice-grid">
+          <% locations.forEach(function (l, i) { %>
+            <label class="choice"><input type="radio" name="location" value="<%= l.slug %>" <%= form.location === l.slug || (!form.location && i === 0) ? 'checked' : '' %>><span class="choice__body"><%- icon('map-pin') %><strong><%= l.name %></strong><small><%= l.area %></small></span></label>
+          <% }) %>
+        </div>
+        <p class="form__hint">More locations will appear here as they open.</p>
+      </fieldset>
+
+      <%# STEP 2 %>
+      <fieldset class="step" data-step="2"><legend><span class="step__n">2</span>Pick your break and duration</legend>
+        <label>Break type <span class="muted">(optional)</span>
+          <select name="breakSlug" data-break>
+            <option value="">Build my own break</option>
+            <% breakGroups.forEach(function (g) { %><optgroup label="<%= g.label %>"><% g.items.forEach(function (b) { %><option value="<%= b.slug %>" <%= form.breakSlug === b.slug ? 'selected' : '' %>><%= b.name %></option><% }) %></optgroup><% }) %>
+          </select>
+        </label>
+        <div class="choice-grid choice-grid--5">
+          <% durations.forEach(function (x) { %>
+            <label class="choice choice--sm"><input type="radio" name="duration" value="<%= x.slug %>" data-nights="<%= x.nights.join(',') %>" <%= form.duration === x.slug ? 'checked' : '' %>><span class="choice__body"><strong><%= x.name %></strong><small><%= x.length %></small></span></label>
+          <% }) %>
+        </div>
+        <label data-nights-wrap hidden>Nights<select name="nights" data-nights-select><% [5,6,7].forEach(function (n) { %><option value="<%= n %>" <%= Number(form.nights) === n ? 'selected' : '' %>><%= n %> nights</option><% }) %></select></label>
+        <div class="form__row form__row--3">
+          <label>Arrival date<input type="date" name="checkIn" min="<%= today %>" max="<%= maxDate %>" value="<%= form.checkIn %>" required data-checkin></label>
+          <label>Adults<input type="number" name="adults" min="1" max="200" value="<%= form.adults %>" required data-adults></label>
+          <label>Children<input type="number" name="children" min="0" max="200" value="<%= form.children %>" data-children></label>
+        </div>
+        <p class="form__hint" data-dates-hint></p>
+      </fieldset>
+
+      <%# STEP 3 %>
+      <fieldset class="step" data-step="3"><legend><span class="step__n">3</span>Select stay and activities</legend>
+        <h3>Where will you stay?</h3>
+        <div class="choice-grid" data-stay-grid>
+          <% stayOptions.forEach(function (s) { %>
+            <label class="choice" data-stay-choice="<%= s.slug %>"><input type="radio" name="stay" value="<%= s.slug %>" <%= form.stay === s.slug ? 'checked' : '' %>><span class="choice__body"><%- icon(s.units ? (s.kind === 'room' ? 'bed' : 'tent') : 'sun') %><strong><%= s.name %></strong><small><%= s.units ? 'Sleeps ' + s.sleeps + ' · ' + (s.rate || 'Rates on request') : 'No overnight stay' %></small></span></label>
+          <% }) %>
+        </div>
+        <label class="units" data-units-wrap hidden>How many <span data-units-name>rooms</span>?<input type="number" name="units" min="1" max="50" value="<%= form.units %>" data-units></label>
+        <p class="avail" data-avail aria-live="polite"></p>
+
+        <h3 class="block-sm">Activities <span class="muted" data-act-count></span></h3>
+        <label class="search search--inline"><%- icon('search') %><input type="search" placeholder="Search activities" data-act-search aria-label="Search activities"></label>
+        <% const seen = new Set(); %>
+        <% types.forEach(function (t) { const items = t.items.filter(function (a) { return !seen.has(a.slug); }); items.forEach(function (a) { seen.add(a.slug); }); if (!items.length) return; %>
+          <div class="agroup" data-agroup><h4 class="agroup__h tone-<%= t.tone %>"><%- icon(t.icon) %><%= t.name %></h4>
+            <div class="agroup__list">
+              <% items.forEach(function (a) { %>
+                <label class="acheck" data-act-name="<%= a.name.toLowerCase() %>"><input type="checkbox" name="activities" value="<%= a.slug %>" <%= form.activities.includes(a.slug) ? 'checked' : '' %>><span><strong><%= a.name %></strong><small><%= a.duration %> &middot; <%= a.suitableFor %></small></span></label>
+              <% }) %>
+            </div>
+          </div>
+        <% }) %>
+      </fieldset>
+
+      <%# STEP 4 %>
+      <fieldset class="step" data-step="4"><legend><span class="step__n">4</span>Review and submit</legend>
+        <div class="review" data-review aria-live="polite"></div>
+        <label>Notes for our team <span class="muted">(optional)</span><textarea name="notes" rows="3" maxlength="1000" placeholder="Dietary needs, celebrations, access needs..."><%= form.notes %></textarea></label>
+        <p class="note"><%- icon('info') %><%= site.depositNote %></p>
+      </fieldset>
+
+      <div class="wizard__nav">
+        <button class="btn btn--ghost" type="button" data-prev hidden><%- icon('chevron-left') %>Back</button>
+        <button class="btn btn--leaf" type="button" data-next>Continue<%- icon('chevron-right') %></button>
+        <button class="btn btn--gold btn--lg" type="submit" data-submit hidden>Submit booking request</button>
+      </div>
+    </form>
+  </div>
+</section>

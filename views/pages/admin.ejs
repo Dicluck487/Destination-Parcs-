@@ -1,0 +1,46 @@
+<header class="admin__bar"><div class="container admin__bar-inner"><strong>Destination Parcs · Team</strong><form method="post" action="/admin/logout"><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn btn--ghost btn--sm" type="submit">Sign out</button></form></div></header>
+<div class="container admin__body">
+  <div class="admin__stats">
+    <div><strong><%= bookings.length %></strong><span>Bookings</span></div>
+    <div><strong><%= bookings.filter(function (b) { return b.status === 'pending'; }).length %></strong><span>Awaiting confirmation</span></div>
+    <div><strong><%= enquiries.filter(function (e) { return e.status === 'new'; }).length %></strong><span>New enquiries</span></div>
+    <div><strong><%= quotes.filter(function (e) { return e.status === 'new'; }).length %></strong><span>New quotes</span></div>
+    <div><strong><%= users %></strong><span>Guests registered</span></div>
+  </div>
+  <nav class="subnav"><a href="/admin?tab=bookings" <%- tab === 'bookings' ? 'aria-current="page"' : '' %>>Bookings</a><a href="/admin?tab=enquiries" <%- tab === 'enquiries' ? 'aria-current="page"' : '' %>>Enquiries</a><a href="/admin?tab=quotes" <%- tab === 'quotes' ? 'aria-current="page"' : '' %>>Quote requests</a></nav>
+
+  <% if (tab === 'bookings') { %>
+    <% if (!bookings.length) { %><p class="muted">No bookings yet.</p><% } %>
+    <% bookings.forEach(function (b) { %>
+      <article class="arow">
+        <div class="arow__head"><strong><%= b.ref %></strong><span class="status status--<%= b.status %>"><%= STATUS_LABEL[b.status] %></span><span class="muted"><%= fmtDateTime(b.createdAt) %></span></div>
+        <p><strong><%= b.contact.name %></strong> · <%= b.contact.email %> <%= b.contact.phone %></p>
+        <p><%= b.break ? b.break.name : 'Custom' %> · <%= b.duration.name %> · <%= fmtDate(b.checkIn) %><%= b.nights ? ' to ' + fmtDate(b.checkOut) : '' %> · <%= b.adults %> adults, <%= b.children %> children · <%= b.stay.name %><%= b.stay.units > 1 ? ' x ' + b.stay.units : '' %></p>
+        <p class="muted">Activities: <%= b.activities.map(function (a) { return a.name; }).join(', ') || 'none' %></p>
+        <% if (b.notes) { %><p class="muted">Notes: <%= b.notes %></p><% } %>
+        <% (b.requests || []).forEach(function (r) { %><p class="muted">↳ <%= r.type %> request (<%= fmtDateTime(r.at) %>): <%= r.message %></p><% }) %>
+        <form class="arow__actions" method="post" action="/admin/bookings/<%= b.id %>/status"><input type="hidden" name="_csrf" value="<%= csrf %>">
+          <input name="note" placeholder="Message to guest (optional)" maxlength="500" value="<%= b.adminNote || '' %>">
+          <select name="status"><% Object.keys(STATUS_LABEL).forEach(function (k) { %><option value="<%= k %>" <%= b.status === k ? 'selected' : '' %>><%= STATUS_LABEL[k] %></option><% }) %></select>
+          <button class="btn btn--leaf btn--sm" type="submit">Update</button>
+        </form>
+      </article>
+    <% }) %>
+  <% } else if (tab === 'enquiries') { %>
+    <% if (!enquiries.length) { %><p class="muted">No enquiries yet.</p><% } %>
+    <% enquiries.forEach(function (e) { %>
+      <article class="arow"><div class="arow__head"><strong><%= e.name %></strong><span class="status status--<%= e.status === 'done' ? 'confirmed' : 'pending' %>"><%= e.status === 'done' ? 'Done' : 'New' %></span><span class="muted"><%= fmtDateTime(e.createdAt) %> · <%= e.topic %></span></div>
+        <p><%= e.email %> <%= e.phone %></p><p><%= e.message %></p>
+        <form method="post" action="/admin/enquiries/<%= e.id %>/status"><input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="status" value="<%= e.status === 'done' ? 'new' : 'done' %>"><button class="btn btn--ghost btn--sm" type="submit"><%= e.status === 'done' ? 'Reopen' : 'Mark done' %></button></form></article>
+    <% }) %>
+  <% } else { %>
+    <% if (!quotes.length) { %><p class="muted">No quote requests yet.</p><% } %>
+    <% quotes.forEach(function (q) { %>
+      <article class="arow"><div class="arow__head"><strong><%= q.name %></strong><span class="status status--<%= q.status === 'done' ? 'confirmed' : 'pending' %>"><%= q.status === 'done' ? 'Done' : 'New' %></span><span class="muted"><%= fmtDateTime(q.createdAt) %></span></div>
+        <p><%= q.organisation %> · <%= q.email %> <%= q.phone %></p>
+        <p><%= q.eventType %> · <%= q.groupSize %> people · <%= q.dates %> · nights: <%= q.nights || 'n/a' %></p>
+        <p class="muted">Needs: <%= q.needs.join(', ') || 'none ticked' %></p><% if (q.message) { %><p><%= q.message %></p><% } %>
+        <form method="post" action="/admin/quotes/<%= q.id %>/status"><input type="hidden" name="_csrf" value="<%= q.id && csrf %>"><input type="hidden" name="status" value="<%= q.status === 'done' ? 'new' : 'done' %>"><button class="btn btn--ghost btn--sm" type="submit"><%= q.status === 'done' ? 'Reopen' : 'Mark done' %></button></form></article>
+    <% }) %>
+  <% } %>
+</div>
