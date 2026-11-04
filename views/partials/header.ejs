@@ -1,0 +1,13 @@
+<%# param: b (break) %>
+<% const cover = media.photo('breaks', b.slug); const tone = b.kind === 'seasonal' ? 'bronze' : (b.kind === 'signature' ? 'gold' : 'fresh');
+   const ic = { 'christmas-break': 'gift', 'new-year-breaks': 'star', 'easter-breaks': 'egg', 'valentine-breaks': 'heart', 'wedding-breaks': 'heart', 'school-visits-and-holiday-breaks': 'book',
+     'lakeside-family-day': 'waves', 'campfire-and-stories-night': 'flame', 'farm-to-fork-day': 'leaf', 'adventure-bonanza': 'zap', 'calm-weekend-reset': 'sun', 'little-explorers-break': 'bug' }[b.slug] || 'leaf'; %>
+<article class="bcard tone-<%= tone %>">
+  <a class="bcard__media" href="/breaks/<%= b.slug %>" tabindex="-1" aria-hidden="true"><%- include('photo', { src: cover, alt: b.name, tone: tone, iconName: ic }) %><% if (b.kind === 'seasonal') { %><span class="badge badge--season">Seasonal</span><% } %></a>
+  <div class="bcard__body">
+    <h3><a href="/breaks/<%= b.slug %>"><%= b.name %></a></h3>
+    <p><%= b.blurb %></p>
+    <% if (b.timing) { %><p class="bcard__meta"><%- icon('calendar') %><%= b.timing %></p><% } %>
+    <a class="link-arrow" href="/breaks/<%= b.slug %>">See what is included <%- icon('arrow-right') %></a>
+  </div>
+</article>

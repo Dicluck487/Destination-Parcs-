@@ -1,0 +1,63 @@
+<footer class="site-footer">
+  <svg class="footer__curve" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60V28C240 -6 480 -6 720 20s480 36 720 0V60Z"/></svg>
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <img src="/images/brand/mark-gold.png" alt="" width="84" height="68" loading="lazy">
+      <img src="/images/brand/wordmark-cream.png" alt="Destination Parcs" width="260" height="30" loading="lazy">
+      <p class="footer__tag"><%= site.tagline %></p>
+      <ul class="social">
+        <% const socials = [['facebook','facebook','Facebook'],['instagram','instagram','Instagram'],['x','twitter-x','X'],['youtube','youtube','YouTube'],['tiktok','tiktok','TikTok']];
+           let anySocial = false; socials.forEach(function (s) { if (site.social[s[0]]) { anySocial = true; %>
+          <li><a href="<%= site.social[s[0]] %>" target="_blank" rel="noopener" aria-label="<%= s[2] %>"><%- icon(s[1]) %></a></li>
+        <% } }) %>
+      </ul>
+      <% if (!anySocial) { %><p class="footer__muted">Social links coming soon.</p><% } %>
+    </div>
+
+    <div>
+      <h3 class="footer__h">Explore</h3>
+      <ul class="footer__links">
+        <li><a href="/destinations">Destinations</a></li>
+        <li><a href="/things-to-do">Things To Do</a></li>
+        <li><a href="/stay">Stay</a></li>
+        <li><a href="/breaks">Breaks &amp; Packages</a></li>
+        <li><a href="/corporate">Corporate &amp; Events</a></li>
+        <li><a href="/plan-your-visit">Plan Your Visit</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="footer__h">Visit us</h3>
+      <ul class="footer__contact">
+        <li><%- icon('map-pin') %><span><%= site.contact.address %></span></li>
+        <% if (site.contact.phone) { %><li><%- icon('phone') %><a href="tel:<%= site.contact.phone.replace(/\s/g,'') %>"><%= site.contact.phone %></a></li><% } %>
+        <% if (site.contact.whatsapp) { %><li><%- icon('whatsapp') %><a href="https://wa.me/<%= site.contact.whatsapp.replace(/\D/g,'') %>" target="_blank" rel="noopener">WhatsApp us</a></li><% } %>
+        <% if (site.contact.email) { %><li><%- icon('mail') %><a href="mailto:<%= site.contact.email %>"><%= site.contact.email %></a></li><% } %>
+        <% if (site.contact.hours) { %><li><%- icon('clock') %><span><%= site.contact.hours %></span></li><% } %>
+      </ul>
+      <% if (site.mapEmbed.lat && site.mapEmbed.lng) { %>
+        <iframe class="footer__map" title="Map of The Farm" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=<%= site.mapEmbed.lng - 0.01 %>%2C<%= site.mapEmbed.lat - 0.007 %>%2C<%= site.mapEmbed.lng + 0.01 %>%2C<%= site.mapEmbed.lat + 0.007 %>&amp;layer=mapnik&amp;marker=<%= site.mapEmbed.lat %>%2C<%= site.mapEmbed.lng %>"></iframe>
+      <% } %>
+      <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=<%= encodeURIComponent(site.mapSearchQuery) %>" target="_blank" rel="noopener">Open in maps <%- icon('arrow-right') %></a>
+    </div>
+
+    <div>
+      <h3 class="footer__h">Send an enquiry</h3>
+      <form class="form form--dark" method="post" action="/enquiry">
+        <input type="hidden" name="_csrf" value="<%= csrf %>">
+        <input type="hidden" name="back" value="<%= path %>">
+        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label>Name<input name="name" required maxlength="100" autocomplete="name"></label>
+        <label>Email or phone<input name="email" type="text" inputmode="email" maxlength="150" autocomplete="email" placeholder="you@example.com" required></label>
+        <label>Message<textarea name="message" rows="3" required maxlength="2000"></textarea></label>
+        <button class="btn btn--gold btn--block" type="submit">Send message</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer__bar">
+    <div class="container footer__bar-inner">
+      <span>&copy; <%= year %> <%= site.name %>&trade;. All rights reserved.</span>
+      <span><a href="/plan-your-visit/accessibility">Accessibility</a> &middot; <a href="/plan-your-visit/contact">Contact</a></span>
+    </div>
+  </div>
+</footer>

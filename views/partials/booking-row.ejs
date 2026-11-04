@@ -1,0 +1,28 @@
+<%# param: a (activity) %>
+<% const cover = media.photo('activities', a.slug); %>
+<article class="acard tone-<%= a.tone %>">
+  <a class="acard__media" href="/things-to-do/<%= a.slug %>" tabindex="-1" aria-hidden="true">
+    <%- include('photo', { src: cover, alt: a.name, tone: a.tone, iconName: a.icon }) %>
+    <% if (a.isNew) { %><span class="badge badge--new">New</span><% } else if (a.isUpcoming) { %><span class="badge badge--soon">Coming soon</span><% } %>
+    <% if (a.corporate) { %><span class="badge badge--corp" title="Suitable for corporate groups"><%- icon('briefcase') %></span><% } %>
+  </a>
+  <div class="acard__body">
+    <p class="acard__tags"><% a.types.slice(0, 2).forEach(function (t, i) { %><span><%= t.name %></span><% }) %></p>
+    <h3 class="acard__title"><a href="/things-to-do/<%= a.slug %>"><%= a.name %></a></h3>
+    <ul class="acard__meta">
+      <li><%- icon('users') %><%= a.suitableFor %></li>
+      <li><%- icon('clock') %><%= a.duration %></li>
+    </ul>
+    <div class="acard__actions">
+      <% const inTrip = trip.includes(a.slug); %>
+      <form method="post" action="/trip/<%= inTrip ? 'remove' : 'add' %>" data-trip-form>
+        <input type="hidden" name="_csrf" value="<%= csrf %>">
+        <input type="hidden" name="slug" value="<%= a.slug %>">
+        <button class="btn btn--sm <%= inTrip ? 'btn--leaf' : 'btn--ghost' %>" type="submit" data-trip-btn aria-pressed="<%= inTrip %>">
+          <%- icon(inTrip ? 'check' : 'plus') %><span><%= inTrip ? 'In my trip' : 'Add to my trip' %></span>
+        </button>
+      </form>
+      <a class="link-arrow" href="/things-to-do/<%= a.slug %>">Details <%- icon('arrow-right') %></a>
+    </div>
+  </div>
+</article>

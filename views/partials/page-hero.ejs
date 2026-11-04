@@ -1,0 +1,5 @@
+<%# Brand artwork shown until a real photo is added. params: tone, iconName, label? %>
+<div class="art tone-<%= tone %>" role="img" aria-label="<%= typeof label !== 'undefined' ? label : '' %>">
+  <span class="art__leaf art__leaf--a"></span><span class="art__leaf art__leaf--b"></span>
+  <%- icon(iconName, 'art__icon') %>
+</div>

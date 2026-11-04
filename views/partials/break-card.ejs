@@ -1,0 +1,2 @@
+<%# Photo or artwork. params: src (may be null), alt, tone, iconName, ratio? %>
+<% if (src) { %><img src="<%= src %>" alt="<%= alt %>" loading="lazy"><% } else { %><%- include('art', { tone: tone, iconName: iconName, label: alt }) %><% } %>

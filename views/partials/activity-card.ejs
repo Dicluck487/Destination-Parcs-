@@ -1,0 +1,15 @@
+<%# params: topic, back %>
+<form class="form form--card" method="post" action="/enquiry">
+  <input type="hidden" name="_csrf" value="<%= csrf %>">
+  <input type="hidden" name="back" value="<%= back %>">
+  <input type="hidden" name="topic" value="<%= topic %>">
+  <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <div class="form__row">
+    <label>Your name<input name="name" required maxlength="100" autocomplete="name"></label>
+    <label>Email<input name="email" type="email" maxlength="150" autocomplete="email"></label>
+  </div>
+  <label>Phone<input name="phone" type="tel" maxlength="30" autocomplete="tel" placeholder="e.g. 0700 000000"></label>
+  <label>How can we help?<textarea name="message" rows="4" required maxlength="2000"></textarea></label>
+  <p class="form__hint">Give an email or a phone number so we can reply.</p>
+  <button class="btn btn--leaf" type="submit">Send enquiry</button>
+</form>
