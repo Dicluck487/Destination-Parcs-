@@ -1,6 +1,5 @@
 <section class="ad-card">
   <h2>Add photos and videos</h2>
-  <p>Upload as many as you like. Photos are resized and tidied automatically (up to <%= limits.image %> MB each). Videos can be MP4, WebM or MOV up to <%= limits.video %> MB. For long films, paste a YouTube or Vimeo link instead. It plays on your site without slowing it down.</p>
   <div class="dz" data-dropzone>
     <input type="file" id="lib-files" multiple accept="image/*,video/mp4,video/webm,video/quicktime" hidden data-lib-files>
     <button type="button" class="btn btn--gold" data-lib-pick><%- icon('upload') %>Choose files</button>
@@ -50,7 +49,6 @@
 <% if (builtin.length) { %>
 <section class="block">
   <h2>Pictures that come with the site</h2>
-  <p class="muted">These are the pictures built into the site. You can use them on any page. Removed pictures go to the trash below and can be restored.</p>
   <% var groups = []; builtin.forEach(function (b) { if (groups.indexOf(b.group) < 0) groups.push(b.group); }); %>
   <% groups.forEach(function (g) { %>
     <h3><%= g %></h3>

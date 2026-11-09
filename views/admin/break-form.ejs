@@ -15,7 +15,6 @@
     </section>
     <section class="ad-card">
       <h2>What is included</h2>
-      <p class="muted">Tick the activities in this break. Each one links to its own page.</p>
       <div class="checks checks--cols"><% activities.forEach(function (a) { %><label><input type="checkbox" name="acts[]" value="<%= a.slug %>" <%= chosen.includes(a.slug) ? 'checked' : '' %>><%= a.name %></label><% }) %></div>
       <label class="f"><span>Other things included (one per line)</span><textarea name="extras" rows="3" maxlength="800" placeholder="Welcome drink&#10;Guided orientation"><%= extras.join('\n') %></textarea></label>
     </section>

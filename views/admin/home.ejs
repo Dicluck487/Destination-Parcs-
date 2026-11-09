@@ -3,9 +3,8 @@
   <div class="ad-edit__main">
     <section class="ad-card">
       <h2>Banner at the top</h2>
-      <p class="muted">The banner shows one slide at a time and changes every few seconds. Add as many pictures as you like, replace or remove the built-in artwork, and use the arrows to reorder. The banner always keeps at least one slide.</p>
       <div class="ad-subcard">
-        <%- include('../partials/admin-media-field', { name: 'heroPics', mode: 'images', label: 'Add banner pictures', value: [], help: 'Choose or upload several photos at once. Each becomes a new slide that uses the first slide\'s headline until you give it its own.' }) %>
+        <%- include('../partials/admin-media-field', { name: 'heroPics', mode: 'images', label: 'Add banner pictures', value: [] }) %>
       </div>
       <h3>Slides</h3>
       <%- include('repeater', { prefix: 'hero', rows: p.hero, row: 'rows/hero', blank: { headline: '', sub: '', label: '', alt: '' }, addLabel: 'Add a slide with its own headline', min: 1, minMsg: 'The banner must keep at least one picture.' }) %>
@@ -13,14 +12,12 @@
 
     <section class="ad-card">
       <h2>Announcements strip</h2>
-      <p class="muted">Short lines that scroll across the home page, just above the photo gallery. Write one announcement per line.</p>
       <label class="chk"><input type="checkbox" name="noticeShow" <%= (p.announcements ? p.announcements.show !== false : true) ? 'checked' : '' %>>Show the strip on the home page</label>
       <label class="f"><span>Announcements (one per line, up to 10)</span><textarea name="noticeItems" rows="5" maxlength="1200"><%= (p.announcements ? p.announcements.items : ['Now booking breaks at The Farm, Katuulo', 'Christmas and New Year breaks are open for planning', 'Group, school and corporate visits: send us an enquiry']).join('\n') %></textarea></label>
     </section>
 
     <section class="ad-card">
       <h2>Photo and video gallery</h2>
-      <p class="muted">Up to six show on the home page, just below the booking bar. The first one starts large, and each picture grows to the large size when a visitor points at it. The full Gallery page (all photos and videos, in albums) is edited under Gallery in the menu. Photos, uploaded clips (they play silently) or YouTube and Vimeo links (they open on YouTube or Vimeo).</p>
       <%- include('../partials/admin-media-field', { name: 'gallery', mode: 'mixed', label: 'Gallery', value: p.gallery || [] }) %>
     </section>
 
@@ -37,7 +34,6 @@
 
     <section class="ad-card">
       <h2>Featured experiences</h2>
-      <p class="muted">The signature experiences shown on the home page.</p>
       <div class="checks checks--cols"><% signature.forEach(function (b) { %><label><input type="checkbox" name="featured[]" value="<%= b.slug %>" <%= (p.featuredSignature || []).includes(b.slug) ? 'checked' : '' %>><%= b.name %></label><% }) %></div>
     </section>
 
@@ -55,6 +51,5 @@
     <h2>Publish</h2>
     <button class="btn btn--leaf btn--block" type="submit"><%- icon('check') %>Save</button>
     <a class="btn btn--light-outline btn--block" href="/" target="_blank" rel="noopener">View the home page</a>
-    <p class="muted">Saved changes go live straight away and can be reverted from <a href="/admin/history?set=pages">History</a>.</p>
   </div></aside>
 </form>

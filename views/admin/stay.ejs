@@ -1,4 +1,4 @@
-<div class="ad-bar"><span class="muted">Guests choose from these when they book. "Available" counts on the calendar come from the number of units.</span><a class="btn btn--gold" href="/admin/stay/new"><%- icon('plus') %>Add accommodation</a></div>
+<div class="ad-bar"><span></span><a class="btn btn--gold" href="/admin/stay/new"><%- icon('plus') %>Add accommodation</a></div>
 <section class="ad-card"><ul class="ad-list">
   <% items.forEach(function (s) { %>
     <li><span><a href="/admin/stay/<%= s.slug %>"><strong><%= s.name %></strong></a><small><%= s.kind === 'none' ? 'Day visit option' : s.units + ' units · sleeps ' + s.sleeps + (s.rate ? ' · ' + s.rate : '') %> · <%= (s.cover ? 1 : 0) + (s.photos || []).length %> photos · <%= (s.videos || []).length %> videos</small></span>

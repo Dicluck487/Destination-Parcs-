@@ -210,23 +210,41 @@ router.post('/stay/:slug/delete', (req, res, next) => {
 
 // =============================================================== DESTINATIONS
 router.get('/destinations', (req, res) => res.render('admin/destinations', { pageTitle: 'Destinations', items: content.get('destinations').destinations }));
+const blankDest = () => ({ slug: '', name: '', bookable: false, area: '', address: '', short: '', overview: [], highlights: [], cover: '', photos: [], videos: [] });
+const DEST_RESERVED = ['new', 'rendezvous-spaces'];
+const destForm = (res, d, isNew, errors, status) => res.status(status || 200).render('admin/destination-form', { pageTitle: isNew ? 'New destination' : d.name, d: { cover: '', photos: [], videos: [], ...d }, isNew, errors: errors || [] });
+router.get('/destinations/new', (req, res) => destForm(res, blankDest(), true));
 router.get('/destinations/:slug', (req, res, next) => {
   const d = content.get('destinations').destinations.find((x) => x.slug === req.params.slug);
   if (!d) return next();
-  return res.render('admin/destination-form', { pageTitle: d.name, d: { cover: '', photos: [], videos: [], ...d } });
+  return destForm(res, d, false);
 });
 router.post('/destinations/:slug', (req, res, next) => {
   const set = content.get('destinations');
-  const old = set.destinations.find((x) => x.slug === req.params.slug);
+  const creating = req.params.slug === 'new';
+  const old = creating ? blankDest() : set.destinations.find((x) => x.slug === req.params.slug);
   if (!old) return next();
   const d = {
-    ...old, name: f.str(req.body.name, 100), area: f.str(req.body.area, 150), short: f.text(req.body.short, 300),
+    ...old, name: f.str(req.body.name, 100), area: f.str(req.body.area, 150), address: f.str(req.body.address, 200), short: f.text(req.body.short, 300),
+    bookable: f.bool(req.body.bookable),
     overview: f.paras(req.body.overview), highlights: f.lines(req.body.highlights, 120),
     cover: f.image(req.body.cover), photos: f.images(req.body.photos), videos: f.videos(req.body.videos),
   };
-  if (!d.name) { flash(req, 'error', 'The destination needs a name.'); return res.redirect(req.originalUrl); }
-  set.destinations = set.destinations.map((x) => (x.slug === d.slug ? d : x));
-  return saved(req, res, 'destinations', set, `Edited destination "${d.name}"`, '/admin/destinations', `${d.name} saved.`);
+  const others = set.destinations.filter((x) => x.slug !== old.slug);
+  const errors = [!d.name && 'Give it a name.', !d.short && 'Add a one-line summary.',
+    !d.bookable && !others.some((x) => x.bookable) && 'At least one destination must stay open for booking.'].filter(Boolean);
+  if (errors.length) return destForm(res, d, creating, errors, 422);
+  if (creating) { d.slug = uniqueSlug(slugify(d.name), set.destinations.map((x) => x.slug).concat(DEST_RESERVED)); set.destinations.push(d); }
+  else set.destinations = set.destinations.map((x) => (x.slug === d.slug ? d : x));
+  return saved(req, res, 'destinations', set, `${creating ? 'Added' : 'Edited'} destination "${d.name}"`, '/admin/destinations', `${d.name} saved.`);
+});
+router.post('/destinations/:slug/delete', (req, res, next) => {
+  const set = content.get('destinations');
+  const d = set.destinations.find((x) => x.slug === req.params.slug);
+  if (!d) return next();
+  if (d.bookable && !set.destinations.some((x) => x.slug !== d.slug && x.bookable)) { flash(req, 'error', 'The only destination open for booking cannot be deleted.'); return res.redirect('/admin/destinations'); }
+  set.destinations = set.destinations.filter((x) => x.slug !== d.slug);
+  return saved(req, res, 'destinations', set, `Deleted destination "${d.name}"`, '/admin/destinations', `"${d.name}" deleted. Existing bookings keep their record.`);
 });
 
 // =============================================================== HOME

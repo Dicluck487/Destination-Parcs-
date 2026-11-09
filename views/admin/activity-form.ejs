@@ -21,9 +21,9 @@
 
     <section class="ad-card">
       <h2>Photos and videos</h2>
-      <%- include('../partials/admin-media-field', { name: 'cover', mode: 'image', label: 'Main photo', value: a.cover || '', help: 'Shown on the activity card and at the top of its page.' }) %>
-      <%- include('../partials/admin-media-field', { name: 'photos', mode: 'images', label: 'More photos', value: a.photos || [], help: 'The first one is used if you have no main photo.' }) %>
-      <%- include('../partials/admin-media-field', { name: 'videos', mode: 'videos', label: 'Videos', value: a.videos || [], help: 'Uploaded clips, or YouTube and Vimeo links.' }) %>
+      <%- include('../partials/admin-media-field', { name: 'cover', mode: 'image', label: 'Main photo', value: a.cover || '' }) %>
+      <%- include('../partials/admin-media-field', { name: 'photos', mode: 'images', label: 'More photos', value: a.photos || [] }) %>
+      <%- include('../partials/admin-media-field', { name: 'videos', mode: 'videos', label: 'Videos', value: a.videos || [] }) %>
     </section>
 
     <section class="ad-card">

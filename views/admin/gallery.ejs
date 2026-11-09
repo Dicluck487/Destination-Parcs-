@@ -3,7 +3,6 @@
   <div class="ad-edit__main">
     <section class="ad-card">
       <h2>Gallery page</h2>
-      <p class="muted">Group photos and videos into albums (up to 8). Visitors can filter by album and open any picture larger.</p>
       <%- include('repeater', { prefix: 'albums', rows: albums, row: 'rows/album', blank: { name: '', items: [] }, addLabel: 'Add an album' }) %>
     </section>
   </div>
@@ -11,6 +10,5 @@
     <h2>Publish</h2>
     <button class="btn btn--leaf btn--block" type="submit"><%- icon('check') %>Save</button>
     <a class="btn btn--light-outline btn--block" href="/gallery" target="_blank" rel="noopener">View the gallery</a>
-    <p class="muted">Saved changes go live straight away and can be reverted from <a href="/admin/history?set=pages">History</a>.</p>
   </div></aside>
 </form>

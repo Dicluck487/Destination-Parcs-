@@ -22,7 +22,6 @@
     </section>
     <section class="ad-card">
       <h2>Social media</h2>
-      <p class="muted">Paste the full web address of each page. Empty ones are not shown.</p>
       <div class="grid2">
         <% [['facebook','Facebook'],['instagram','Instagram'],['x','X (Twitter)'],['youtube','YouTube'],['tiktok','TikTok']].forEach(function (k) { %>
           <label class="f"><span><%= k[1] %></span><input type="url" name="social[<%= k[0] %>]" value="<%= (s.social || {})[k[0]] || '' %>" maxlength="300" placeholder="https://"></label>
@@ -31,7 +30,6 @@
     </section>
     <section class="ad-card">
       <h2>Map</h2>
-      <p class="muted">Add the latitude and longitude to show a map in the footer. In Google Maps, press and hold on the spot and copy the two numbers.</p>
       <div class="grid3">
         <label class="f"><span>Latitude</span><input name="mapEmbed[lat]" value="<%= s.mapEmbed.lat === null ? '' : s.mapEmbed.lat %>" inputmode="decimal" placeholder="0.5"></label>
         <label class="f"><span>Longitude</span><input name="mapEmbed[lng]" value="<%= s.mapEmbed.lng === null ? '' : s.mapEmbed.lng %>" inputmode="decimal" placeholder="32.0"></label>

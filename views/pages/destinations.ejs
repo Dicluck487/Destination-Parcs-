@@ -12,7 +12,7 @@
             <p class="eyebrow"><%- icon('map-pin') %><%= x.area %></p>
             <h2><a href="/destinations/<%= x.slug %>"><%= x.name %></a></h2>
             <p><%= x.short %></p>
-            <a class="link-arrow" href="/destinations/<%= x.slug %>"><%= x.bookable ? 'Explore The Farm' : 'Read more' %> <%- icon('arrow-right') %></a>
+            <a class="link-arrow" href="/destinations/<%= x.slug %>"><%= x.bookable ? 'Explore ' + x.name : 'Read more' %> <%- icon('arrow-right') %></a>
           </div>
         </article>
       <% }) %>

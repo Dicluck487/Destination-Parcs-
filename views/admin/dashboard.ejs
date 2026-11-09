@@ -1,7 +1,6 @@
 <section class="ad-hello">
   <div>
     <h2>Welcome, <%= adminUser.name.split(' ')[0] %></h2>
-    <p>Everything you change here appears on the website straight away. Every save is kept, so you can always go back from <a href="/admin/history">History &amp; revert</a>.</p>
   </div>
   <div class="ad-hello__cta">
     <a class="btn btn--gold" href="/admin/media"><%- icon('upload') %>Upload photos or videos</a>
@@ -26,12 +25,12 @@
   <section class="ad-card">
     <h2>Update the website</h2>
     <ul class="ad-links">
-      <li><a href="/admin/home"><%- icon('home') %><span><strong>Home page</strong><small>Banner photos and videos, gallery, highlights, festive banner</small></span></a></li>
-      <li><a href="/admin/activities"><%- icon('target') %><span><strong>Activities</strong><small><%= counts.activities %> live. Add, edit, hide, add photos and videos</small></span></a></li>
-      <li><a href="/admin/breaks"><%- icon('gift') %><span><strong>Breaks &amp; packages</strong><small><%= counts.breaks %> live. Seasonal, family and signature</small></span></a></li>
-      <li><a href="/admin/stay"><%- icon('bed') %><span><strong>Stay</strong><small>Rooms, cottages, glamping and camping</small></span></a></li>
+      <li><a href="/admin/home"><%- icon('home') %><span><strong>Home page</strong></span></a></li>
+      <li><a href="/admin/activities"><%- icon('target') %><span><strong>Activities</strong><small><%= counts.activities %> live</small></span></a></li>
+      <li><a href="/admin/breaks"><%- icon('gift') %><span><strong>Breaks &amp; packages</strong><small><%= counts.breaks %> live</small></span></a></li>
+      <li><a href="/admin/stay"><%- icon('bed') %><span><strong>Stay</strong></span></a></li>
       <li><a href="/admin/media"><%- icon('image') %><span><strong>Media library</strong><small><%= counts.photos %> photos, <%= counts.videos %> videos and links</small></span></a></li>
-      <li><a href="/admin/site"><%- icon('settings') %><span><strong>Site settings</strong><small>Phone, WhatsApp, email, social links, map</small></span></a></li>
+      <li><a href="/admin/site"><%- icon('settings') %><span><strong>Site settings</strong></span></a></li>
     </ul>
   </section>
 
@@ -53,7 +52,7 @@
 
 <section class="ad-card">
   <h2>Recent changes</h2>
-  <% if (!recentChanges.length) { %><p class="muted">Nothing has been edited yet. The website is showing its original content.</p>
+  <% if (!recentChanges.length) { %><p class="muted">No edits yet.</p>
   <% } else { %>
     <ul class="ad-list">
       <% recentChanges.forEach(function (c) { %><li><span><strong><%= c.label %></strong><small><%= c.note %></small></span><time class="muted"><%= fmtDateTime(c.savedAt) %></time></li><% }) %>

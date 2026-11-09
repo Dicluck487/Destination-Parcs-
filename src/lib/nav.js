@@ -8,7 +8,7 @@ const build = () => [
     key: 'destinations', label: 'Destinations', href: '/destinations',
     links: [
       { label: 'All Destinations', href: '/destinations' },
-      { label: 'The Farm', href: '/destinations/the-farm' },
+      ...d.destinations.slice(0, 5).map((x) => ({ label: x.name, href: `/destinations/${x.slug}` })),
       { label: 'Rendezvous Spaces', href: '/destinations/rendezvous-spaces' },
     ],
   },

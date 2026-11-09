@@ -30,15 +30,16 @@
 
     <div id="getting-here" class="block two-col">
       <div>
-        <p class="eyebrow">How to get here</p><h2>Finding The Farm</h2>
-        <p><%= site.contact.address %>.</p>
-        <p class="btn-row"><a class="btn btn--leaf" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=<%= encodeURIComponent(site.mapSearchQuery) %>">Open in maps</a></p>
+        <p class="eyebrow">How to get here</p><h2>Finding <%= dest.name %></h2>
+        <% const isFarm = dest.slug === 'the-farm'; const where = dest.address || (isFarm ? site.contact.address : dest.area); %>
+        <p><%= where %>.</p>
+        <p class="btn-row"><a class="btn btn--leaf" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=<%= encodeURIComponent(dest.address || (isFarm ? site.mapSearchQuery : dest.name + ' ' + (dest.area || ''))) %>">Open in maps</a></p>
       </div>
       <div class="map-card__art"><%- include('../partials/art', { tone: 'forest', iconName: 'map-pin', label: 'Map' }) %></div>
     </div>
 
     <div id="gallery" class="block">
-      <header class="section__head"><p class="eyebrow">Gallery</p><h2>The Farm in pictures</h2></header>
+      <header class="section__head"><p class="eyebrow">Gallery</p><h2><%= dest.name %> in pictures</h2></header>
       <%- include('../partials/gallery', { items: galleryItems, name: dest.name, tone: 'leaf', iconName: 'tree' }) %>
     </div>
   </div>
@@ -46,7 +47,10 @@
 <% } else { %>
 <section class="section"><div class="container narrow">
   <% dest.overview.forEach(function (p) { %><p class="lead"><%= p %></p><% }) %>
-  <p class="btn-row"><a class="btn btn--leaf" href="/destinations/the-farm">Explore The Farm</a><a class="btn btn--ghost" href="/plan-your-visit/contact">Ask us about MMK Garden &amp; Waterfront</a></p>
+  <p class="btn-row"><a class="btn btn--leaf" href="/destinations">See all destinations</a><a class="btn btn--ghost" href="/plan-your-visit/contact">Ask us about <%= dest.name %></a></p>
 </div></section>
+<% if (dest.photos && dest.photos.length) { %>
+<section class="section"><div class="container"><%- include('../partials/gallery', { items: galleryItems, name: dest.name, tone: 'leaf', iconName: 'waves' }) %></div></section>
+<% } %>
 <% } %>
 <%- include('../partials/cta-band', { title: 'Ready to come and play?', text: 'Choose your dates and we will take care of the rest.', primary: ['Book Now', '/book'], secondary: ['Browse activities', '/things-to-do'] }) %>
