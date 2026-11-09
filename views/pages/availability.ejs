@@ -1,0 +1,18 @@
+<%- include('../partials/page-hero', { title: 'Availability Calendar', eyebrow: 'Stay', crumbs: [['Stay', '/stay'], ['Availability']] }) %>
+<section class="section"><div class="container narrow-wide">
+  <div class="cal" data-cal data-type="<%= slug %>">
+    <div class="cal__controls">
+      <label>Accommodation
+        <select data-cal-type><% options.forEach(function (o) { %><option value="<%= o.slug %>" <%= o.slug === slug ? 'selected' : '' %>><%= o.name %></option><% }) %></select>
+      </label>
+      <div class="cal__nav">
+        <button class="icon-btn icon-btn--ring" type="button" data-cal-prev aria-label="Previous month"><%- icon('chevron-left') %></button>
+        <h2 data-cal-title aria-live="polite">Loading</h2>
+        <button class="icon-btn icon-btn--ring" type="button" data-cal-next aria-label="Next month"><%- icon('chevron-right') %></button>
+      </div>
+    </div>
+    <div class="cal__grid" data-cal-grid role="grid" aria-label="Availability"></div>
+    <ul class="cal__legend"><li><i class="k k--available"></i>Available</li><li><i class="k k--limited"></i>Limited</li><li><i class="k k--full"></i>Fully booked</li></ul>
+        <p class="btn-row"><a class="btn btn--gold" href="/book">Request a booking</a></p>
+  </div>
+</div></section>

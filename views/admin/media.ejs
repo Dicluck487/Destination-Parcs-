@@ -1,0 +1,85 @@
+<section class="ad-card">
+  <h2>Add photos and videos</h2>
+  <p>Upload as many as you like. Photos are resized and tidied automatically (up to <%= limits.image %> MB each). Videos can be MP4, WebM or MOV up to <%= limits.video %> MB. For long films, paste a YouTube or Vimeo link instead. It plays on your site without slowing it down.</p>
+  <div class="dz" data-dropzone>
+    <input type="file" id="lib-files" multiple accept="image/*,video/mp4,video/webm,video/quicktime" hidden data-lib-files>
+    <button type="button" class="btn btn--gold" data-lib-pick><%- icon('upload') %>Choose files</button>
+    <span class="muted">or drag them here</span>
+    <progress max="100" value="0" hidden data-lib-progress></progress>
+    <p class="dz__msg" data-lib-msg role="status"></p>
+  </div>
+  <form class="ad-inline" data-lib-link>
+    <label class="f f--grow"><span>YouTube or Vimeo link</span><input type="url" name="url" placeholder="https://www.youtube.com/watch?v=..." required></label>
+    <label class="f"><span>Title</span><input name="title" maxlength="80" placeholder="Optional"></label>
+    <button class="btn btn--leaf" type="submit"><%- icon('link') %>Add link</button>
+  </form>
+</section>
+
+<section>
+  <form class="ad-inline ad-filter" method="get">
+    <label class="f f--grow"><span>Search</span><input type="search" name="q" value="<%= q %>" placeholder="Search by title"></label>
+    <label class="f"><span>Show</span><select name="kind" data-autosubmit>
+      <option value="">Everything (<%= totals.image + totals.video + totals.link %>)</option>
+      <option value="image" <%= kind === 'image' ? 'selected' : '' %>>Photos (<%= totals.image %>)</option>
+      <option value="video" <%= kind === 'video' ? 'selected' : '' %>>Uploaded videos (<%= totals.video %>)</option>
+      <option value="link" <%= kind === 'link' ? 'selected' : '' %>>YouTube and Vimeo (<%= totals.link %>)</option>
+    </select></label>
+    <button class="btn btn--ghost btn--sm" type="submit">Search</button>
+  </form>
+
+  <% if (!items.length) { %><p class="muted">Nothing here yet. Upload your first photo above.</p><% } %>
+  <ul class="lib" data-lib-grid>
+    <% items.forEach(function (m) { %>
+      <li class="lib__item">
+        <div class="lib__thumb">
+          <% if (m.kind === 'image') { %><img src="<%= m.thumb %>" alt="" loading="lazy">
+          <% } else if (m.kind === 'video') { %><video src="<%= m.url %>#t=0.5" preload="metadata" muted playsinline></video><span class="lib__tag"><%- icon('video') %>Video</span>
+          <% } else { %><span class="lib__ph"><%- icon('play') %></span><span class="lib__tag"><%= m.linkKind === 'youtube' ? 'YouTube' : 'Vimeo' %></span><% } %>
+        </div>
+        <form class="lib__title" method="post" action="/admin/media/<%= m.id %>/rename"><input type="hidden" name="_csrf" value="<%= csrf %>"><input name="title" value="<%= m.title %>" maxlength="80" aria-label="Title"><button class="ad-icon" type="submit" aria-label="Save title" title="Save title"><%- icon('check') %></button></form>
+        <p class="lib__meta"><%= m.usedIn.length ? 'Used in: ' + m.usedIn.join(', ') : 'Not used yet' %><% if (m.size) { %> · <%= m.size > 1048576 ? (m.size / 1048576).toFixed(1) + ' MB' : Math.round(m.size / 1024) + ' KB' %><% } %></p>
+        <div class="lib__act">
+          <% if (m.kind !== 'image') { %><a class="btn btn--ghost btn--sm" href="<%= m.url %>" target="_blank" rel="noopener">Preview</a><% } else { %><a class="btn btn--ghost btn--sm" href="<%= m.url %>" target="_blank" rel="noopener">Open</a><% } %>
+          <form method="post" action="/admin/media/<%= m.id %>/delete" data-confirm="<%= m.usedIn.length ? 'This is used in ' + m.usedIn.join(', ') + '. Delete it anyway? Those places will fall back to the default artwork.' : 'Delete this for good?' %>"><input type="hidden" name="_csrf" value="<%= csrf %>"><% if (m.usedIn.length) { %><input type="hidden" name="force" value="1"><% } %><button class="btn btn--ghost btn--sm" type="submit"><%- icon('trash') %>Delete</button></form>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
+</section>
+
+<% if (builtin.length) { %>
+<section class="block">
+  <h2>Pictures that come with the site</h2>
+  <p class="muted">These are the pictures built into the site. You can use them on any page. Removed pictures go to the trash below and can be restored.</p>
+  <% var groups = []; builtin.forEach(function (b) { if (groups.indexOf(b.group) < 0) groups.push(b.group); }); %>
+  <% groups.forEach(function (g) { %>
+    <h3><%= g %></h3>
+    <ul class="lib">
+      <% builtin.filter(function (b) { return b.group === g; }).forEach(function (b) { %>
+        <li class="lib__item">
+          <div class="lib__thumb lib__thumb--plain"><img src="<%= b.url %>" alt="" loading="lazy"></div>
+          <p class="lib__title-static"><strong><%= b.title %></strong></p>
+          <p class="lib__meta"><%= b.usedIn.length ? 'Used in: ' + b.usedIn.join(', ') : 'Not used yet' %><% if (b.size) { %> &middot; <%= b.size > 1048576 ? (b.size / 1048576).toFixed(1) + ' MB' : Math.round(b.size / 1024) + ' KB' %><% } %></p>
+          <div class="lib__act">
+            <a class="btn btn--ghost btn--sm" href="<%= b.url %>" target="_blank" rel="noopener">Open</a>
+            <% if (b.locked) { %><span class="muted">Part of the design</span>
+            <% } else { %>
+              <form method="post" action="/admin/media/builtin/delete" data-confirm="<%= b.usedIn.length ? 'This is used in ' + b.usedIn.join(', ') + '. Remove it anyway? It will be taken out of those places, and you can restore the picture from the trash.' : 'Remove this picture? You can restore it from the trash.' %>"><input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="rel" value="<%= b.rel %>"><button class="btn btn--ghost btn--sm" type="submit"><%- icon('trash') %>Remove</button></form>
+            <% } %>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  <% }) %>
+</section>
+<% } %>
+<% if (trashed.length) { %>
+<section class="block">
+  <h2>Removed built-in pictures</h2>
+  <ul class="rows">
+    <% trashed.forEach(function (t) { %>
+      <li><form method="post" action="/admin/media/builtin/restore" class="ad-inline"><input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="file" value="<%= t.file %>"><span><strong><%= t.title %></strong> <span class="muted">(<%= t.rel %>)</span></span><button class="btn btn--leaf btn--sm" type="submit">Restore</button></form></li>
+    <% }) %>
+  </ul>
+</section>
+<% } %>

@@ -1,56 +1,38 @@
 'use strict';
-const crypto = require('crypto');
 const express = require('express');
-const store = require('../lib/store');
-const { flash, clean, limiter, STATUS_LABEL } = require('../lib/util');
+const d = require('../lib/data');
+const media = require('../lib/media');
 
 const router = express.Router();
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
+const base = { activeNav: 'breaks' };
 
-const same = (a, b) => a.length === b.length && crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
-const guard = (req, res, next) => {
-  if (!ADMIN_PASSWORD) return res.status(404).render('pages/error', { pageTitle: 'Not found', code: 404, message: 'The admin area is switched off. Set ADMIN_PASSWORD to enable it.' });
-  if (req.session.admin) return next();
-  return res.redirect('/admin/login');
-};
+const hydrateList = (list) => list.map((b) => d.breakBySlug[b.slug]);
 
-router.get('/login', (req, res) => {
-  if (!ADMIN_PASSWORD) return guard(req, res, () => {});
-  res.render('pages/admin-login', { pageTitle: 'Team sign in', layout: 'layouts/admin' });
-});
-router.post('/login', limiter(8), (req, res) => {
-  if (ADMIN_PASSWORD && same(String(req.body.password || ''), ADMIN_PASSWORD)) {
-    req.session.admin = true;
-    return res.redirect('/admin');
-  }
-  flash(req, 'error', 'Wrong password.');
-  return res.redirect('/admin/login');
-});
-router.post('/logout', (req, res) => { req.session.admin = false; res.redirect('/admin/login'); });
-
-router.get('/', guard, (req, res) => {
-  const bookings = store.bookings.all().sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
-  const enquiries = store.enquiries.all().sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
-  const quotes = store.quotes.all().sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
-  res.render('pages/admin', {
-    pageTitle: 'Team dashboard', layout: 'layouts/admin', bookings, enquiries, quotes, STATUS_LABEL,
-    users: store.users.all().length,
-    tab: ['bookings', 'enquiries', 'quotes'].includes(req.query.tab) ? req.query.tab : 'bookings',
+router.get('/', (req, res) => {
+  res.render('pages/breaks', {
+    ...base, pageTitle: 'Breaks & Packages',
+    seasonal: hydrateList(d.breaks.seasonal), family: hydrateList(d.breaks.other), signature: hydrateList(d.breaks.signature),
+    durations: d.DURATIONS,
   });
 });
 
-router.post('/bookings/:id/status', guard, (req, res) => {
-  const status = String(req.body.status || '');
-  if (Object.keys(STATUS_LABEL).includes(status)) store.bookings.update(req.params.id, { status, adminNote: clean(req.body.note, 500) });
-  res.redirect('/admin?tab=bookings');
-});
-router.post('/enquiries/:id/status', guard, (req, res) => {
-  store.enquiries.update(req.params.id, { status: req.body.status === 'done' ? 'done' : 'new' });
-  res.redirect('/admin?tab=enquiries');
-});
-router.post('/quotes/:id/status', guard, (req, res) => {
-  store.quotes.update(req.params.id, { status: req.body.status === 'done' ? 'done' : 'new' });
-  res.redirect('/admin?tab=quotes');
+const groupPage = (title, lead, key, extra = {}) => (req, res) => {
+  res.render('pages/break-group', { ...base, pageTitle: title, lead, list: hydrateList(d.breaks[key]), ...extra });
+};
+router.get('/seasonal', groupPage('Seasonal Breaks', 'Festive and special-occasion breaks timed around the calendar.', 'seasonal', { eyebrow: 'Seasonal' }));
+router.get('/family', groupPage('Family & Child-Friendly Breaks', 'Easy, flexible breaks for families and parents with young children.', 'other', { eyebrow: 'Family' }));
+router.get('/signature', groupPage('Signature Experiences', 'Six hand-built packages that capture the feel of Destination Parcs.', 'signature', { eyebrow: 'Signature' }));
+
+router.get('/durations', (req, res) => res.render('pages/durations', { ...base, pageTitle: 'Break Durations', durations: d.DURATIONS }));
+
+router.get('/:slug', (req, res, next) => {
+  const b = d.breakBySlug[req.params.slug];
+  if (!b) return next();
+  res.render('pages/break', {
+    ...base, pageTitle: b.name, brk: b, metaDescription: b.blurb,
+    cover: media.cover(b, 'breaks'), gallery: media.items(b, 'breaks', 5),
+    others: d.allBreaks.filter((x) => x.kind === b.kind && x.slug !== b.slug).slice(0, 3),
+  });
 });
 
 module.exports = router;

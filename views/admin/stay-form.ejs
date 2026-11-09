@@ -1,0 +1,31 @@
+<% if (errors.length) { %><div class="ad-error" role="alert"><strong>Please fix:</strong><ul><% errors.forEach(function (e) { %><li><%= e %></li><% }) %></ul></div><% } %>
+<form class="ad-edit" method="post" action="/admin/stay/<%= isNew ? 'new' : s.slug %>" data-dirty-guard>
+  <input type="hidden" name="_csrf" value="<%= csrf %>">
+  <div class="ad-edit__main">
+    <section class="ad-card">
+      <h2>Details</h2>
+      <label class="f"><span>Name</span><input name="name" value="<%= s.name %>" required maxlength="100"></label>
+      <% if (s.slug !== 'no-stay') { %>
+      <div class="grid3">
+        <label class="f"><span>Kind</span><select name="kind"><% kinds.forEach(function (k) { %><option value="<%= k[0] %>" <%= s.kind === k[0] ? 'selected' : '' %>><%= k[1] %></option><% }) %></select></label>
+        <label class="f"><span>How many of them</span><input type="number" name="units" min="0" max="500" value="<%= s.units %>"></label>
+        <label class="f"><span>Sleeps (each)</span><input type="number" name="sleeps" min="1" max="60" value="<%= s.sleeps %>"></label>
+      </div>
+      <% } %>
+      <label class="f"><span>Rate (shown as text)</span><input name="rate" value="<%= s.rate || '' %>" maxlength="80" placeholder="From UGX 150,000 per night"></label>
+      <label class="f"><span>Description</span><textarea name="blurb" rows="4" maxlength="600" required><%= s.blurb || '' %></textarea></label>
+    </section>
+    <section class="ad-card">
+      <h2>Photos and videos</h2>
+      <%- include('../partials/admin-media-field', { name: 'cover', mode: 'image', label: 'Main photo', value: s.cover || '' }) %>
+      <%- include('../partials/admin-media-field', { name: 'photos', mode: 'images', label: 'More photos', value: s.photos || [] }) %>
+      <%- include('../partials/admin-media-field', { name: 'videos', mode: 'videos', label: 'Videos', value: s.videos || [] }) %>
+    </section>
+  </div>
+  <aside class="ad-edit__side"><div class="ad-card ad-sticky">
+    <h2>Publish</h2>
+    <button class="btn btn--leaf btn--block" type="submit"><%- icon('check') %>Save</button>
+    <a class="btn btn--ghost btn--block" href="/admin/stay">Back to the list</a>
+  </div></aside>
+</form>
+<% if (!isNew && s.slug !== 'no-stay') { %><form class="ad-danger" method="post" action="/admin/stay/<%= s.slug %>/delete" data-confirm="Delete &quot;<%= s.name %>&quot;? Existing bookings keep their record."><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn btn--ghost btn--sm" type="submit"><%- icon('trash') %>Delete this accommodation</button></form><% } %>

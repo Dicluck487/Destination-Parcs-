@@ -1,8 +1,9 @@
 'use strict';
 const d = require('./data');
 
-// Six menu items plus the Book Now button. Each dropdown has 8 links or fewer.
-const nav = [
+// Five menu items, a More menu and the Book Now button. Each dropdown has 8 links or fewer.
+// Built per request so admin edits (new breaks, etc.) show up straight away.
+const build = () => [
   {
     key: 'destinations', label: 'Destinations', href: '/destinations',
     links: [
@@ -40,8 +41,12 @@ const nav = [
     ],
   },
   {
-    key: 'corporate', label: 'Corporate & Events', href: '/corporate',
-    links: [
+    // One "More" menu holds Corporate & Events, Plan Your Visit and the guest's profile (added in the header).
+    key: 'more', label: 'More', href: '', active: ['corporate', 'plan', 'account'],
+    groups: [
+      {
+        title: 'Corporate & Events', href: '/corporate',
+        links: [
       { label: 'Meetings & Retreats', href: '/corporate/meetings-and-retreats' },
       { label: 'Team Building & Challenges', href: '/corporate/team-building' },
       { label: 'Nature & CSR Outings', href: '/corporate/nature-and-csr' },
@@ -49,17 +54,20 @@ const nav = [
       { label: 'Conferences & Venues', href: '/corporate/conferences-and-venues' },
       { label: 'Corporate Planning Checklist', href: '/corporate/checklist' },
       { label: 'Request a Quote', href: '/corporate/quote' },
-    ],
-  },
-  {
-    key: 'plan', label: 'Plan Your Visit', href: '/plan-your-visit',
-    links: [
+        ],
+      },
+      {
+        title: 'Plan Your Visit', href: '/plan-your-visit',
+        links: [
       { label: 'First Time at Destination Parcs', href: '/plan-your-visit/first-time' },
       { label: 'The D.P Experience', href: '/plan-your-visit/experience' },
+      { label: 'Photo & Video Gallery', href: '/gallery' },
       { label: 'Accessibility', href: '/plan-your-visit/accessibility' },
       { label: 'Contact & Directions', href: '/plan-your-visit/contact' },
+        ],
+      },
     ],
   },
 ];
 
-module.exports = nav;
+module.exports = build;

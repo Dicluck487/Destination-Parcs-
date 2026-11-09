@@ -1,0 +1,15 @@
+<%- include('../partials/page-hero', { title: 'Saved details', eyebrow: 'My account', crumbs: [['My bookings', '/account/bookings'], ['Saved details']] }) %>
+<section class="section"><div class="container narrow">
+  <nav class="subnav" aria-label="Account"><a href="/account/bookings">Bookings</a><a href="/account/details" aria-current="page">Saved details</a><a href="/book">New booking</a></nav>
+  <% const s = user.saved || { adults: 2, children: 0, notes: '' }; %>
+  <form class="form form--card" method="post" action="/account/details">
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <label>Full name<input name="name" required maxlength="100" value="<%= user.name %>"></label>
+    <div class="form__row"><label>Email<input name="email" type="email" maxlength="150" value="<%= user.email %>"></label><label>Phone<input name="phone" type="tel" maxlength="30" value="<%= user.phone %>"></label></div>
+    <div class="form__row"><label>Usual number of adults<input name="adults" type="number" min="1" max="60" value="<%= s.adults %>"></label><label>Usual number of children<input name="children" type="number" min="0" max="60" value="<%= s.children %>"></label></div>
+    <label>Notes we should always know<textarea name="notes" rows="3" maxlength="500" placeholder="Dietary needs, access needs..."><%= s.notes %></textarea></label>
+    <label>New password (optional)<input name="password" type="password" minlength="8" autocomplete="new-password" placeholder="Leave blank to keep your current one"></label>
+    <button class="btn btn--leaf btn--lg" type="submit">Save details</button>
+  </form>
+  <form method="post" action="/account/signout" class="block"><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn btn--ghost" type="submit">Sign out</button></form>
+</div></section>

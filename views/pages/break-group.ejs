@@ -1,5 +1,5 @@
-<%- include('../partials/page-hero', { title: 'Corporate Planning Checklist', eyebrow: 'Corporate & Events', lead: 'Seven things to settle before you book.', crumbs: [['Corporate & Events', '/corporate'], ['Planning Checklist']] }) %>
-<section class="section"><div class="container narrow">
-  <ol class="checklist"><% items.forEach(function (i) { %><li><span></span><%= i %></li><% }) %></ol>
-  <p class="btn-row"><a class="btn btn--gold" href="/corporate/checklist.pdf" download><%- icon('download') %>Download the PDF</a><a class="btn btn--ghost" href="/corporate/quote">Request a quote</a></p>
+<%- include('../partials/page-hero', { title: pageTitle, eyebrow: eyebrow, lead: lead, crumbs: [['Breaks & Packages', '/breaks'], [pageTitle]] }) %>
+<section class="section"><div class="container">
+  <div class="grid grid--3"><% list.forEach(function (b) { %><%- include('../partials/break-card', { b: b }) %><% }) %></div>
 </div></section>
+<%- include('../partials/cta-band', { title: 'Ready to choose?', text: 'Pick a break, set your dates and send your request.', primary: ['Book Now', '/book'], secondary: ['All breaks', '/breaks'] }) %>

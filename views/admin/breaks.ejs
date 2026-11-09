@@ -1,0 +1,18 @@
+<div class="ad-bar"><span class="muted">Seasonal breaks, family breaks and signature experiences shown under Breaks &amp; Packages.</span><a class="btn btn--gold" href="/admin/breaks/new"><%- icon('plus') %>New break</a></div>
+<% groups.forEach(function (g) { %>
+  <section class="ad-card">
+    <div class="ad-card__head"><h2><%= g.label %></h2><a class="btn btn--ghost btn--sm" href="/admin/breaks/new?group=<%= g.key %>"><%- icon('plus') %>Add</a></div>
+    <ul class="ad-list">
+      <% g.items.forEach(function (b) { %>
+        <li>
+          <span><a href="/admin/breaks/<%= b.slug %>"><strong><%= b.name %></strong></a><small><%= b.hidden ? 'Hidden · ' : '' %><%= (b.inclusions || []).length %> inclusions · <%= (b.cover ? 1 : 0) + (b.photos || []).length %> photos · <%= (b.videos || []).length %> videos</small></span>
+          <span class="ad-actions">
+            <a class="btn btn--leaf btn--sm" href="/admin/breaks/<%= b.slug %>"><%- icon('edit') %>Edit</a>
+            <form method="post" action="/admin/breaks/<%= b.slug %>/toggle"><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn btn--ghost btn--sm" type="submit"><%- icon(b.hidden ? 'eye' : 'eye-off') %><%= b.hidden ? 'Show' : 'Hide' %></button></form>
+          </span>
+        </li>
+      <% }) %>
+      <% if (!g.items.length) { %><li class="muted">None yet.</li><% } %>
+    </ul>
+  </section>
+<% }) %>

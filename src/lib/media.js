@@ -54,4 +54,32 @@ function list(dir) {
   } catch (e) { return []; }
 }
 
-module.exports = { photo, gallery, heroSlide, list };
+/** Cover image: admin-chosen first, then the file-name convention. */
+const cover = (entity, dir) => (entity && entity.cover) || (entity && entity.photos && entity.photos[0]) || photo(dir, entity && entity.slug);
+
+/** All photos for an entity (admin-chosen list, else files named <slug>-1.jpg ...). */
+function photos(entity, dir, max = 5) {
+  const out = [];
+  if (entity.cover) out.push(entity.cover);
+  (entity.photos || []).forEach((p) => { if (!out.includes(p)) out.push(p); });
+  if (!out.length) gallery(dir, entity.slug, max).forEach((p) => out.push(p));
+  return out;
+}
+
+/** Page banner (corporate, stay, plan ...) from the admin, else public/images/pages/<name>.jpg */
+function page(name) {
+  const banners = (require('./data').pages || {}).banners || {};
+  return banners[name] || find(`images/pages/${name}`);
+}
+
+/** Normalised gallery items (photos then videos) for the shared gallery partial. */
+function items(entity, dir, max = 5) {
+  const out = photos(entity, dir, max).map((src) => ({ type: 'image', src }));
+  (entity.videos || []).forEach((v) => out.push({ type: v.kind, src: v.url || '', id: v.id || '', title: v.title || '' }));
+  return out;
+}
+
+/** Small version of an uploaded image (falls back to the original). */
+const thumb = (u) => (typeof u === 'string' && u.startsWith('/uploads/images/') ? u.replace('/uploads/images/', '/uploads/thumbs/') : u);
+
+module.exports = { thumb, photo, gallery, heroSlide, list, cover, photos, page, items };

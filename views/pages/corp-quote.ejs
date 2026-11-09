@@ -1,6 +1,22 @@
-<%- include('../partials/page-hero', { title: 'Request received', eyebrow: 'Reference ' + b.ref, lead: 'Thank you, ' + user.name.split(' ')[0] + '. Our team will confirm your booking shortly.', crumbs: [['Booking confirmation']] }) %>
-<section class="section"><div class="container narrow">
-  <div class="success"><%- icon('check') %><div><h2>You are on our list</h2><p><%= site.depositNote %></p></div></div>
-  <%- include('../partials/booking-summary', { b: b }) %>
-  <p class="btn-row"><a class="btn btn--gold" href="/account/bookings/<%= b.ref %>">Manage this booking</a><a class="btn btn--ghost" href="/account/bookings">All my bookings</a><a class="btn btn--ghost" href="/plan-your-visit/first-time">First time? Read this</a></p>
+<%- include('../partials/page-hero', { title: 'Request a Quote', eyebrow: 'Corporate & Events', crumbs: [['Corporate & Events', '/corporate'], ['Request a Quote']] }) %>
+<section class="section"><div class="container two-col two-col--form">
+  <form class="form form--card" method="post" action="/corporate/quote">
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="form__row"><label>Your name<input name="name" required maxlength="100" value="<%= form.name || '' %>" autocomplete="name"></label><label>Organisation<input name="organisation" maxlength="150" value="<%= form.organisation || '' %>" autocomplete="organization"></label></div>
+    <div class="form__row"><label>Email<input name="email" type="email" maxlength="150" value="<%= form.email || '' %>" autocomplete="email"></label><label>Phone<input name="phone" type="tel" maxlength="30" value="<%= form.phone || '' %>" autocomplete="tel"></label></div>
+    <div class="form__row">
+      <label>Type of event<select name="eventType"><% eventTypes.forEach(function (t) { %><option <%= form.eventType === t ? 'selected' : '' %>><%= t %></option><% }) %></select></label>
+      <label>Group size<input name="groupSize" type="number" min="1" max="5000" required value="<%= form.groupSize || '' %>"></label>
+    </div>
+    <div class="form__row"><label>Preferred dates<input name="dates" maxlength="150" value="<%= form.dates || '' %>" placeholder="e.g. 12 to 14 March, flexible"></label><label>Nights<input name="nights" maxlength="20" value="<%= form.nights || '' %>" placeholder="0 for a day event"></label></div>
+    <fieldset class="checks"><legend>What do you need?</legend>
+      <% ['Meeting space and equipment','Accommodation','Meals','Activity programme','Transport and parking','Safety briefing and insurance'].forEach(function (n) { %>
+        <label class="check"><input type="checkbox" name="needs" value="<%= n %>" <%= (form.needs || []).includes(n) ? 'checked' : '' %>><span><%= n %></span></label>
+      <% }) %>
+    </fieldset>
+    <label>Anything else we should know?<textarea name="message" rows="4" maxlength="2000"><%= form.message || '' %></textarea></label>
+    <button class="btn btn--gold btn--lg" type="submit">Send quote request</button>
+  </form>
+  <aside class="side-card"><h2>Before you send</h2><a class="btn btn--ghost" href="/corporate/checklist.pdf"><%- icon('download') %>Download checklist</a><hr><p class="muted">Invoice, deposit and cancellation terms are shared with your quote.</p></aside>
 </div></section>

@@ -1,0 +1,10 @@
+<section class="ad-card">
+  <h2><%= label %> as raw data</h2>
+  <p>For advanced edits only. If the content does not fit what the website expects, the save is refused and nothing changes. Every save can be reverted from <a href="/admin/history">History</a>.</p>
+  <% if (error) { %><p class="ad-error"><%= error %></p><% } %>
+  <form method="post" data-dirty-guard>
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <textarea class="ad-code" name="json" rows="28" spellcheck="false"><%= json %></textarea>
+    <p><button class="btn btn--leaf" type="submit">Save</button> <a class="btn btn--ghost" href="/admin/history">Cancel</a></p>
+  </form>
+</section>

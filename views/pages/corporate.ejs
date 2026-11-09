@@ -1,18 +1,27 @@
-<%- include('../partials/page-hero', { title: 'Camping or Glamping', eyebrow: 'Stay', lead: 'Sleep close to the trees and the campfire, with or without the extra comfort.', crumbs: [['Stay', '/stay'], ['Camping or Glamping']] }) %>
+<%- include('../partials/page-hero', { title: 'Corporate & Events', eyebrow: 'Work, together', crumbs: [['Corporate & Events']], image: media.page('corporate'), tone: 'forest' }) %>
 <section class="section"><div class="container">
-  <div class="grid grid--2">
-    <% options.forEach(function (s) { %>
-      <article class="scard">
-        <div class="scard__media"><%- include('../partials/photo', { src: media.photo('stay', s.slug), alt: s.name, tone: 'leaf', iconName: 'tent' }) %></div>
-        <div class="scard__body">
-          <h2><%= s.name %></h2>
-          <p><%= s.blurb %></p>
-          <ul class="ticks"><% (s.features || []).forEach(function (f) { %><li><%- icon('check') %><%= f %></li><% }) %></ul>
-          <p class="scard__meta"><%- icon('users') %>Sleeps up to <%= s.sleeps %> <span class="dot"></span> <strong><%= s.rate ? s.rate : 'Rates on request' %></strong></p>
-          <a class="btn btn--sm btn--ghost" href="/stay/availability?type=<%= s.slug %>">Check availability</a>
-        </div>
-      </article>
+  <div class="grid grid--3 corp-cards">
+    <% [
+      ['Meetings & Retreats', 'Board retreats, meetings, multi-day retreats and focused work sessions.', 'briefcase', '/corporate/meetings-and-retreats'],
+      ['Team Building & Challenges', corp.teamBuilding.length + ' activities that build trust, strategy and spirit.', 'users', '/corporate/team-building'],
+      ['Nature & CSR Outings', 'Bird watching, farm visits, forest walks and community tourism.', 'leaf', '/corporate/nature-and-csr'],
+      ['Weddings & Celebrations', 'Weddings, traditional ceremonies and anniversary parties.', 'heart', '/corporate/weddings-and-celebrations'],
+      ['Conferences & Venues', 'Venue options, capacity and packages.', 'home', '/corporate/conferences-and-venues'],
+      ['Planning Checklist', 'A downloadable checklist to plan with confidence.', 'download', '/corporate/checklist']
+    ].forEach(function (c) { %>
+      <a class="ccard" href="<%= c[3] %>"><span class="ccard__icon"><%- icon(c[2]) %></span><h3><%= c[0] %></h3><p><%= c[1] %></p><span class="link-arrow">Explore <%- icon('arrow-right') %></span></a>
     <% }) %>
   </div>
-  <p class="btn-row"><a class="btn btn--gold" href="/book">Book Now</a><a class="btn btn--ghost" href="/breaks/campfire-and-stories-night">Campfire &amp; Stories Night</a></p>
+</div></section>
+<section class="section section--tint curve-top"><div class="container two-col">
+  <div>
+    <p class="eyebrow">Why The Farm</p><h2>Step out of the office, think clearer</h2>
+    <ul class="ticks">
+      <li><%- icon('check') %>Quiet spaces for deep work and private strategy sessions</li>
+      <li><%- icon('check') %>Activity programmes that match your goals and timing</li>
+      <li><%- icon('check') %>Accommodation, meals and parking handled in one booking</li>
+      <li><%- icon('check') %>Safety briefings and trained guides at every activity</li>
+    </ul>
+  </div>
+  <div class="callout callout--stack"><%- icon('briefcase') %><h3>Planning an event?</h3><p>Tell us your group size and dates. We will send a tailored quote.</p><a class="btn btn--gold" href="/corporate/quote">Request a quote</a></div>
 </div></section>

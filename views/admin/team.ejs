@@ -1,0 +1,33 @@
+<div class="ad-grid">
+  <% if (isSystemAdmin) { %>
+  <section class="ad-card">
+    <h2>Team logins</h2>
+    <ul class="ad-list">
+      <% admins.forEach(function (a) { %>
+        <li><span><strong><%= a.name %></strong><small>@<%= a.username %> · <%= a.role === 'admin' ? 'System admin' : 'Guests section only' %><%= a.lastLogin ? ' · last sign-in ' + fmtDateTime(a.lastLogin) : '' %></small></span>
+          <% if (a.id !== adminUser.id) { %><form method="post" action="/admin/team/<%= a.id %>/make-admin" data-confirm="Make <%= a.name %> the system admin? You will then see the Guests section only."><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn btn--ghost btn--sm" type="submit">Make system admin</button></form><form method="post" action="/admin/team/<%= a.id %>/delete" data-confirm="Remove the login for <%= a.name %>?"><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn btn--ghost btn--sm" type="submit">Remove</button></form><% } else { %><span class="muted">You</span><% } %></li>
+      <% }) %>
+    </ul>
+  </section>
+  <% } %>
+  <section class="ad-card">
+    <% if (isSystemAdmin) { %>
+    <h2>Add a team member</h2>
+    <p class="muted">New members see the Guests section only (bookings, enquiries and quote requests).</p>
+    <form method="post" action="/admin/team" class="ad-form">
+      <input type="hidden" name="_csrf" value="<%= csrf %>">
+      <label class="f"><span>Name</span><input name="name" maxlength="80" required></label>
+      <label class="f"><span>Username</span><input name="username" maxlength="40" required autocomplete="off"></label>
+      <label class="f"><span>Password (10 characters or more)</span><input name="password" type="password" minlength="10" required autocomplete="new-password"></label>
+      <button class="btn btn--leaf" type="submit">Add login</button>
+    </form>
+    <% } %>
+    <h2>Change your password</h2>
+    <form method="post" action="/admin/team/password" class="ad-form">
+      <input type="hidden" name="_csrf" value="<%= csrf %>">
+      <label class="f"><span>Current password</span><input name="current" type="password" required autocomplete="current-password"></label>
+      <label class="f"><span>New password (10 characters or more)</span><input name="password" type="password" minlength="10" required autocomplete="new-password"></label>
+      <button class="btn btn--ghost" type="submit">Change password</button>
+    </form>
+  </section>
+</div>

@@ -1,13 +1,5 @@
-<%- include('../partials/page-hero', { title: 'The D.P Experience', eyebrow: 'Plan Your Visit', lead: 'The story and feel of Destination Parcs.', crumbs: [['Plan Your Visit', '/plan-your-visit'], ['The D.P Experience']], image: media.photo('pages', 'experience') }) %>
-<section class="section"><div class="container two-col">
-  <div><p class="eyebrow">Our story</p><h2>Extraordinary places. Lasting memories.</h2><% p.story.forEach(function (t) { %><p><%= t %></p><% }) %></div>
-  <div class="logo-card"><img src="/images/brand/logo-full.png" alt="Destination Parcs logo" width="520" height="264" loading="lazy">
-    <ul class="logo-key"><li><strong>The bird</strong>Freedom, exploration and new beginnings.</li><li><strong>The leaf</strong>Nature, wellbeing and sustainability.</li><li><strong>The forms</strong>Together they create movement, progress and harmony.</li></ul>
-  </div>
-</div></section>
-<section class="section section--tint curve-top"><div class="container"><div class="grid grid--3"><% p.pillars.forEach(function (x, i) { %><div class="highlight"><span class="highlight__num"><%= i + 1 %></span><h3><%= x.title %></h3><p><%= x.text %></p></div><% }) %></div></div></section>
+<%- include('../partials/page-hero', { title: 'Accessibility', eyebrow: 'Plan Your Visit', lead: p.intro, crumbs: [['Plan Your Visit', '/plan-your-visit'], ['Accessibility']] }) %>
 <section class="section"><div class="container">
-  <header class="section__head"><p class="eyebrow">Photos &amp; videos</p><h2>See it for yourself</h2></header>
-  <% const shots = media.list('gallery'); %>
-  <div class="gallery gallery--plain"><% for (let i = 0; i < 6; i++) { %><figure class="gallery__item gallery__item--<%= i + 1 %>"><% if (shots[i]) { %><img src="<%= shots[i] %>" alt="Destination Parcs photo <%= i + 1 %>" loading="lazy"><% } else { %><%- include('../partials/art', { tone: ['leaf','forest','fresh','gold','bronze','leaf'][i], iconName: ['tree','waves','users','sun','flame','bird'][i], label: 'Photo coming soon' }) %><% } %></figure><% } %></div>
+  <div class="grid grid--2"><% p.sections.forEach(function (s) { %><section class="panel"><h2><%= s.title %></h2><p><%= s.text %></p></section><% }) %></div>
+  <div class="callout block"><%- icon('phone') %><div><h3>Tell us what you need</h3></div><a class="btn btn--gold" href="/plan-your-visit/contact">Contact us</a></div>
 </div></section>

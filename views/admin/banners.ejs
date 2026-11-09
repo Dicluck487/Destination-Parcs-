@@ -1,0 +1,20 @@
+<form class="ad-edit" method="post" action="/admin/banners" data-dirty-guard>
+  <input type="hidden" name="_csrf" value="<%= csrf %>">
+  <div class="ad-edit__main">
+    <section class="ad-card">
+      <h2>Page banners</h2>
+      <p class="muted">A wide photo behind the title at the top of each page. Leave empty for the green leaf design.</p>
+      <div class="grid2">
+        <% banners.forEach(function (b) { %><%- include('../partials/admin-media-field', { name: 'banners[' + b[0] + ']', mode: 'image', label: b[1], value: (p.banners || {})[b[0]] || '' }) %><% }) %>
+      </div>
+    </section>
+    <section class="ad-card">
+      <h2>Activity type banners</h2>
+      <p class="muted">The banner on each "Things To Do" type page (Outdoor, Indoor and so on).</p>
+      <div class="grid2">
+        <% types.forEach(function (t) { %><%- include('../partials/admin-media-field', { name: 'types[' + t.slug + ']', mode: 'image', label: t.name, value: (p.typeCovers || {})[t.slug] || '' }) %><% }) %>
+      </div>
+    </section>
+  </div>
+  <aside class="ad-edit__side"><div class="ad-card ad-sticky"><h2>Publish</h2><button class="btn btn--leaf btn--block" type="submit"><%- icon('check') %>Save</button></div></aside>
+</form>

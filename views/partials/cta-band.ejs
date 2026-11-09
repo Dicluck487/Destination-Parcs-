@@ -1,50 +1,9 @@
-<header class="site-header" data-header>
-  <div class="header__inner">
-    <a class="brand" href="/" aria-label="Destination Parcs home">
-      <img class="brand__mark" src="/images/brand/mark.png" alt="" width="53" height="43">
-      <img class="brand__word" src="/images/brand/wordmark.png" alt="Destination Parcs" width="190" height="22">
-    </a>
-
-    <nav class="primary" id="primary-nav" aria-label="Main">
-      <ul class="nav">
-        <% nav.forEach(function (item, i) { %>
-          <li class="nav__item <%= activeNav === item.key ? 'is-active' : '' %>">
-            <a class="nav__link" href="<%= item.href %>"><%= item.label %></a>
-            <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-<%= item.key %>" aria-label="Show <%= item.label %> links"><%- icon('chevron-down') %></button>
-            <div class="menu" id="menu-<%= item.key %>">
-              <ul>
-                <% item.links.forEach(function (l) { %>
-                  <li class="<%= l.flyout ? 'has-flyout' : '' %>">
-                    <a href="<%= l.href %>"><%= l.label %></a>
-                    <% if (l.flyout) { %>
-                      <button class="flyout-toggle" type="button" aria-expanded="false" aria-label="Show <%= l.label %> options"><%- icon('chevron-right') %></button>
-                      <ul class="flyout">
-                        <% l.flyout.forEach(function (f) { %>
-                          <li><a href="<%= f.href %>"><%= f.label %><% if (f.count) { %><span class="count"><%= f.count %></span><% } %></a></li>
-                        <% }) %>
-                      </ul>
-                    <% } %>
-                  </li>
-                <% }) %>
-              </ul>
-            </div>
-          </li>
-        <% }) %>
-      </ul>
-      <div class="nav__mobile-actions">
-        <a class="btn btn--ghost btn--block" href="/account/<%= user ? 'bookings' : 'signin' %>"><%= user ? 'My bookings' : 'Sign in or register' %></a>
-      </div>
-    </nav>
-
-    <div class="header__actions">
-      <a class="icon-btn" href="/trip" aria-label="My trip (<%= trip.length %> activities)" title="My trip">
-        <%- icon('bookmark') %><% if (trip.length) { %><span class="icon-btn__count" data-trip-count><%= trip.length %></span><% } else { %><span class="icon-btn__count" data-trip-count hidden>0</span><% } %>
-      </a>
-      <a class="icon-btn account-link" href="/account/<%= user ? 'bookings' : 'signin' %>" aria-label="<%= user ? 'My bookings' : 'Sign in' %>" title="<%= user ? 'My bookings' : 'Sign in' %>">
-        <%- icon('user') %><span class="account-link__text"><%= user ? user.name.split(' ')[0] : 'Sign in' %></span>
-      </a>
-      <a class="btn btn--gold btn--sm book-btn" href="/book">Book Now</a>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu" data-menu-btn><%- icon('menu') %></button>
+<%# params: title, text, primary [label, href], secondary? [label, href] %>
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <div><h2><%= title %></h2><p><%= text %></p></div>
+    <div class="cta-band__actions">
+      <a class="btn btn--gold" href="<%= primary[1] %>"><%= primary[0] %></a>
     </div>
   </div>
-</header>
+</section>

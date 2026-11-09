@@ -1,0 +1,55 @@
+<% if (errors.length) { %><div class="ad-error" role="alert"><strong>Please fix:</strong><ul><% errors.forEach(function (e) { %><li><%= e %></li><% }) %></ul></div><% } %>
+<form class="ad-edit" method="post" action="/admin/activities/<%= isNew ? 'new' : a.slug %>" data-dirty-guard>
+  <input type="hidden" name="_csrf" value="<%= csrf %>">
+  <div class="ad-edit__main">
+    <section class="ad-card">
+      <h2>About the activity</h2>
+      <label class="f"><span>Name</span><input name="name" value="<%= a.name %>" required maxlength="100"></label>
+      <label class="f"><span>Description</span><textarea name="description" rows="4" maxlength="1500" required><%= a.description %></textarea></label>
+      <div class="grid2">
+        <label class="f"><span>Suitable for</span><input name="suitableFor" value="<%= a.suitableFor %>" maxlength="150" placeholder="All ages; children supervised"></label>
+        <label class="f"><span>How long it takes</span><input name="duration" value="<%= a.duration %>" maxlength="80" placeholder="1 - 2 hrs"></label>
+      </div>
+      <fieldset class="f"><legend>Types (tick all that fit)</legend>
+        <div class="checks"><% categories.forEach(function (c) { %><label><input type="checkbox" name="categories[]" value="<%= c %>" <%= a.categories.includes(c) ? 'checked' : '' %>><%= c %></label><% }) %></div>
+      </fieldset>
+      <div class="grid2">
+        <label class="f"><span>Indoor or outdoor</span><select name="setting"><option <%= a.setting === 'Outdoor' ? 'selected' : '' %>>Outdoor</option><option <%= a.setting === 'Indoor' ? 'selected' : '' %>>Indoor</option></select></label>
+        <label class="f"><span>Icon (shown when there is no photo)</span><select name="icon"><% icons.forEach(function (n) { %><option value="<%= n %>" <%= a.icon === n ? 'selected' : '' %>><%= n %></option><% }) %></select></label>
+      </div>
+    </section>
+
+    <section class="ad-card">
+      <h2>Photos and videos</h2>
+      <%- include('../partials/admin-media-field', { name: 'cover', mode: 'image', label: 'Main photo', value: a.cover || '', help: 'Shown on the activity card and at the top of its page.' }) %>
+      <%- include('../partials/admin-media-field', { name: 'photos', mode: 'images', label: 'More photos', value: a.photos || [], help: 'The first one is used if you have no main photo.' }) %>
+      <%- include('../partials/admin-media-field', { name: 'videos', mode: 'videos', label: 'Videos', value: a.videos || [], help: 'Uploaded clips, or YouTube and Vimeo links.' }) %>
+    </section>
+
+    <section class="ad-card">
+      <h2>Before they come</h2>
+      <label class="f"><span>What to bring or wear</span><textarea name="bring" rows="2" maxlength="600"><%= a.bring || '' %></textarea></label>
+      <label class="f"><span>Safety notes</span><textarea name="safety" rows="3" maxlength="800"><%= a.safety || '' %></textarea></label>
+      <label class="f"><span>What we provide</span><textarea name="provided" rows="2" maxlength="600"><%= a.provided || '' %></textarea></label>
+      <label class="f"><span>Team-building value (corporate groups)</span><input name="teamValue" value="<%= a.teamValue || '' %>" maxlength="200"></label>
+    </section>
+  </div>
+
+  <aside class="ad-edit__side">
+    <div class="ad-card ad-sticky">
+      <h2>Publish</h2>
+      <label class="chk"><input type="checkbox" name="hidden" <%= a.hidden ? 'checked' : '' %>>Hide from the website</label>
+      <label class="chk"><input type="checkbox" name="isNew" <%= a.isNew ? 'checked' : '' %>>Show as "New"</label>
+      <label class="chk"><input type="checkbox" name="isUpcoming" <%= a.isUpcoming ? 'checked' : '' %>>Show under "Upcoming"</label>
+      <label class="chk"><input type="checkbox" name="corporate" <%= a.corporate ? 'checked' : '' %>>Suitable for corporate teams</label>
+      <button class="btn btn--leaf btn--block" type="submit"><%- icon('check') %>Save</button>
+      <a class="btn btn--ghost btn--block" href="/admin/activities">Back to the list</a>
+      <% if (!isNew) { %>
+        <a class="btn btn--light-outline btn--block" href="/things-to-do/<%= a.slug %>" target="_blank" rel="noopener">View on the website</a>
+      <% } %>
+    </div>
+  </aside>
+</form>
+<% if (!isNew) { %>
+  <form class="ad-danger" method="post" action="/admin/activities/<%= a.slug %>/delete" data-confirm="Delete &quot;<%= a.name %>&quot;? You can bring it back from History."><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn btn--ghost btn--sm" type="submit"><%- icon('trash') %>Delete this activity</button></form>
+<% } %>

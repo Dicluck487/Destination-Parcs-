@@ -1,15 +1,184 @@
-<%- include('../partials/page-hero', { title: 'First Time at Destination Parcs', eyebrow: 'Plan Your Visit', lead: 'A short guide so your first visit feels easy.', crumbs: [['Plan Your Visit', '/plan-your-visit'], ['First Time']] }) %>
-<section class="section"><div class="container">
-  <nav class="subnav" aria-label="On this page"><a href="#get-there">How to get there</a><a href="#bring">What to bring</a><a href="#expect">What to expect</a><a href="#hours">Opening hours</a><a href="#safety">Safety tips</a><a href="#faqs">FAQs</a></nav>
-  <div class="grid grid--2 first-grid">
-    <section id="get-there" class="panel"><span class="panel__icon"><%- icon('map-pin') %></span><h2>How to get there</h2><% p.getThere.forEach(function (t) { %><p><%= t %></p><% }) %><a class="link-arrow" href="/plan-your-visit/contact">Directions <%- icon('arrow-right') %></a></section>
-    <section id="bring" class="panel"><span class="panel__icon"><%- icon('briefcase') %></span><h2>What to bring</h2><ul class="ticks"><% p.bring.forEach(function (t) { %><li><%- icon('check') %><%= t %></li><% }) %></ul></section>
-    <section id="expect" class="panel"><span class="panel__icon"><%- icon('star') %></span><h2>What to expect</h2><ul class="ticks"><% p.expect.forEach(function (t) { %><li><%- icon('check') %><%= t %></li><% }) %></ul></section>
-    <section id="hours" class="panel"><span class="panel__icon"><%- icon('clock') %></span><h2>Opening hours</h2><p><%= site.contact.hours || p.hours %></p></section>
+<%# ---------- HERO ---------- %>
+<section class="hero" data-hero aria-roledescription="carousel" aria-label="Destination Parcs highlights">
+  <% data.pages.hero.forEach(function (s, i) { %>
+    <div class="hero__slide <%= i === 0 ? 'is-active' : '' %>" data-slide aria-hidden="<%= i !== 0 %>">
+      <% if (s.video) { %><video src="<%= s.video %>" <%- s.image ? 'poster="' + s.image + '" ' : '' %>autoplay muted loop playsinline preload="<%= i === 0 ? 'auto' : 'metadata' %>" aria-label="<%= s.alt || s.label || '' %>"></video>
+      <% } else { %><img src="<%= s.image || media.heroSlide(s.key || 'forest') %>" alt="<%= s.alt || '' %>" <%= i === 0 ? 'fetchpriority=high' : 'loading=lazy' %>><% } %>
+    </div>
+  <% }) %>
+  <div class="hero__shade"></div>
+  <div class="container hero__content">
+    <p class="eyebrow eyebrow--gold">The Farm &middot; Katuulo, Uganda</p>
+    <h1 class="hero__title" data-hero-title><%= data.pages.hero[0].headline %></h1>
+    <p class="hero__sub" data-hero-sub><%= data.pages.hero[0].sub %></p>
+    <div class="hero__cta">
+      <a class="btn btn--gold btn--lg" href="/book">Book Now</a>
+      <a class="btn btn--light btn--lg" href="/things-to-do">Explore activities</a>
+    </div>
   </div>
-  <section id="safety" class="block panel panel--wide"><span class="panel__icon"><%- icon('shield') %></span><h2>Safety tips</h2><ul class="ticks"><% p.safety.forEach(function (t) { %><li><%- icon('check') %><%= t %></li><% }) %></ul></section>
-  <section id="faqs" class="block"><header class="section__head"><p class="eyebrow">FAQs</p><h2>Questions we hear a lot</h2></header>
-    <div class="faq"><% p.faqs.forEach(function (f) { %><details><summary><%= f.q %><%- icon('chevron-down') %></summary><p><%= f.a %></p></details><% }) %></div>
-  </section>
-</div></section>
-<%- include('../partials/cta-band', { title: 'All set?', text: 'Choose your dates and tell us who is coming.', primary: ['Book Now', '/book'], secondary: ['Browse activities', '/things-to-do'] }) %>
+  <div class="hero__dots" role="tablist" aria-label="Choose slide">
+    <% data.pages.hero.forEach(function (s, i) { %><button type="button" role="tab" class="hero__dot <%= i === 0 ? 'is-active' : '' %>" data-dot="<%= i %>" aria-label="<%= s.label || ("Slide " + (i + 1)) %>" aria-selected="<%= i === 0 %>"></button><% }) %>
+    <button type="button" class="hero__pause" data-hero-pause aria-label="Pause slideshow"><%- icon('x') %></button>
+  </div>
+  <script type="application/json" id="hero-data"><%- JSON.stringify(data.pages.hero.map(function (s) { return { headline: s.headline || data.pages.hero[0].headline, sub: s.sub || data.pages.hero[0].sub }; })).replace(/</g, '\\u003c') %></script>
+</section>
+
+<%# ---------- QUICK SEARCH ---------- %>
+<section class="quick" aria-label="Plan your break">
+  <form class="container quick__form" method="get" action="/book">
+    <label>Location
+      <select name="location">
+        <% data.destinations.filter(function (x) { return x.bookable; }).forEach(function (l) { %><option value="<%= l.slug %>"><%= l.name %></option><% }) %>
+      </select>
+    </label>
+    <label>Arrival date<input type="date" name="checkIn" min="<%= new Date().toISOString().slice(0, 10) %>"></label>
+    <label>Guests<input type="number" name="guests" min="1" max="60" value="2" inputmode="numeric"></label>
+    <label>Break type
+      <select name="break">
+        <option value="">Not sure yet</option>
+        <optgroup label="Seasonal Breaks"><% data.breaks.seasonal.forEach(function (b) { %><option value="<%= b.slug %>"><%= b.name %></option><% }) %></optgroup>
+        <optgroup label="Family &amp; Child-Friendly"><% data.breaks.other.forEach(function (b) { %><option value="<%= b.slug %>"><%= b.name %></option><% }) %></optgroup>
+        <optgroup label="Signature Experiences"><% data.breaks.signature.forEach(function (b) { %><option value="<%= b.slug %>"><%= b.name %></option><% }) %></optgroup>
+      </select>
+    </label>
+    <button class="btn btn--gold quick__btn" type="submit"><%- icon('search') %>Start planning</button>
+  </form>
+</section>
+
+<%# ---------- ANNOUNCEMENTS (moving words) ---------- %>
+<%
+  const an = data.pages.announcements;
+  const noticeDefaults = ['Now booking breaks at The Farm, Katuulo', 'Christmas and New Year breaks are open for planning', 'Group, school and corporate visits: send us an enquiry'];
+  const notices = an ? (an.show === false ? [] : (an.items || []).filter(Boolean)) : noticeDefaults;
+%>
+<% if (notices.length) { %>
+<section class="notices" aria-label="Announcements">
+  <div class="notices__track">
+    <% [0, 1].forEach(function (copy) { %>
+      <ul class="notices__list" <%- copy ? 'aria-hidden="true"' : '' %>>
+        <% notices.forEach(function (n) { %><li><span class="notices__dot" aria-hidden="true"></span><%= n %></li><% }) %>
+      </ul>
+    <% }) %>
+  </div>
+</section>
+<% } %>
+
+<%# ---------- GALLERY ---------- %>
+<section class="section section--gallery">
+  <div class="container">
+    <%
+      const shots = (data.pages.gallery || []).filter(function (g) { return g && g.src; }).slice(0, 6);
+      const fallbackShots = media.list('gallery');
+      const slots = [['Forest trails','tree','leaf'],['By the water','waves','forest'],['Family fun','users','fresh'],['Campfire nights','flame','bronze'],['Farm life','leaf','leaf'],['Golden hour','sun','gold']];
+      const tiles = slots.map(function (s, i) {
+        const g = shots[i];
+        if (g) return { type: g.type || 'image', src: g.src, id: g.id || '', caption: g.caption || s[0], tone: s[2], icon: s[1] };
+        if (!shots.length && fallbackShots[i]) return { type: 'image', src: fallbackShots[i], caption: s[0], tone: s[2], icon: s[1] };
+        return { type: 'art', caption: s[0], tone: s[2], icon: s[1] };
+      });
+      const watch = function (t) { return t.type === 'youtube' ? 'https://www.youtube.com/watch?v=' + t.id : 'https://vimeo.com/' + t.id; };
+    %>
+    <div class="gallery" data-gallery-hover aria-label="Photo gallery">
+      <% tiles.forEach(function (t, i) { %>
+        <figure class="gallery__item gallery__item--<%= i + 1 %>">
+          <% if (t.type === 'image') { %><img src="<%= t.src %>" alt="<%= t.caption %>" loading="lazy">
+          <% } else if (t.type === 'file') { %><video src="<%= t.src %>" muted loop playsinline autoplay preload="metadata" aria-label="<%= t.caption %>"></video>
+          <% } else if (t.type === 'youtube' || t.type === 'vimeo') { %><%- include('../partials/art', { tone: t.tone, iconName: t.icon, label: t.caption }) %><a class="gallery__play" href="<%= watch(t) %>" target="_blank" rel="noopener" aria-label="Watch video: <%= t.caption %>"><%- icon('play') %></a>
+          <% } else { %><%- include('../partials/art', { tone: t.tone, iconName: t.icon, label: t.caption }) %><% } %>
+          <figcaption><%= t.caption %></figcaption>
+        </figure>
+      <% }) %>
+    </div>
+    <p class="gallery__more"><a class="link-arrow" href="/gallery">See the full gallery <%- icon('arrow-right') %></a></p>
+  </div>
+</section>
+
+<%# ---------- CHOOSE YOUR EXPERIENCE ---------- %>
+<section class="section">
+  <div class="container">
+    <header class="section__head center">
+      <p class="eyebrow">Choose your experience</p>
+      <h2>What kind of break are you after?</h2>
+      
+    </header>
+    <div class="tiles">
+      <% data.pages.experiences.forEach(function (t) { %>
+        <a class="tile tile--<%= t.key %>" href="<%= t.href %>">
+          <span class="tile__icon"><%- icon(t.icon) %></span>
+          <span class="tile__name"><%= t.name %></span>
+          <span class="tile__blurb"><%= t.blurb %></span>
+          <span class="tile__go"><%- icon('arrow-right') %></span>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%# ---------- FEATURED SIGNATURE EXPERIENCES ---------- %>
+<section class="section section--tint curve-top">
+  <div class="container">
+    <header class="section__head split">
+      <div><p class="eyebrow">Signature experiences</p><h2>Hand-built days and weekends</h2></div>
+      <a class="link-arrow" href="/breaks/signature">See all six <%- icon('arrow-right') %></a>
+    </header>
+    <div class="grid grid--3">
+      <% featured.forEach(function (b) { %><%- include('../partials/break-card', { b: b }) %><% }) %>
+    </div>
+  </div>
+</section>
+
+<%# ---------- NEW & UPCOMING STRIP ---------- %>
+<section class="section">
+  <div class="container">
+    <header class="section__head split">
+      <div><p class="eyebrow">What is happening</p><h2>New and upcoming activities</h2></div>
+      <div class="split__links"><a class="link-arrow" href="/things-to-do/new">New <%- icon('arrow-right') %></a><a class="link-arrow" href="/things-to-do/upcoming">Upcoming <%- icon('arrow-right') %></a></div>
+    </header>
+    <div class="strip" tabindex="0" aria-label="New and upcoming activities">
+      <% newActs.forEach(function (a) { %><div class="strip__item"><%- include('../partials/activity-card', { a: a }) %></div><% }) %>
+      <% upcoming.forEach(function (a) { %><div class="strip__item"><%- include('../partials/activity-card', { a: a }) %></div><% }) %>
+    </div>
+  </div>
+</section>
+
+<%# ---------- SEASONAL BANNER ---------- %>
+<% if (data.pages.seasonalBanner.show !== false && data.pages.seasonalBanner.title) { %>
+<section class="seasonal">
+  <div class="container seasonal__inner">
+    <span class="badge badge--season"><%= data.pages.seasonalBanner.badge %></span>
+    <h2><%= data.pages.seasonalBanner.title %></h2>
+    <p><%= data.pages.seasonalBanner.text %></p>
+    <a class="btn btn--gold" href="<%= data.pages.seasonalBanner.href %>">See seasonal breaks</a>
+  </div>
+</section>
+<% } %>
+
+<%# ---------- HIGHLIGHTS ---------- %>
+<section class="section">
+  <div class="container">
+    <header class="section__head center">
+      <p class="eyebrow">Guest highlights</p>
+      <h2>Why guests choose Destination Parcs</h2>
+    </header>
+    <div class="grid grid--4">
+      <% data.pages.highlights.forEach(function (h, i) { %>
+        <div class="highlight"><span class="highlight__num"><%= i + 1 %></span><h3><%= h.title %></h3><p><%= h.text %></p></div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%# ---------- FIRST TIME ---------- %>
+<section class="section section--forest">
+  <div class="container firsttime">
+    <div>
+      <p class="eyebrow eyebrow--gold">First time here?</p>
+      <h2>Everything you need before you arrive</h2>
+      
+      <a class="btn btn--gold" href="/plan-your-visit/first-time">Plan your first visit</a>
+    </div>
+    <ul class="firsttime__list">
+      <% data.pages.firstTime.forEach(function (f) { %><li><span><%- icon('check') %></span><div><h3><%= f.title %></h3><p><%= f.text %></p></div></li><% }) %>
+    </ul>
+  </div>
+</section>

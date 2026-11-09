@@ -1,0 +1,26 @@
+<%# Photo + video viewer. params: items [{type:'image'|'file'|'youtube'|'vimeo', src, id, title}], name, tone, iconName %>
+<% const embedUrl = function (it) { return it.type === 'youtube' ? 'https://www.youtube-nocookie.com/embed/' + it.id + '?rel=0' : 'https://player.vimeo.com/video/' + it.id; }; %>
+<div class="gal" data-gallery>
+  <% if (items.length) { %>
+    <div class="gal__main">
+      <% items.forEach(function (it, i) { %>
+        <div class="gal__panel" data-gal-panel="<%= i %>" <%= i ? 'hidden' : '' %>>
+          <% if (it.type === 'image') { %><img src="<%= it.src %>" alt="<%= name %>" <%= i ? 'loading=lazy' : '' %>>
+          <% } else if (it.type === 'file') { %><video controls playsinline preload="metadata" src="<%= it.src %>"></video>
+          <% } else { %><div class="gal__embed" data-embed="<%= embedUrl(it) %>" data-title="<%= it.title || name %>"></div><% } %>
+        </div>
+      <% }) %>
+    </div>
+    <% if (items.length > 1) { %>
+      <div class="gal__thumbs">
+        <% items.forEach(function (it, i) { %>
+          <button type="button" data-gal-thumb="<%= i %>" class="<%= i === 0 ? 'is-active' : '' %>" aria-label="<%= it.type === 'image' ? 'Photo ' + (i + 1) : 'Video: ' + (it.title || (i + 1)) %>">
+            <% if (it.type === 'image') { %><img src="<%= media.thumb(it.src) %>" alt="" loading="lazy"><% } else { %><span class="gal__play"><%- icon('play') %></span><% } %>
+          </button>
+        <% }) %>
+      </div>
+    <% } %>
+  <% } else { %>
+    <div class="gal__main gal__main--art"><%- include('art', { tone: tone || 'leaf', iconName: iconName || 'tree', label: name }) %></div>
+  <% } %>
+</div>

@@ -1,0 +1,31 @@
+<%- include('../partials/page-hero', { title: 'Photo and video gallery', eyebrow: 'Plan Your Visit', lead: 'A look around The Farm.' }) %>
+<section class="section section--tight">
+  <div class="container">
+    <% if (!albums.length) { %>
+      <p class="center">Photos will be added here soon.</p>
+    <% } else { %>
+      <% const total = albums.reduce(function (n, a) { return n + a.items.length; }, 0); %>
+      <% if (albums.length > 1) { %>
+      <div class="gx-filter" role="group" aria-label="Choose an album" data-gx-filter>
+        <button type="button" class="gx-chip is-active" data-album="all" aria-pressed="true">All <small><%= total %></small></button>
+        <% albums.forEach(function (a) { %><button type="button" class="gx-chip" data-album="<%= a.slug %>" aria-pressed="false"><%= a.name %> <small><%= a.items.length %></small></button><% }) %>
+      </div>
+      <% } %>
+      <div class="gx" data-gx>
+        <% albums.forEach(function (a) { a.items.forEach(function (t) { const cap = t.caption || ''; const ext = t.type === 'youtube' || t.type === 'vimeo'; %>
+          <% if (ext) { %>
+            <a class="gx__item gx__item--ext" data-album="<%= a.slug %>" href="<%= t.src %>" target="_blank" rel="noopener" aria-label="Watch video<%= cap ? ': ' + cap : '' %> (opens in a new tab)">
+              <%- include('../partials/art', { tone: 'forest', iconName: 'play', label: '' }) %><% if (cap) { %><span class="gx__cap"><%= cap %></span><% } %>
+            </a>
+          <% } else { %>
+            <button type="button" class="gx__item" data-gx-open data-album="<%= a.slug %>" data-type="<%= t.type %>" data-src="<%= t.src %>" data-cap="<%= cap %>" aria-label="Open <%= t.type === 'file' ? 'video' : 'photo' %><%= cap ? ': ' + cap : '' %>">
+              <% if (t.type === 'file') { %><video src="<%= t.src %>#t=0.5" muted playsinline preload="metadata"></video><span class="gx__play" aria-hidden="true"><%- icon('play') %></span>
+              <% } else { %><img src="<%= t.src %>" alt="<%= cap || 'Destination Parcs photo' %>" loading="lazy"><% } %>
+              <% if (cap) { %><span class="gx__cap"><%= cap %></span><% } %>
+            </button>
+          <% } %>
+        <% }) }) %>
+      </div>
+    <% } %>
+  </div>
+</section>

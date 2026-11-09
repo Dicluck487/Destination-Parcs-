@@ -1,0 +1,12 @@
+<div class="rep__row" data-rep-row>
+  <input type="hidden" name="<%= prefix %>[<%= i %>][key]" value="<%= r.key || '' %>">
+  <div class="rep__fields">
+    <div class="grid3">
+      <label class="f"><span>Name</span><input name="<%= prefix %>[<%= i %>][name]" value="<%= r.name || '' %>" maxlength="40"></label>
+      <label class="f"><span>Icon</span><select name="<%= prefix %>[<%= i %>][icon]"><% icons.forEach(function (n) { %><option value="<%= n %>" <%= r.icon === n ? 'selected' : '' %>><%= n %></option><% }) %></select></label>
+      <label class="f"><span>Links to</span><input name="<%= prefix %>[<%= i %>][href]" value="<%= r.href || '' %>" maxlength="300" placeholder="/things-to-do"></label>
+    </div>
+    <label class="f"><span>Short description</span><input name="<%= prefix %>[<%= i %>][blurb]" value="<%= r.blurb || '' %>" maxlength="140"></label>
+  </div>
+  <%- include('ctl') %>
+</div>

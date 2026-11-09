@@ -1,0 +1,9 @@
+<%- include('../partials/page-hero', { title: 'My bookings', eyebrow: 'Hello, ' + user.name.split(' ')[0], crumbs: [['My bookings']] }) %>
+<section class="section"><div class="container">
+  <nav class="subnav" aria-label="Account"><a href="/account/bookings" aria-current="page">Bookings</a><a href="/account/details">Saved details</a><a href="/book">New booking</a></nav>
+  <h2>Upcoming</h2>
+  <% if (upcoming.length) { %>
+    <div class="blist"><% upcoming.forEach(function (b) { %><%- include('../partials/booking-row', { b: b }) %><% }) %></div>
+  <% } else { %><div class="empty"><%- icon('calendar') %><h3>No upcoming bookings</h3><p>Plan your next break at The Farm.</p><a class="btn btn--gold" href="/book">Book Now</a></div><% } %>
+  <% if (past.length) { %><h2 class="block">Past and cancelled</h2><div class="blist"><% past.forEach(function (b) { %><%- include('../partials/booking-row', { b: b }) %><% }) %></div><% } %>
+</div></section>

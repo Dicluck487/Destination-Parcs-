@@ -1,0 +1,28 @@
+<div class="ad-bar">
+  <form class="ad-inline" method="get">
+    <label class="f f--grow"><span>Search</span><input type="search" name="q" value="<%= q %>" placeholder="Search activities"></label>
+    <label class="f"><span>Type</span><select name="cat" data-autosubmit><option value="">All types</option><% categories.forEach(function (c) { %><option <%= cat === c ? 'selected' : '' %>><%= c %></option><% }) %></select></label>
+    <button class="btn btn--ghost btn--sm" type="submit">Filter</button>
+  </form>
+  <a class="btn btn--gold" href="/admin/activities/new"><%- icon('plus') %>New activity</a>
+</div>
+<p class="muted"><%= items.length %> of <%= total %> activities</p>
+<div class="table-wrap"><table class="table ad-table">
+  <thead><tr><th>Activity</th><th>Types</th><th>Photos</th><th>Videos</th><th>Status</th><th><span class="sr">Actions</span></th></tr></thead>
+  <tbody>
+    <% items.forEach(function (a) { %>
+      <tr>
+        <th><a href="/admin/activities/<%= a.slug %>"><%= a.name %></a><small><%= a.duration %> · <%= a.setting %></small></th>
+        <td data-label="Types"><%= (a.categories || []).join(', ') %></td>
+        <td data-label="Photos"><%= (a.cover ? 1 : 0) + (a.photos || []).length %></td>
+        <td data-label="Videos"><%= (a.videos || []).length %></td>
+        <td data-label="Status"><%= a.hidden ? 'Hidden' : 'Live' %><%= a.isNew ? ' · New' : '' %><%= a.isUpcoming ? ' · Upcoming' : '' %></td>
+        <td class="ad-actions">
+          <a class="btn btn--leaf btn--sm" href="/admin/activities/<%= a.slug %>"><%- icon('edit') %>Edit</a>
+          <% if (!a.hidden) { %><a class="btn btn--ghost btn--sm" href="/things-to-do/<%= a.slug %>" target="_blank" rel="noopener">View</a><% } %>
+          <form method="post" action="/admin/activities/<%= a.slug %>/toggle"><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn btn--ghost btn--sm" type="submit"><%- icon(a.hidden ? 'eye' : 'eye-off') %><%= a.hidden ? 'Show' : 'Hide' %></button></form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table></div>

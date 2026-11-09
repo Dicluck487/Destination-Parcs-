@@ -1,0 +1,7 @@
+<div class="rep__row rep__row--col" data-rep-row>
+  <div class="rep__fields">
+    <label class="f"><span>Album name</span><input name="<%= prefix %>[<%= i %>][name]" value="<%= r.name || '' %>" maxlength="40" placeholder="For example: Forest trails"></label>
+    <%- include('../../partials/admin-media-field', { name: prefix + '[' + i + '][items]', mode: 'mixed', label: 'Photos and videos', value: r.items || [], help: 'Add as many as you like. A caption is optional.' }) %>
+  </div>
+  <%- include('ctl') %>
+</div>

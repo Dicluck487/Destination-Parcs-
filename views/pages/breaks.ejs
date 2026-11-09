@@ -1,19 +1,15 @@
-<%- include('../partials/page-hero', { title: 'Contact & Directions', eyebrow: 'Plan Your Visit', lead: 'Find us, call us or send a message.', crumbs: [['Plan Your Visit', '/plan-your-visit'], ['Contact & Directions']] }) %>
-<section class="section"><div class="container two-col">
-  <div>
-    <p class="eyebrow">Find us</p><h2>The Farm, Katuulo</h2>
-    <ul class="contact-list">
-      <li><%- icon('map-pin') %><span><strong>Address</strong><%= site.contact.address %></span></li>
-      <li><%- icon('phone') %><span><strong>Phone</strong><% if (site.contact.phone) { %><a href="tel:<%= site.contact.phone.replace(/\s/g,'') %>"><%= site.contact.phone %></a><% } else { %>Phone number coming soon<% } %></span></li>
-      <li><%- icon('mail') %><span><strong>Email</strong><% if (site.contact.email) { %><a href="mailto:<%= site.contact.email %>"><%= site.contact.email %></a><% } else { %>Use the form to reach us<% } %></span></li>
-      <li><%- icon('clock') %><span><strong>Opening hours</strong><%= site.contact.hours || 'To be confirmed. Please contact us before travelling.' %></span></li>
-    </ul>
-    <p class="btn-row"><a class="btn btn--leaf" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=<%= encodeURIComponent(site.mapSearchQuery) %>">Open in maps</a></p>
-    <% if (site.mapEmbed.lat && site.mapEmbed.lng) { %>
-      <iframe class="map-embed" title="Map of The Farm" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=<%= site.mapEmbed.lng - 0.02 %>%2C<%= site.mapEmbed.lat - 0.012 %>%2C<%= site.mapEmbed.lng + 0.02 %>%2C<%= site.mapEmbed.lat + 0.012 %>&amp;layer=mapnik&amp;marker=<%= site.mapEmbed.lat %>%2C<%= site.mapEmbed.lng %>"></iframe>
-    <% } %>
-    <h3>Directions</h3>
-    <p>The Farm is in Katuulo, along Bujuuko-Mityana Road. Look for the Destination Parcs signboard at the entrance.</p>
-  </div>
-  <div><h2>Send us a message</h2><%- include('../partials/enquiry', { topic: 'Contact page', back: '/plan-your-visit/contact' }) %></div>
+<%- include('../partials/page-hero', { title: 'Breaks & Packages', eyebrow: 'Plan a break', crumbs: [['Breaks & Packages']], image: media.page('breaks') }) %>
+<section class="section"><div class="container">
+  <header class="section__head split"><div><p class="eyebrow">Signature experiences</p><h2>Six ways to spend your time</h2></div><a class="link-arrow" href="/breaks/signature">View all <%- icon('arrow-right') %></a></header>
+  <div class="grid grid--3"><% signature.forEach(function (b) { %><%- include('../partials/break-card', { b: b }) %><% }) %></div>
+
+  <header class="section__head split block"><div><p class="eyebrow">Seasonal breaks</p><h2>Through the year</h2></div><a class="link-arrow" href="/breaks/seasonal">View all <%- icon('arrow-right') %></a></header>
+  <div class="grid grid--3"><% seasonal.forEach(function (b) { %><%- include('../partials/break-card', { b: b }) %><% }) %></div>
+
+  <header class="section__head split block"><div><p class="eyebrow">Family</p><h2>Family &amp; child-friendly breaks</h2></div><a class="link-arrow" href="/breaks/family">View all <%- icon('arrow-right') %></a></header>
+  <div class="grid grid--3"><% family.forEach(function (b) { %><%- include('../partials/break-card', { b: b }) %><% }) %></div>
+
+  <header class="section__head block"><p class="eyebrow">Break durations</p><h2>How long would you like to stay?</h2></header>
+  <div class="durations"><% durations.forEach(function (x) { %><a class="duration" href="/breaks/durations#<%= x.slug %>"><strong><%= x.name %></strong><span><%= x.length %></span></a><% }) %></div>
 </div></section>
+<%- include('../partials/cta-band', { title: 'Not sure which break to pick?', text: 'Tell us who is coming and what you enjoy. We will point you to the right one.', primary: ['Book Now', '/book'], secondary: ['Talk to us', '/plan-your-visit/contact'] }) %>

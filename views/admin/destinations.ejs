@@ -1,0 +1,6 @@
+<section class="ad-card"><ul class="ad-list">
+  <% items.forEach(function (d) { %>
+    <li><span><a href="/admin/destinations/<%= d.slug %>"><strong><%= d.name %></strong></a><small><%= d.area %> · <%= (d.cover ? 1 : 0) + (d.photos || []).length %> photos · <%= (d.videos || []).length %> videos</small></span>
+      <span class="ad-actions"><a class="btn btn--leaf btn--sm" href="/admin/destinations/<%= d.slug %>"><%- icon('edit') %>Edit</a></span></li>
+  <% }) %>
+</ul></section>

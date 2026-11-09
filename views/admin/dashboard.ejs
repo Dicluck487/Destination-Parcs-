@@ -1,0 +1,63 @@
+<section class="ad-hello">
+  <div>
+    <h2>Welcome, <%= adminUser.name.split(' ')[0] %></h2>
+    <p>Everything you change here appears on the website straight away. Every save is kept, so you can always go back from <a href="/admin/history">History &amp; revert</a>.</p>
+  </div>
+  <div class="ad-hello__cta">
+    <a class="btn btn--gold" href="/admin/media"><%- icon('upload') %>Upload photos or videos</a>
+    <a class="btn btn--ghost" href="/admin/activities/new"><%- icon('plus') %>New activity</a>
+  </div>
+</section>
+
+<% if (dbStatus.enabled) { %>
+<p class="ad-note" style="margin:0 0 1rem;padding:.6rem .9rem;border-radius:10px;background:<%= dbStatus.ok ? '#eaf5ee' : '#fdecea' %>">
+  <% if (dbStatus.ok) { %>Data is stored in the database <strong><%= dbStatus.database %></strong><%= dbStatus.pending ? ' (saving ' + dbStatus.pending + ' change' + (dbStatus.pending === 1 ? '' : 's') + '...)' : '' %>.
+  <% } else { %><strong>Database problem:</strong> recent changes may not be saved. <%= dbStatus.lastError %><% } %>
+</p>
+<% } %>
+<div class="ad-stats">
+  <a href="/admin/bookings"><strong><%= counts.pending %></strong><span>Bookings to confirm</span></a>
+  <a href="/admin/bookings"><strong><%= counts.requests %></strong><span>Change or cancel requests</span></a>
+  <a href="/admin/enquiries"><strong><%= counts.enquiries %></strong><span>New enquiries</span></a>
+  <a href="/admin/quotes"><strong><%= counts.quotes %></strong><span>New quote requests</span></a>
+</div>
+
+<div class="ad-grid">
+  <section class="ad-card">
+    <h2>Update the website</h2>
+    <ul class="ad-links">
+      <li><a href="/admin/home"><%- icon('home') %><span><strong>Home page</strong><small>Banner photos and videos, gallery, highlights, festive banner</small></span></a></li>
+      <li><a href="/admin/activities"><%- icon('target') %><span><strong>Activities</strong><small><%= counts.activities %> live. Add, edit, hide, add photos and videos</small></span></a></li>
+      <li><a href="/admin/breaks"><%- icon('gift') %><span><strong>Breaks &amp; packages</strong><small><%= counts.breaks %> live. Seasonal, family and signature</small></span></a></li>
+      <li><a href="/admin/stay"><%- icon('bed') %><span><strong>Stay</strong><small>Rooms, cottages, glamping and camping</small></span></a></li>
+      <li><a href="/admin/media"><%- icon('image') %><span><strong>Media library</strong><small><%= counts.photos %> photos, <%= counts.videos %> videos and links</small></span></a></li>
+      <li><a href="/admin/site"><%- icon('settings') %><span><strong>Site settings</strong><small>Phone, WhatsApp, email, social links, map</small></span></a></li>
+    </ul>
+  </section>
+
+  <section class="ad-card">
+    <h2>Latest bookings</h2>
+    <% if (!recentBookings.length) { %><p class="muted">No bookings yet.</p><% } %>
+    <ul class="ad-list">
+      <% recentBookings.forEach(function (b) { %>
+        <li><a href="/admin/bookings"><strong><%= b.ref %></strong> <%= b.contact.name %><small><%= fmtDate(b.checkIn) %> · <%= b.adults + b.children %> guests</small></a><span class="status status--<%= b.status %>"><%= STATUS_LABEL[b.status] %></span></li>
+      <% }) %>
+    </ul>
+    <h2>Latest enquiries</h2>
+    <% if (!recentEnquiries.length) { %><p class="muted">No enquiries yet.</p><% } %>
+    <ul class="ad-list">
+      <% recentEnquiries.forEach(function (e) { %><li><a href="/admin/enquiries"><strong><%= e.name %></strong><small><%= e.message.slice(0, 70) %><%= e.message.length > 70 ? '…' : '' %></small></a></li><% }) %>
+    </ul>
+  </section>
+</div>
+
+<section class="ad-card">
+  <h2>Recent changes</h2>
+  <% if (!recentChanges.length) { %><p class="muted">Nothing has been edited yet. The website is showing its original content.</p>
+  <% } else { %>
+    <ul class="ad-list">
+      <% recentChanges.forEach(function (c) { %><li><span><strong><%= c.label %></strong><small><%= c.note %></small></span><time class="muted"><%= fmtDateTime(c.savedAt) %></time></li><% }) %>
+    </ul>
+    <p><a href="/admin/history">See all changes and revert</a></p>
+  <% } %>
+</section>

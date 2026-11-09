@@ -4,12 +4,59 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title><%= pageTitle %> | <%= site.name %></title>
+  <meta name="csrf" content="<%= csrf %>">
+  <title><%= pageTitle %> | Team area | <%= site.name %></title>
   <link rel="icon" href="/images/brand/favicon.ico" sizes="any">
-  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="<%= asset('/css/main.css') %>">
+  <link rel="stylesheet" href="<%= asset('/css/admin.css') %>">
 </head>
-<body class="admin">
-  <% if (flash) { %><div class="flash flash--<%= flash.type %>" role="status"><div class="container"><span><%= flash.text %></span></div></div><% } %>
-  <%- body %>
+<body class="admin <%= adminUser ? 'admin--app' : 'admin--bare' %>">
+<% const flashBox = flash ? '<div class="ad-flash ad-flash--' + flash.type + '" role="status">' + flash.text.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</div>' : ''; %>
+<% if (adminUser) {
+  const groups = [
+    ['', [['/admin', 'Dashboard', 'grid']]],
+    ['Website content', [['/admin/home', 'Home page', 'home'], ['/admin/activities', 'Activities', 'target'], ['/admin/breaks', 'Breaks & packages', 'gift'], ['/admin/stay', 'Stay', 'bed'], ['/admin/destinations', 'Destinations', 'map-pin'], ['/admin/gallery', 'Gallery', 'image'], ['/admin/pictures', 'Card pictures', 'image'], ['/admin/banners', 'Page banners', 'image'], ['/admin/visit', 'Visit info & FAQs', 'book']]],
+    ['Photos & videos', [['/admin/media', 'Media library', 'video']]],
+    ['Guests', [['/admin/bookings', 'Bookings', 'calendar', badges && badges.bookings], ['/admin/enquiries', 'Enquiries', 'mail', badges && badges.enquiries], ['/admin/quotes', 'Quote requests', 'briefcase', badges && badges.quotes]]],
+    ['Settings', [['/admin/site', 'Site settings', 'settings'], ['/admin/team', 'Team logins', 'users'], ['/admin/history', 'History & revert', 'history']]],
+  ];
+  if (!isSystemAdmin) { groups.splice(0, groups.length, groups[3], ['Account', [['/admin/team', 'My password', 'users']]]); }
+  const here = '/admin' + (adminPath === '/' ? '' : adminPath);
+  const on = function (href) { return href === '/admin' ? here === '/admin' : (here === href || here.indexOf(href + '/') === 0); };
+%>
+<div class="ad">
+  <aside class="ad__side" id="ad-side">
+    <a class="ad__brand" href="/admin"><img src="/images/brand/mark-gold.png" alt="" width="40" height="32"><span><strong><%= site.name %></strong><small>Team area</small></span></a>
+    <nav aria-label="Team area">
+      <% groups.forEach(function (g) { %>
+        <% if (g[0]) { %><p class="ad__group"><%= g[0] %></p><% } %>
+        <ul>
+          <% g[1].forEach(function (l) { %>
+            <li><a href="<%= l[0] %>" class="<%= on(l[0]) ? 'is-on' : '' %>" <%- on(l[0]) ? 'aria-current="page"' : '' %>><%- icon(l[2]) %><span><%= l[1] %></span><% if (l[3]) { %><b class="ad__badge"><%= l[3] %></b><% } %></a></li>
+          <% }) %>
+        </ul>
+      <% }) %>
+    </nav>
+    <div class="ad__user">
+      <span><%- icon('user') %><%= adminUser.name %></span>
+      <form method="post" action="/admin/logout"><input type="hidden" name="_csrf" value="<%= csrf %>"><button type="submit" class="ad__link"><%- icon('logout') %>Sign out</button></form>
+    </div>
+  </aside>
+  <div class="ad__main">
+    <header class="ad__top">
+      <button type="button" class="ad__menu" data-ad-menu aria-controls="ad-side" aria-expanded="false" aria-label="Menu"><%- icon('menu') %></button>
+      <h1><%= pageTitle %></h1>
+      <a class="btn btn--light-outline btn--sm" href="/" target="_blank" rel="noopener">View website <%- icon('arrow-right') %></a>
+    </header>
+    <div class="ad__content">
+      <%- flashBox %>
+      <%- body %>
+    </div>
+  </div>
+</div>
+<% } else { %>
+  <div class="ad-bare"><%- flashBox %><%- body %></div>
+<% } %>
+<script src="<%= asset('/js/admin.js') %>" defer></script>
 </body>
 </html>

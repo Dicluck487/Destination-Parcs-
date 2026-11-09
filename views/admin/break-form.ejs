@@ -1,0 +1,37 @@
+<% if (errors.length) { %><div class="ad-error" role="alert"><strong>Please fix:</strong><ul><% errors.forEach(function (e) { %><li><%= e %></li><% }) %></ul></div><% } %>
+<% const chosen = (b.inclusions || []).filter(function (i) { return i.slug; }).map(function (i) { return i.slug; }); const extras = (b.inclusions || []).filter(function (i) { return !i.slug; }).map(function (i) { return i.label; }); %>
+<form class="ad-edit" method="post" action="/admin/breaks/<%= isNew ? 'new' : b.slug %>" data-dirty-guard>
+  <input type="hidden" name="_csrf" value="<%= csrf %>">
+  <div class="ad-edit__main">
+    <section class="ad-card">
+      <h2>About the break</h2>
+      <label class="f"><span>Name</span><input name="name" value="<%= b.name %>" required maxlength="100"></label>
+      <label class="f"><span>Where it appears</span><select name="group"><% BREAK_SETS.forEach(function (g) { %><option value="<%= g.key %>" <%= group === g.key ? 'selected' : '' %>><%= g.label %></option><% }) %></select></label>
+      <label class="f"><span>Short description (signature experiences)</span><textarea name="feel" rows="2" maxlength="400"><%= b.feel || '' %></textarea></label>
+      <div class="grid2">
+        <label class="f"><span>Suggested timing</span><input name="timing" value="<%= b.timing || '' %>" maxlength="100" placeholder="Late December"></label>
+        <label class="f"><span>Best for</span><input name="guests" value="<%= b.guests || '' %>" maxlength="150" placeholder="Families and groups"></label>
+      </div>
+    </section>
+    <section class="ad-card">
+      <h2>What is included</h2>
+      <p class="muted">Tick the activities in this break. Each one links to its own page.</p>
+      <div class="checks checks--cols"><% activities.forEach(function (a) { %><label><input type="checkbox" name="acts[]" value="<%= a.slug %>" <%= chosen.includes(a.slug) ? 'checked' : '' %>><%= a.name %></label><% }) %></div>
+      <label class="f"><span>Other things included (one per line)</span><textarea name="extras" rows="3" maxlength="800" placeholder="Welcome drink&#10;Guided orientation"><%= extras.join('\n') %></textarea></label>
+    </section>
+    <section class="ad-card">
+      <h2>Photos and videos</h2>
+      <%- include('../partials/admin-media-field', { name: 'cover', mode: 'image', label: 'Main photo', value: b.cover || '' }) %>
+      <%- include('../partials/admin-media-field', { name: 'photos', mode: 'images', label: 'More photos', value: b.photos || [] }) %>
+      <%- include('../partials/admin-media-field', { name: 'videos', mode: 'videos', label: 'Videos', value: b.videos || [] }) %>
+    </section>
+  </div>
+  <aside class="ad-edit__side"><div class="ad-card ad-sticky">
+    <h2>Publish</h2>
+    <label class="chk"><input type="checkbox" name="hidden" <%= b.hidden ? 'checked' : '' %>>Hide from the website</label>
+    <button class="btn btn--leaf btn--block" type="submit"><%- icon('check') %>Save</button>
+    <a class="btn btn--ghost btn--block" href="/admin/breaks">Back to the list</a>
+    <% if (!isNew) { %><a class="btn btn--light-outline btn--block" href="/breaks/<%= b.slug %>" target="_blank" rel="noopener">View on the website</a><% } %>
+  </div></aside>
+</form>
+<% if (!isNew) { %><form class="ad-danger" method="post" action="/admin/breaks/<%= b.slug %>/delete" data-confirm="Delete &quot;<%= b.name %>&quot;? You can bring it back from History."><input type="hidden" name="_csrf" value="<%= csrf %>"><button class="btn btn--ghost btn--sm" type="submit"><%- icon('trash') %>Delete this break</button></form><% } %>

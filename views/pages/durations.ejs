@@ -1,5 +1,12 @@
-<%- include('../partials/page-hero', { title: code === 404 ? 'Lost in the forest?' : 'Something went wrong', eyebrow: 'Error ' + code, lead: message }) %>
-<section class="section"><div class="container center">
-  <p>Try one of these instead:</p>
-  <p class="btn-row center"><a class="btn btn--leaf" href="/">Go home</a><a class="btn btn--ghost" href="/things-to-do">Browse activities</a><a class="btn btn--ghost" href="/plan-your-visit/contact">Contact us</a></p>
+<%- include('../partials/page-hero', { title: 'Break Durations', eyebrow: 'Breaks & Packages', crumbs: [['Breaks & Packages', '/breaks'], ['Break Durations']] }) %>
+<section class="section"><div class="container narrow-wide">
+  <div class="dur-list">
+    <% durations.forEach(function (x) { %>
+      <article class="dur" id="<%= x.slug %>">
+        <div class="dur__len"><strong><%= x.length %></strong></div>
+        <div><h2><%= x.name %></h2><p><%= x.use %></p></div>
+        <a class="link-arrow" href="/book?duration=<%= x.slug %>">Book <%- icon('arrow-right') %></a>
+      </article>
+    <% }) %>
+  </div>
 </div></section>

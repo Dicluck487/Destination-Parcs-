@@ -1,5 +1,12 @@
-<%# Brand artwork shown until a real photo is added. params: tone, iconName, label? %>
-<div class="art tone-<%= tone %>" role="img" aria-label="<%= typeof label !== 'undefined' ? label : '' %>">
-  <span class="art__leaf art__leaf--a"></span><span class="art__leaf art__leaf--b"></span>
-  <%- icon(iconName, 'art__icon') %>
-</div>
+<%# params: title, eyebrow?, lead?, crumbs? [[label, href]], image?, tone? %>
+<section class="page-hero <%= typeof image !== 'undefined' && image ? 'has-image' : '' %> tone-<%= typeof tone !== 'undefined' ? tone : 'forest' %>">
+  <% if (typeof image !== 'undefined' && image) { %><img class="page-hero__img" src="<%= image %>" alt=""><% } %>
+  <div class="page-hero__shade"></div>
+  <span class="page-hero__leaf" aria-hidden="true"></span>
+  <div class="container page-hero__inner">
+    <% if (typeof eyebrow !== 'undefined' && eyebrow) { %><p class="eyebrow eyebrow--gold"><%= eyebrow %></p><% } %>
+    <h1><%= title %></h1>
+    <% if (typeof lead !== 'undefined' && lead) { %><p class="lead"><%= lead %></p><% } %>
+  </div>
+  <svg class="page-hero__curve" viewBox="0 0 1440 48" preserveAspectRatio="none" aria-hidden="true"><path d="M0 48V20C300 -10 620 -6 900 18s380 20 540 0V48Z"/></svg>
+</section>

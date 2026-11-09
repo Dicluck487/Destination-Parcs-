@@ -1,62 +1,23 @@
-<%- include('../partials/page-hero', { title: activity.name, eyebrow: activity.types.map(function (t) { return t.name; }).join(' · '), lead: activity.description, crumbs: [['Things To Do', '/things-to-do'], [activity.types[0] ? activity.types[0].name : 'Activity', activity.types[0] ? '/things-to-do/type/' + activity.types[0].slug : '/things-to-do'], [activity.name]], tone: activity.tone }) %>
-<section class="section section--tight">
-  <div class="container detail">
-    <div class="detail__main">
-      <div class="gal" data-gallery>
-        <% if (gallery.length) { %>
-          <div class="gal__main"><img src="<%= gallery[0] %>" alt="<%= activity.name %>" data-gal-main></div>
-          <% if (gallery.length > 1) { %><div class="gal__thumbs"><% gallery.forEach(function (g, i) { %><button type="button" data-gal-thumb="<%= g %>" class="<%= i === 0 ? 'is-active' : '' %>" aria-label="Photo <%= i + 1 %>"><img src="<%= g %>" alt="" loading="lazy"></button><% }) %></div><% } %>
-        <% } else { %>
-          <div class="gal__main gal__main--art"><%- include('../partials/art', { tone: activity.tone, iconName: activity.icon, label: activity.name }) %></div>
-          <p class="gal__note"><%- icon('info') %>Photos for this activity are coming soon.</p>
-        <% } %>
-      </div>
-
-      <section class="prose">
-        <h2>What it will be like</h2>
-        <p class="lead"><%= activity.description %></p>
-        <% if (activity.teamValue) { %><p><strong>Team-building value:</strong> <%= activity.teamValue %></p><% } %>
-      </section>
-
-      <div class="facts">
-        <div><%- icon('users') %><h3>Suitable for</h3><p><%= activity.suitableFor %></p></div>
-        <div><%- icon('clock') %><h3>Duration</h3><p><%= activity.duration %></p></div>
-        <div><%- icon(activity.setting === 'Indoor' ? 'home' : 'tree') %><h3>Setting</h3><p><%= activity.setting %></p></div>
-        <% if (activity.corporate) { %><div><%- icon('briefcase') %><h3>Groups</h3><p>Suitable for corporate teams</p></div><% } %>
-      </div>
-
-      <section class="info-grid">
-        <div class="info"><h3><%- icon('check') %>What to bring or wear</h3><p><%= activity.bring %></p></div>
-        <div class="info"><h3><%- icon('shield') %>Safety notes</h3><p><%= activity.safety %></p></div>
-        <% if (activity.provided) { %><div class="info"><h3><%- icon('leaf') %>What we provide</h3><p><%= activity.provided %></p></div><% } %>
-      </section>
-
-      <% if (inBreaks.length) { %>
-      <section class="prose"><h2>Part of these breaks</h2>
-        <ul class="chips"><% inBreaks.forEach(function (b) { %><li><a class="chip" href="/breaks/<%= b.slug %>"><%= b.name %></a></li><% }) %></ul>
-      </section>
-      <% } %>
-    </div>
-
-    <aside class="detail__side">
-      <div class="book-box">
-        <p class="eyebrow">Plan it</p>
-        <h2><%= activity.name %></h2>
-        <ul class="book-box__facts"><li><%- icon('users') %><%= activity.suitableFor %></li><li><%- icon('clock') %><%= activity.duration %></li></ul>
-        <form method="post" action="/trip/<%= inTrip ? 'remove' : 'add' %>" data-trip-form>
-          <input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="slug" value="<%= activity.slug %>">
-          <button class="btn btn--block <%= inTrip ? 'btn--leaf' : 'btn--ghost' %>" type="submit" data-trip-btn><%- icon(inTrip ? 'check' : 'plus') %><span><%= inTrip ? 'In my trip' : 'Add to my trip' %></span></button>
-        </form>
-        <a class="btn btn--gold btn--block" href="/book">Book your visit</a>
-        <a class="btn btn--light-outline btn--block" href="/plan-your-visit/contact">Ask a question</a>
-      </div>
-    </aside>
-  </div>
-
-  <% if (related.length) { %>
-  <div class="container block">
-    <header class="section__head"><p class="eyebrow">You might also like</p><h2>Related activities</h2></header>
-    <div class="grid grid--4"><% related.forEach(function (a) { %><%- include('../partials/activity-card', { a: a }) %><% }) %></div>
-  </div>
+<%- include('../partials/page-hero', { title: mode === 'signin' ? 'Sign in' : 'Create your account', eyebrow: 'My account', crumbs: [[mode === 'signin' ? 'Sign in' : 'Register']] }) %>
+<section class="section"><div class="container auth">
+  <div class="auth__tabs" role="tablist"><a role="tab" aria-selected="<%= mode === 'signin' %>" href="/account/signin?next=<%= encodeURIComponent(next) %>" class="<%= mode === 'signin' ? 'is-active' : '' %>">Sign in</a><a role="tab" aria-selected="<%= mode === 'register' %>" href="/account/register?next=<%= encodeURIComponent(next) %>" class="<%= mode === 'register' ? 'is-active' : '' %>">Register</a></div>
+  <% if (mode === 'signin') { %>
+    <form class="form form--card" method="post" action="/account/signin">
+      <input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="next" value="<%= next %>">
+      <label>Email or phone<input name="login" required autocomplete="username" maxlength="150" autofocus></label>
+      <label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+      <button class="btn btn--gold btn--block btn--lg" type="submit">Sign in</button>
+      <p class="form__hint center">New here? <a href="/account/register?next=<%= encodeURIComponent(next) %>">Create an account</a></p>
+    </form>
+  <% } else { const f = typeof form !== 'undefined' && form ? form : {}; %>
+    <form class="form form--card" method="post" action="/account/register">
+      <input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="next" value="<%= next %>">
+      <label>Full name<input name="name" required maxlength="100" autocomplete="name" value="<%= f.name || '' %>" autofocus></label>
+      <div class="form__row"><label>Email<input name="email" type="email" maxlength="150" autocomplete="email" value="<%= f.email || '' %>"></label><label>Phone<input name="phone" type="tel" maxlength="30" autocomplete="tel" value="<%= f.phone || '' %>" placeholder="e.g. 0700 000000"></label></div>
+      
+      <label>Password<input name="password" type="password" required minlength="8" autocomplete="new-password"></label>
+      <button class="btn btn--gold btn--block btn--lg" type="submit">Create account</button>
+      <p class="form__hint center">Already registered? <a href="/account/signin?next=<%= encodeURIComponent(next) %>">Sign in</a></p>
+    </form>
   <% } %>
-</section>
+</div></section>

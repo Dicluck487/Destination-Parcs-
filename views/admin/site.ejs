@@ -1,0 +1,53 @@
+<form class="ad-edit" method="post" action="/admin/site" data-dirty-guard>
+  <input type="hidden" name="_csrf" value="<%= csrf %>">
+  <div class="ad-edit__main">
+    <section class="ad-card">
+      <h2>The business</h2>
+      <div class="grid2">
+        <label class="f"><span>Name</span><input name="name" value="<%= s.name %>" maxlength="60" required></label>
+        <label class="f"><span>Tagline</span><input name="tagline" value="<%= s.tagline || '' %>" maxlength="120"></label>
+      </div>
+      <label class="f"><span>Home page line</span><input name="heroLine" value="<%= s.heroLine || '' %>" maxlength="160"></label>
+      <label class="f"><span>Short description (shown in Google results)</span><textarea name="description" rows="2" maxlength="300"><%= s.description || '' %></textarea></label>
+    </section>
+    <section class="ad-card">
+      <h2>Contact details</h2>
+      <div class="grid2">
+        <label class="f"><span>Phone</span><input name="contact[phone]" value="<%= s.contact.phone || '' %>" maxlength="40" placeholder="+256 ..."></label>
+        <label class="f"><span>WhatsApp number</span><input name="contact[whatsapp]" value="<%= s.contact.whatsapp || '' %>" maxlength="40" placeholder="+256 ..."></label>
+        <label class="f"><span>Email</span><input name="contact[email]" value="<%= s.contact.email || '' %>" maxlength="120" type="email"></label>
+        <label class="f"><span>Opening hours</span><input name="contact[hours]" value="<%= s.contact.hours || '' %>" maxlength="200" placeholder="Daily, 8am to 6pm"></label>
+      </div>
+      <label class="f"><span>Address</span><input name="contact[address]" value="<%= s.contact.address || '' %>" maxlength="200"></label>
+    </section>
+    <section class="ad-card">
+      <h2>Social media</h2>
+      <p class="muted">Paste the full web address of each page. Empty ones are not shown.</p>
+      <div class="grid2">
+        <% [['facebook','Facebook'],['instagram','Instagram'],['x','X (Twitter)'],['youtube','YouTube'],['tiktok','TikTok']].forEach(function (k) { %>
+          <label class="f"><span><%= k[1] %></span><input type="url" name="social[<%= k[0] %>]" value="<%= (s.social || {})[k[0]] || '' %>" maxlength="300" placeholder="https://"></label>
+        <% }) %>
+      </div>
+    </section>
+    <section class="ad-card">
+      <h2>Map</h2>
+      <p class="muted">Add the latitude and longitude to show a map in the footer. In Google Maps, press and hold on the spot and copy the two numbers.</p>
+      <div class="grid3">
+        <label class="f"><span>Latitude</span><input name="mapEmbed[lat]" value="<%= s.mapEmbed.lat === null ? '' : s.mapEmbed.lat %>" inputmode="decimal" placeholder="0.5"></label>
+        <label class="f"><span>Longitude</span><input name="mapEmbed[lng]" value="<%= s.mapEmbed.lng === null ? '' : s.mapEmbed.lng %>" inputmode="decimal" placeholder="32.0"></label>
+        <label class="f"><span>Zoom (1 to 19)</span><input name="mapEmbed[zoom]" value="<%= s.mapEmbed.zoom || 15 %>" inputmode="numeric"></label>
+      </div>
+      <label class="f"><span>"Open in maps" search words</span><input name="mapSearchQuery" value="<%= s.mapSearchQuery || '' %>" maxlength="200"></label>
+    </section>
+    <section class="ad-card">
+      <h2>Booking</h2>
+      <label class="f"><span>Deposit note (shown on the booking confirmation)</span><textarea name="depositNote" rows="3" maxlength="400"><%= s.depositNote || '' %></textarea></label>
+      <div class="grid3">
+        <% [['bookingCom','Booking.com'],['agoda','Agoda'],['airbnb','Airbnb']].forEach(function (k) { %>
+          <label class="f"><span><%= k[1] %> link</span><input type="url" name="otaLinks[<%= k[0] %>]" value="<%= (s.otaLinks || {})[k[0]] || '' %>" maxlength="300" placeholder="https://"></label>
+        <% }) %>
+      </div>
+    </section>
+  </div>
+  <aside class="ad-edit__side"><div class="ad-card ad-sticky"><h2>Publish</h2><button class="btn btn--leaf btn--block" type="submit"><%- icon('check') %>Save</button></div></aside>
+</form>

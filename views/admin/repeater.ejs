@@ -1,0 +1,9 @@
+<%# params: prefix, rows, row (partial path), blank, addLabel, extra? %>
+<% const ex = (typeof extra !== 'undefined' && extra) || {}; %>
+<div class="rep" data-repeat data-prefix="<%= prefix %>" data-min="<%= typeof min !== 'undefined' ? min : 0 %>" data-min-msg="<%= typeof minMsg !== 'undefined' ? minMsg : '' %>">
+  <div class="rep__rows" data-rep-rows>
+    <% rows.forEach(function (r, i) { %><%- include(row, Object.assign({ r: r, i: i, prefix: prefix }, ex)) %><% }) %>
+  </div>
+  <template data-rep-template><%- include(row, Object.assign({ r: blank, i: '__i__', prefix: prefix }, ex)) %></template>
+  <button type="button" class="btn btn--ghost btn--sm" data-rep-add><%- icon('plus') %><%= addLabel %></button>
+</div>

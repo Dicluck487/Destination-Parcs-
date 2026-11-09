@@ -1,50 +1,5 @@
-<%- include('../partials/page-hero', { title: 'Browse All Activities', eyebrow: 'Things To Do', lead: 'Filter our full catalogue by type, age, duration and setting, then add favourites to your trip.', crumbs: [['Things To Do', '/things-to-do'], ['Browse All']] }) %>
-<section class="section section--tight">
-  <div class="container browse">
-    <aside class="filters" id="filters">
-      <form method="get" action="/things-to-do" data-filter-form>
-        <div class="filters__head"><h2><%- icon('filter') %>Filter</h2><% if (activeFilters) { %><a href="/things-to-do" class="link-clear">Clear all</a><% } %></div>
-        <label class="search"><span class="sr">Search activities</span><%- icon('search') %><input type="search" name="q" value="<%= selected.q %>" placeholder="Search activities"></label>
-
-        <fieldset><legend>Type</legend>
-          <label class="radio"><input type="radio" name="type" value="" <%= !selected.type ? 'checked' : '' %>><span>All types</span></label>
-          <% data.TYPES.forEach(function (t) { %><label class="radio"><input type="radio" name="type" value="<%= t.slug %>" <%= selected.type === t.slug ? 'checked' : '' %>><span><%= t.name %></span><em><%= data.typeActivities(t.slug).length %></em></label><% }) %>
-        </fieldset>
-
-        <fieldset><legend>Age group</legend>
-          <label class="radio"><input type="radio" name="age" value="" <%= !selected.age ? 'checked' : '' %>><span>Any age</span></label>
-          <% Object.keys(data.AGE_LABELS).forEach(function (k) { %><label class="radio"><input type="radio" name="age" value="<%= k %>" <%= selected.age === k ? 'checked' : '' %>><span><%= data.AGE_LABELS[k] %></span></label><% }) %>
-        </fieldset>
-
-        <fieldset><legend>Duration</legend>
-          <label class="radio"><input type="radio" name="duration" value="" <%= !selected.duration ? 'checked' : '' %>><span>Any length</span></label>
-          <% Object.keys(data.DURATION_LABELS).forEach(function (k) { %><label class="radio"><input type="radio" name="duration" value="<%= k %>" <%= selected.duration === k ? 'checked' : '' %>><span><%= data.DURATION_LABELS[k] %></span></label><% }) %>
-        </fieldset>
-
-        <fieldset><legend>Indoor or outdoor</legend>
-          <label class="radio"><input type="radio" name="setting" value="" <%= !selected.setting ? 'checked' : '' %>><span>Either</span></label>
-          <label class="radio"><input type="radio" name="setting" value="Indoor" <%= selected.setting === 'Indoor' ? 'checked' : '' %>><span>Indoor</span></label>
-          <label class="radio"><input type="radio" name="setting" value="Outdoor" <%= selected.setting === 'Outdoor' ? 'checked' : '' %>><span>Outdoor</span></label>
-        </fieldset>
-
-        <fieldset><legend>Groups</legend>
-          <label class="check"><input type="checkbox" name="corporate" value="1" <%= selected.corporate ? 'checked' : '' %>><span>Corporate-suitable</span></label>
-        </fieldset>
-        <button class="btn btn--leaf btn--block" type="submit">Apply filters</button>
-      </form>
-    </aside>
-
-    <div class="browse__results">
-      <div class="browse__bar">
-        <p aria-live="polite"><strong><%= list.length %></strong> of <%= total %> activities</p>
-        <button class="btn btn--ghost btn--sm filters-open" type="button" data-filters-open><%- icon('filter') %>Filters<% if (activeFilters) { %> (<%= activeFilters %>)<% } %></button>
-      </div>
-      <% if (list.length) { %>
-        <div class="grid grid--3"><% list.forEach(function (a) { %><%- include('../partials/activity-card', { a: a }) %><% }) %></div>
-      <% } else { %>
-        <div class="empty"><%- icon('search') %><h2>No activities match those filters</h2><p>Try removing a filter or two.</p><a class="btn btn--leaf" href="/things-to-do">Clear filters</a></div>
-      <% } %>
-    </div>
-  </div>
-</section>
-<%- include('../partials/cta-band', { title: 'Found a few you like?', text: 'Add them to your trip and carry them straight into your booking.', primary: ['View my trip', '/trip'], secondary: ['Book Now', '/book'] }) %>
+<%- include('../partials/page-hero', { title: code === 404 ? 'Lost in the forest?' : 'Something went wrong', eyebrow: 'Error ' + code, lead: message }) %>
+<section class="section"><div class="container center">
+  <p>Try one of these instead:</p>
+  <p class="btn-row center"><a class="btn btn--leaf" href="/">Go home</a><a class="btn btn--ghost" href="/things-to-do">Browse activities</a><a class="btn btn--ghost" href="/plan-your-visit/contact">Contact us</a></p>
+</div></section>

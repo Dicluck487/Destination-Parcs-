@@ -1,0 +1,8 @@
+<%# r: {a, b}-like via keys ka/kb. params: r, i, prefix, ka, kb, la, lb, long? %>
+<div class="rep__row" data-rep-row>
+  <div class="rep__fields">
+    <label class="f"><span><%= la %></span><input name="<%= prefix %>[<%= i %>][<%= ka %>]" value="<%= r[ka] || '' %>" maxlength="200"></label>
+    <label class="f"><span><%= lb %></span><textarea name="<%= prefix %>[<%= i %>][<%= kb %>]" rows="<%= typeof long !== 'undefined' && long ? 4 : 2 %>" maxlength="1500"><%= r[kb] || '' %></textarea></label>
+  </div>
+  <%- include('ctl') %>
+</div>

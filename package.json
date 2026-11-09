@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "build:data": "python3 scripts/build-data.py ./ACTIVITIES_PLANNER.docx"
+    "build:data": "python3 scripts/build-data.py ./ACTIVITIES_PLANNER.docx",
+    "create-admin": "node scripts/create-admin.js",
+    "db:export": "node scripts/db-export.js"
   },
   "engines": {
     "node": ">=18"
@@ -24,6 +26,9 @@
     "express-ejs-layouts": "^2.5.1",
     "express-rate-limit": "^8.1.0",
     "helmet": "^8.1.0",
-    "pdfkit": "^0.20.2"
+    "multer": "^2.5.0",
+    "mysql2": "^3.24.6",
+    "pdfkit": "^0.20.2",
+    "sharp": "^0.35.5"
   }
 }

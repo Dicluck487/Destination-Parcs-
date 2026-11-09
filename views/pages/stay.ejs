@@ -1,14 +1,24 @@
-<%- include('../partials/page-hero', { title: 'Nature & CSR Outings', eyebrow: 'Corporate & Events', lead: 'Wellbeing, learning and CSR-themed outings for your team.', crumbs: [['Corporate & Events', '/corporate'], ['Nature & CSR']] }) %>
+<%- include('../partials/page-hero', { title: 'Accommodation', eyebrow: 'Stay at The Farm', crumbs: [['Stay']], image: media.page('stay') }) %>
 <section class="section"><div class="container">
-  <div class="grid grid--2">
-    <% items.forEach(function (n) { %>
-      <article class="panel">
-        <% if (n.activity) { %><span class="panel__icon tone-<%= n.activity.tone %>"><%- icon(n.activity.icon) %></span><% } %>
-        <h2><% if (n.activity) { %><a href="/things-to-do/<%= n.activity.slug %>"><%= n.name %></a><% } else { %><%= n.name %><% } %></h2>
-        <% if (n.activity) { %><p><%= n.activity.description %></p><% } %>
-        <p class="panel__meta"><span><%- icon('clock') %><%= n.duration %></span><span class="pill"><%= n.use %></span></p>
+  <div class="grid grid--2 stay-grid">
+    <% options.forEach(function (s) { %>
+      <article class="scard">
+        <div class="scard__media"><%- include('../partials/photo', { src: media.cover(s, 'stay'), alt: s.name, tone: s.kind === 'room' ? 'forest' : 'leaf', iconName: s.kind === 'room' ? 'bed' : 'tent' }) %></div>
+        <div class="scard__body">
+          <h3><%= s.name %></h3>
+          <p><%= s.blurb %></p>
+          <p class="scard__meta"><%- icon('users') %>Sleeps up to <%= s.sleeps %> <span class="dot"></span> <strong><%= s.rate ? s.rate : 'Rates on request' %></strong></p>
+          <a class="link-arrow" href="/stay/<%= s.kind === 'room' ? 'rooms' : 'camping-and-glamping' %>">Details <%- icon('arrow-right') %></a>
+        </div>
       </article>
     <% }) %>
   </div>
-  <p class="btn-row block"><a class="btn btn--gold" href="/corporate/quote">Plan a CSR outing</a></p>
+  <div class="callout"><%- icon('calendar') %><div><h3>Check what is free</h3></div><a class="btn btn--leaf" href="/stay/availability">Availability calendar</a></div>
+  <% const ota = site.otaLinks; if (ota.bookingCom || ota.agoda || ota.airbnb) { %>
+    <div class="ota"><p>Also find us on:</p>
+      <% if (ota.bookingCom) { %><a class="chip" target="_blank" rel="noopener" href="<%= ota.bookingCom %>">Booking.com</a><% } %>
+      <% if (ota.agoda) { %><a class="chip" target="_blank" rel="noopener" href="<%= ota.agoda %>">Agoda</a><% } %>
+      <% if (ota.airbnb) { %><a class="chip" target="_blank" rel="noopener" href="<%= ota.airbnb %>">Airbnb</a><% } %>
+    </div>
+  <% } %>
 </div></section>

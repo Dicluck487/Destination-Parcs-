@@ -1,5 +1,2 @@
-<a class="brow" href="/account/bookings/<%= b.ref %>">
-  <div class="brow__date"><strong><%= new Date(b.checkIn + 'T00:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', timeZone: 'UTC' }) %></strong><span><%= new Date(b.checkIn + 'T00:00:00Z').toLocaleDateString('en-GB', { month: 'short', timeZone: 'UTC' }) %></span></div>
-  <div class="brow__main"><h3><%= b.break ? b.break.name : b.duration.name %> at <%= b.location.name %></h3><p><%= b.duration.name %> &middot; <%= b.adults + b.children %> guests &middot; <%= b.stay.name %> &middot; <%= b.activities.length %> activities</p><small>Ref <%= b.ref %></small></div>
-  <span class="status status--<%= b.status %>"><%= STATUS_LABEL[b.status] %></span>
-</a>
+<%# Photo or artwork. params: src (may be null), alt, tone, iconName, ratio? %>
+<% if (src) { %><img src="<%= src %>" alt="<%= alt %>" loading="lazy"><% } else { %><%- include('art', { tone: tone, iconName: iconName, label: alt }) %><% } %>

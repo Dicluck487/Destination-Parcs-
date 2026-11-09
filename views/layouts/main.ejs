@@ -20,7 +20,7 @@
   <link rel="preload" href="/fonts/playfair-display-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <script src="/js/boot.js"></script>
-  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="<%= asset('/css/main.css') %>">
   <% if (jsonLd) { %><script type="application/ld+json"><%- JSON.stringify(jsonLd).replace(/</g, '\\u003c') %></script><% } %>
 </head>
 <body class="<%= bodyClass %>">
@@ -31,7 +31,7 @@
   <% } %>
   <main id="main"><%- body %></main>
   <%- include('../partials/footer') %>
-  <script src="/js/main.js" defer></script>
+  <script src="<%= asset('/js/main.js') %>" defer></script>
   <% extraScripts.forEach(function (s) { %><script src="<%= s %>" defer></script><% }) %>
 </body>
 </html>

@@ -1,13 +1,5 @@
-<dl class="summary">
-  <div><dt>Reference</dt><dd><%= b.ref %></dd></div>
-  <div><dt>Status</dt><dd><span class="status status--<%= b.status %>"><%= STATUS_LABEL[b.status] %></span></dd></div>
-  <div><dt>Location</dt><dd><%= b.location.name %></dd></div>
-  <div><dt>Break</dt><dd><%= b.break ? b.break.name : 'Custom break' %></dd></div>
-  <div><dt>Duration</dt><dd><%= b.duration.name %><%= b.nights ? ' (' + b.nights + ' night' + (b.nights > 1 ? 's' : '') + ')' : '' %></dd></div>
-  <div><dt>Arrival</dt><dd><%= fmtDate(b.checkIn) %></dd></div>
-  <% if (b.nights) { %><div><dt>Departure</dt><dd><%= fmtDate(b.checkOut) %></dd></div><% } %>
-  <div><dt>Guests</dt><dd><%= b.adults %> adult<%= b.adults === 1 ? '' : 's' %><%= b.children ? ', ' + b.children + ' child' + (b.children === 1 ? '' : 'ren') : '' %></dd></div>
-  <div><dt>Stay</dt><dd><%= b.stay.name %><%= b.stay.units > 1 ? ' x ' + b.stay.units : '' %></dd></div>
-  <div class="summary__wide"><dt>Activities</dt><dd><% if (b.activities.length) { %><ul class="chips"><% b.activities.forEach(function (a) { %><li><a class="chip" href="/things-to-do/<%= a.slug %>"><%= a.name %></a></li><% }) %></ul><% } else { %>None selected yet<% } %></dd></div>
-  <% if (b.notes) { %><div class="summary__wide"><dt>Notes</dt><dd><%= b.notes %></dd></div><% } %>
-</dl>
+<%# Brand artwork shown until a real photo is added. params: tone, iconName, label? %>
+<div class="art tone-<%= tone %>" role="img" aria-label="<%= typeof label !== 'undefined' ? label : '' %>">
+  <span class="art__leaf art__leaf--a"></span><span class="art__leaf art__leaf--b"></span>
+  <%- icon(iconName, 'art__icon') %>
+</div>

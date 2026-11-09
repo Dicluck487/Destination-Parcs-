@@ -1,25 +1,9 @@
-<%- include('../partials/page-hero', { title: 'Booking ' + b.ref, eyebrow: STATUS_LABEL[b.status], lead: (b.break ? b.break.name : b.duration.name) + ' at ' + b.location.name, crumbs: [['My bookings', '/account/bookings'], [b.ref]] }) %>
-<section class="section"><div class="container detail">
-  <div class="detail__main">
-    <%- include('../partials/booking-summary', { b: b }) %>
-    <% if ((b.requests || []).length) { %><h2>Your requests</h2><ul class="rows rows--plain"><% b.requests.forEach(function (r) { %><li><strong><%= r.type === 'cancel' ? 'Cancellation request' : 'Change request' %></strong><span><%= fmtDateTime(r.at) %><%= r.message ? ' · ' + r.message : '' %></span></li><% }) %></ul><% } %>
-    <% if (b.adminNote) { %><div class="note"><%- icon('info') %>Message from our team: <%= b.adminNote %></div><% } %>
+<%- include('../partials/page-hero', { title: 'Food & Drinks', eyebrow: 'Things To Do', crumbs: [['Things To Do', '/things-to-do'], ['Food & Drinks']] }) %>
+<section class="section"><div class="container">
+  <header class="section__head"><p class="eyebrow">Eat well</p><h2>Food experiences you can add to your break</h2></header>
+  <div class="grid grid--3"><% food.forEach(function (a) { %><%- include('../partials/activity-card', { a: a }) %><% }) %></div>
+
+  <div class="block">
+    <div class="callout callout--stack"><%- icon('utensils') %><h3>Farm-to-Fork Day</h3><p>Harvest, cook and eat together. A signature package built around the farm.</p><a class="btn btn--gold" href="/breaks/farm-to-fork-day">See the package</a></div>
   </div>
-  <aside class="detail__side">
-    <% if (b.status !== 'cancelled') { %>
-    <div class="book-box">
-      <h2>Need to change something?</h2>
-      <form class="form" method="post" action="/account/bookings/<%= b.ref %>/request">
-        <input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="type" value="change">
-        <label>What would you like to change?<textarea name="message" rows="4" required maxlength="1000" placeholder="Dates, guests, activities, stay..."></textarea></label>
-        <button class="btn btn--leaf btn--block" type="submit">Send change request</button>
-      </form>
-      <hr>
-      <form method="post" action="/account/bookings/<%= b.ref %>/request" data-confirm="Send a cancellation request for this booking?">
-        <input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="type" value="cancel">
-        <button class="btn btn--danger btn--block" type="submit">Request cancellation</button>
-      </form>
-    </div>
-    <% } %>
-  </aside>
 </div></section>

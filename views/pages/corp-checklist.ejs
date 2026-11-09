@@ -1,14 +1,5 @@
-<%- include('../partials/page-hero', { title: 'Team Building & Challenges', eyebrow: 'Corporate & Events', lead: items.length + ' activities chosen for what they do for a team.', crumbs: [['Corporate & Events', '/corporate'], ['Team Building']] }) %>
-<section class="section"><div class="container">
-  <div class="grid grid--3">
-    <% items.forEach(function (t) { %>
-      <article class="panel panel--link">
-        <% if (t.activity) { %><span class="panel__icon tone-<%= t.activity.tone %>"><%- icon(t.activity.icon) %></span><% } %>
-        <h2><% if (t.activity) { %><a href="/things-to-do/<%= t.slug %>"><%= t.name %></a><% } else { %><%= t.name %><% } %></h2>
-        <p><%= t.involves %></p>
-        <p class="panel__meta"><span><%- icon('clock') %><%= t.duration %></span><span class="pill"><%= t.value %></span></p>
-      </article>
-    <% }) %>
-  </div>
-  <p class="btn-row block"><a class="btn btn--gold" href="/corporate/quote">Request a quote</a><a class="btn btn--ghost" href="/things-to-do?corporate=1">See all corporate-suitable activities</a></p>
+<%- include('../partials/page-hero', { title: 'Corporate Planning Checklist', eyebrow: 'Corporate & Events', crumbs: [['Corporate & Events', '/corporate'], ['Planning Checklist']] }) %>
+<section class="section"><div class="container narrow">
+  <ol class="checklist"><% items.forEach(function (i) { %><li><span></span><%= i %></li><% }) %></ol>
+  <p class="btn-row"><a class="btn btn--gold" href="/corporate/checklist.pdf" download><%- icon('download') %>Download the PDF</a><a class="btn btn--ghost" href="/corporate/quote">Request a quote</a></p>
 </div></section>

@@ -1,0 +1,25 @@
+<form class="ad-edit" method="post" action="/admin/destinations/<%= d.slug %>" data-dirty-guard>
+  <input type="hidden" name="_csrf" value="<%= csrf %>">
+  <div class="ad-edit__main">
+    <section class="ad-card">
+      <h2>About <%= d.name %></h2>
+      <label class="f"><span>Name</span><input name="name" value="<%= d.name %>" required maxlength="100"></label>
+      <label class="f"><span>Where it is</span><input name="area" value="<%= d.area || '' %>" maxlength="150"></label>
+      <label class="f"><span>One-line summary</span><textarea name="short" rows="2" maxlength="300"><%= d.short || '' %></textarea></label>
+      <label class="f"><span>Overview (leave a blank line between paragraphs)</span><textarea name="overview" rows="9" maxlength="12000"><%= (d.overview || []).join('\n\n') %></textarea></label>
+      <label class="f"><span>Highlights (one per line)</span><textarea name="highlights" rows="6" maxlength="2000"><%= (d.highlights || []).join('\n') %></textarea></label>
+    </section>
+    <section class="ad-card">
+      <h2>Photos and videos</h2>
+      <%- include('../partials/admin-media-field', { name: 'cover', mode: 'image', label: 'Main photo', value: d.cover || '', help: 'Wide photo shown at the top of the page.' }) %>
+      <%- include('../partials/admin-media-field', { name: 'photos', mode: 'images', label: 'Gallery photos', value: d.photos || [], help: 'The second photo also appears beside the overview.' }) %>
+      <%- include('../partials/admin-media-field', { name: 'videos', mode: 'videos', label: 'Videos', value: d.videos || [] }) %>
+    </section>
+  </div>
+  <aside class="ad-edit__side"><div class="ad-card ad-sticky">
+    <h2>Publish</h2>
+    <button class="btn btn--leaf btn--block" type="submit"><%- icon('check') %>Save</button>
+    <a class="btn btn--ghost btn--block" href="/admin/destinations">Back to the list</a>
+    <a class="btn btn--light-outline btn--block" href="/destinations/<%= d.slug %>" target="_blank" rel="noopener">View on the website</a>
+  </div></aside>
+</form>

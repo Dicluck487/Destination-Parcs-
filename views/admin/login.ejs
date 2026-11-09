@@ -1,0 +1,15 @@
+<main class="ad-login">
+  <form class="ad-card" method="post" action="<%= setup ? '/admin/setup' : '/admin/login' %>">
+    <img src="/images/brand/logo-full.png" alt="<%= site.name %>" width="200" height="102">
+    <h1><%= setup ? 'Create the first team login' : 'Team sign in' %></h1>
+    <% if (setup) { %><p class="muted">No team logins exist yet. Create yours now. This page closes once one exists.</p><% } %>
+    <input type="hidden" name="_csrf" value="<%= csrf %>">
+    <% if (!setup) { %><input type="hidden" name="next" value="<%= next %>"><% } %>
+    <% if (setup) { %><label class="f"><span>Your name</span><input name="name" autocomplete="name" maxlength="80"></label><% } %>
+    <label class="f"><span>Username</span><input name="username" autocomplete="username" required autofocus maxlength="40" value="<%= setup ? '' : 'admin' %>"></label>
+    <label class="f"><span>Password<%= setup ? ' (10 characters or more)' : '' %></span><input name="password" type="password" autocomplete="<%= setup ? 'new-password' : 'current-password' %>" required <%= setup ? 'minlength=10' : '' %>></label>
+    <button class="btn btn--leaf btn--block" type="submit"><%= setup ? 'Create login and continue' : 'Sign in' %></button>
+    <% if (noAccounts && !setup) { %><p class="muted">There are no team logins yet. On the server, set <code>ADMIN_PASSWORD</code> in the .env file and restart, or run <code>npm run create-admin</code>.</p><% } %>
+    <p class="muted"><a href="/">Back to the website</a></p>
+  </form>
+</main>

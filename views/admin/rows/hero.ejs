@@ -1,0 +1,17 @@
+<div class="rep__row rep__row--col" data-rep-row>
+  <input type="hidden" name="<%= prefix %>[<%= i %>][key]" value="<%= r.key || '' %>">
+  <div class="rep__fields">
+    <% if (!r.image && !r.video) { %><p class="muted">This slide uses the built-in artwork. Choose a photo below to replace it, or remove the slide.</p><% } %>
+    <div class="grid2">
+      <label class="f"><span>Headline</span><input name="<%= prefix %>[<%= i %>][headline]" value="<%= r.headline || '' %>" maxlength="120"></label>
+      <label class="f"><span>Short name (for the dots)</span><input name="<%= prefix %>[<%= i %>][label]" value="<%= r.label || '' %>" maxlength="40"></label>
+    </div>
+    <label class="f"><span>Line under the headline</span><input name="<%= prefix %>[<%= i %>][sub]" value="<%= r.sub || '' %>" maxlength="200"></label>
+    <label class="f"><span>Describe the picture (for screen readers)</span><input name="<%= prefix %>[<%= i %>][alt]" value="<%= r.alt || '' %>" maxlength="200"></label>
+    <div class="grid2">
+      <%- include('../../partials/admin-media-field', { name: prefix + '[' + i + '][image]', mode: 'image', label: 'Background photo', value: r.image || '', help: 'Wide photos work best. Leave empty to use the built-in artwork.' }) %>
+      <%- include('../../partials/admin-media-field', { name: prefix + '[' + i + '][video]', mode: 'video', label: 'Background video (optional)', value: r.video || '', help: 'Plays silently on a loop. Short clips under 20 seconds are best.' }) %>
+    </div>
+  </div>
+  <%- include('ctl') %>
+</div>

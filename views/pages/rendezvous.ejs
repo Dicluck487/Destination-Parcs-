@@ -1,5 +1,13 @@
-<%- include('../partials/page-hero', { title: 'Accessibility', eyebrow: 'Plan Your Visit', lead: p.intro, crumbs: [['Plan Your Visit', '/plan-your-visit'], ['Accessibility']] }) %>
-<section class="section"><div class="container">
-  <div class="grid grid--2"><% p.sections.forEach(function (s) { %><section class="panel"><h2><%= s.title %></h2><p><%= s.text %></p></section><% }) %></div>
-  <div class="callout block"><%- icon('phone') %><div><h3>Tell us what you need</h3><p>The more we know before you travel, the better we can prepare.</p></div><a class="btn btn--gold" href="/plan-your-visit/contact">Contact us</a></div>
+<%- include('../partials/page-hero', { title: 'Rendezvous Spaces', eyebrow: 'Hire a space', crumbs: [['Destinations', '/destinations'], ['Rendezvous Spaces']], image: media.page('rendezvous') }) %>
+<section class="section"><div class="container two-col">
+  <div>
+    <p class="eyebrow">What to expect</p><h2>A place to gather</h2>
+    <p>Our Rendezvous Spaces suit birthdays and similar gatherings. Tell us your date, group size and the kind of event, and we will recommend the right space.</p>
+    <ul class="ticks">
+      <li><%- icon('check') %>Space list, capacity and photos shared on request</li>
+      <li><%- icon('check') %>Price on request, based on your event</li>
+      <li><%- icon('check') %>Add activities, meals and a stay</li>
+    </ul>
+  </div>
+  <div><h3>Send an enquiry</h3><%- include('../partials/enquiry', { topic: 'Rendezvous Spaces', back: '/destinations/rendezvous-spaces' }) %></div>
 </div></section>

@@ -1,0 +1,25 @@
+<section class="ad-card">
+  <h2>Every save is kept</h2>
+  <p>Pick a version below and press <strong>Restore</strong> to put the website back to how it was. Restoring is itself saved, so you can change your mind. The last 30 versions of each section are kept.</p>
+  <form method="get" class="ad-inline">
+    <label class="f f--inline"><span>Show</span><select name="set" data-autosubmit><option value="">All sections</option><% sets.forEach(function (s) { %><option value="<%= s.name %>" <%= only === s.name ? 'selected' : '' %>><%= s.label %></option><% }) %></select></label>
+  </form>
+  <% if (!versions.length) { %><p class="muted">No saved versions yet. Versions appear here after the first edit.</p><% } %>
+  <ul class="ad-list">
+    <% versions.forEach(function (v) { %>
+      <li><span><strong><%= v.label %></strong><small>Before: <%= v.note || 'an earlier edit' %> · <%= fmtDateTime(v.savedAt) %></small></span>
+        <form method="post" action="/admin/history/restore" data-confirm="Restore this older version of <%= v.label %>? The current version is kept in this list too."><input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="file" value="<%= v.file %>"><button class="btn btn--ghost btn--sm" type="submit"><%- icon('history') %>Restore</button></form></li>
+    <% }) %>
+  </ul>
+</section>
+<section class="ad-card">
+  <h2>Go back to the original text</h2>
+  <p>This drops every edit in one section and shows the content the website shipped with. It is saved first, so it can still be undone above.</p>
+  <ul class="ad-list">
+    <% sets.forEach(function (s) { %>
+      <li><span><strong><%= s.label %></strong><small><%= s.custom ? 'Edited' : 'Original' %></small></span>
+        <% if (s.custom) { %><form method="post" action="/admin/history/reset" data-confirm="Reset <%= s.label %> to the original text?"><input type="hidden" name="_csrf" value="<%= csrf %>"><input type="hidden" name="name" value="<%= s.name %>"><button class="btn btn--ghost btn--sm" type="submit">Reset</button></form><% } %></li>
+    <% }) %>
+  </ul>
+  <p class="muted">Technical users can also edit a section as raw data: <% sets.forEach(function (s, i) { %><a href="/admin/advanced/<%= s.name %>"><%= s.label %></a><%= i < sets.length - 1 ? ', ' : '' %><% }) %>.</p>
+</section>

@@ -1,15 +1,11 @@
-<%- include('../partials/page-hero', { title: 'Conferences & Venues', eyebrow: 'Corporate & Events', lead: 'Venue options, capacity and packages for conferences and large gatherings.', crumbs: [['Corporate & Events', '/corporate'], ['Conferences & Venues']], image: media.photo('pages', 'venues') }) %>
-<section class="section"><div class="container two-col">
-  <div>
-    <p class="eyebrow">Venues</p><h2>Space for every size of gathering</h2>
-    <p>From a boardroom-style session to a larger conference, The Farm can be arranged around your programme, with meals, accommodation and activities alongside.</p>
-    <ul class="ticks">
-      <li><%- icon('check') %>Seating, screen, sound and Wi-Fi arranged for your session</li>
-      <li><%- icon('check') %>Tea breaks, lunch and accommodation packages</li>
-      <li><%- icon('check') %>Team activities between sessions</li>
-    </ul>
-    <p class="note"><%- icon('info') %>Venue names, capacities and package prices will be listed here once confirmed. Ask for the current options.</p>
-    <p class="btn-row"><a class="btn btn--gold" href="/corporate/quote">Request a quote</a><a class="btn btn--ghost" href="/destinations/rendezvous-spaces">Smaller spaces</a></p>
+<%- include('../partials/page-hero', { title: 'Upcoming Activities', eyebrow: 'Coming next', crumbs: [['Things To Do', '/things-to-do'], ['Upcoming']] }) %>
+<section class="section"><div class="container">
+  <div class="grid grid--3"><% list.forEach(function (a) { %><%- include('../partials/activity-card', { a: a }) %><% }) %></div>
+  <div class="callout">
+    <%- icon('calendar') %>
+    <div><h3>Dates to be announced</h3></div>
+    <a class="btn btn--gold" href="/plan-your-visit/contact">Ask us</a>
   </div>
-  <div class="photo-frame"><%- include('../partials/photo', { src: media.photo('pages', 'venues-2'), alt: 'Conference venue', tone: 'forest', iconName: 'briefcase' }) %></div>
+  <h2 class="block">Also on the horizon</h2>
+  <ul class="rows"><% extras.forEach(function (x) { %><li><a href="<%= x.href %>"><strong><%= x.name %></strong><span><%= x.note %></span><%- icon('arrow-right') %></a></li><% }) %></ul>
 </div></section>

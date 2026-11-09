@@ -1,15 +1,14 @@
-<%- include('../partials/page-hero', { title: 'Food & Drinks', eyebrow: 'Things To Do', lead: 'Meals, snacks and food experiences woven through your visit.', crumbs: [['Things To Do', '/things-to-do'], ['Food & Drinks']] }) %>
+<%- include('../partials/page-hero', { title: 'Nature & CSR Outings', eyebrow: 'Corporate & Events', crumbs: [['Corporate & Events', '/corporate'], ['Nature & CSR']] }) %>
 <section class="section"><div class="container">
-  <header class="section__head"><p class="eyebrow">Eat well</p><h2>Food experiences you can add to your break</h2></header>
-  <div class="grid grid--3"><% food.forEach(function (a) { %><%- include('../partials/activity-card', { a: a }) %><% }) %></div>
-
-  <div class="block two-col">
-    <div>
-      <p class="eyebrow">Coming soon</p><h2>More to taste</h2>
-      <p>We are finalising the rest of our food and drinks offer. Planned additions include:</p>
-      <ul class="ticks"><li><%- icon('check') %>Picnic hampers</li><li><%- icon('check') %>Campfire meals</li><li><%- icon('check') %>A bar and drinks menu</li></ul>
-      <p class="note"><%- icon('info') %>Menus and prices will be published here once confirmed. Tell us about dietary needs when you book.</p>
-    </div>
-    <div class="callout callout--stack"><%- icon('utensils') %><h3>Farm-to-Fork Day</h3><p>Harvest, cook and eat together. A signature package built around the farm.</p><a class="btn btn--gold" href="/breaks/farm-to-fork-day">See the package</a></div>
+  <div class="grid grid--2">
+    <% items.forEach(function (n) { %>
+      <article class="panel">
+        <% if (n.activity) { %><span class="panel__icon tone-<%= n.activity.tone %>"><%- icon(n.activity.icon) %></span><% } %>
+        <h2><% if (n.activity) { %><a href="/things-to-do/<%= n.activity.slug %>"><%= n.name %></a><% } else { %><%= n.name %><% } %></h2>
+        <% if (n.activity) { %><p><%= n.activity.description %></p><% } %>
+        <p class="panel__meta"><span><%- icon('clock') %><%= n.duration %></span><span class="pill"><%= n.use %></span></p>
+      </article>
+    <% }) %>
   </div>
+  <p class="btn-row block"><a class="btn btn--gold" href="/corporate/quote">Plan a CSR outing</a></p>
 </div></section>

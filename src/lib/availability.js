@@ -1,6 +1,6 @@
 'use strict';
 const store = require('./store');
-const { stayBySlug } = require('./data');
+const data = require('./data');
 
 const pad = (n) => String(n).padStart(2, '0');
 const iso = (d) => `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())}`;
@@ -21,7 +21,7 @@ function taken(slug, date) {
 
 /** Does the stay fit every night of the request? */
 function fits(slug, checkIn, nights, units) {
-  const opt = stayBySlug[slug];
+  const opt = data.stayBySlug[slug];
   if (!opt || !opt.units) return false;
   for (let i = 0; i < nights; i++) {
     if (taken(slug, addDays(checkIn, i)) + units > opt.units) return false;
@@ -30,7 +30,7 @@ function fits(slug, checkIn, nights, units) {
 }
 
 function month(slug, ym) {
-  const opt = stayBySlug[slug];
+  const opt = data.stayBySlug[slug];
   const [y, m] = ym.split('-').map(Number);
   const first = new Date(Date.UTC(y, m - 1, 1));
   const days = new Date(Date.UTC(y, m, 0)).getUTCDate();

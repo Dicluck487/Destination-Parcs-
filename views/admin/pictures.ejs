@@ -1,0 +1,20 @@
+<form class="ad-edit" method="post" action="/admin/pictures" data-dirty-guard>
+  <input type="hidden" name="_csrf" value="<%= csrf %>">
+  <div class="ad-edit__main">
+    <section class="ad-card">
+      <h2>Card pictures</h2>
+      <p class="muted">Set the picture for every card in one place. Cards without a picture show the green artwork. Use "Choose photo" to pick one from your library or the built-in pictures, or upload a new one there. Text, extra photos and videos for an item are still edited on its own page.</p>
+    </section>
+    <% groups.forEach(function (g) { %>
+      <section class="ad-card">
+        <h2><%= g.label %> <span class="muted">(<%= g.rows.length %>)</span></h2>
+        <p class="muted"><%= g.note %></p>
+        <% if (!g.rows.length) { %><p class="muted">Nothing here yet.</p><% } %>
+        <div class="grid2">
+          <% g.rows.forEach(function (r) { %><%- include('../partials/admin-media-field', { name: 'pic[' + r.id + ']', mode: 'image', label: r.name, value: r.value }) %><% }) %>
+        </div>
+      </section>
+    <% }) %>
+  </div>
+  <aside class="ad-edit__side"><div class="ad-card ad-sticky"><h2>Publish</h2><button class="btn btn--leaf btn--block" type="submit"><%- icon('check') %>Save pictures</button><p class="muted">Every save is kept in History &amp; revert.</p></div></aside>
+</form>

@@ -1,0 +1,8 @@
+<%# params: name, mode (image|images|videos|video|mixed), label, value, help? %>
+<% const labels = { image: 'Choose photo', images: 'Add photos', videos: 'Add videos', video: 'Choose video', mixed: 'Add photos or videos' }; %>
+<div class="mf" data-mf data-mode="<%= mode %>">
+  <div class="mf__head"><strong><%= label %></strong><% if (typeof help !== 'undefined' && help) { %><small><%= help %></small><% } %></div>
+  <input type="hidden" name="<%= name %>" data-mf-input value="<%= typeof value === 'string' ? value : JSON.stringify(value || []) %>">
+  <div class="mf__list" data-mf-list></div>
+  <button type="button" class="btn btn--ghost btn--sm" data-mf-add><%- icon('plus') %><%= labels[mode] %></button>
+</div>
