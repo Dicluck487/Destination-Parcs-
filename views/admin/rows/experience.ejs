@@ -7,6 +7,7 @@
       <label class="f"><span>Links to</span><input name="<%= prefix %>[<%= i %>][href]" value="<%= r.href || '' %>" maxlength="300" placeholder="/things-to-do"></label>
     </div>
     <label class="f"><span>Short description</span><input name="<%= prefix %>[<%= i %>][blurb]" value="<%= r.blurb || '' %>" maxlength="140"></label>
+    <%- include('../../partials/admin-media-field', { name: prefix + '[' + i + '][image]', mode: 'image', label: 'Picture (optional)', value: r.image || '' }) %>
   </div>
   <%- include('ctl') %>
 </div>

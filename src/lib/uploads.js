@@ -29,6 +29,19 @@ function typeOf(file) {
   return null;
 }
 
+const sha = (buf) => crypto.createHash('sha256').update(buf).digest('hex');
+const shaFile = (file) => {
+  const h = crypto.createHash('sha256'); const fd = fs.openSync(file, 'r'); const b = Buffer.alloc(4 * 1024 * 1024); let n;
+  try { while ((n = fs.readSync(fd, b, 0, b.length, null)) > 0) h.update(b.subarray(0, n)); } finally { fs.closeSync(fd); }
+  return h.digest('hex');
+};
+/** A file already in the library with the same content (and still on disk), so the same picture is never stored twice. */
+function sameAs(hash) {
+  const m = store.media.find((x) => x.hash === hash);
+  if (!m) return null;
+  const dir = m.kind === 'image' ? DIRS.images : DIRS.videos;
+  return fs.existsSync(path.join(dir, path.basename(m.url))) ? { ...m, dup: true } : null;
+}
 const uid = () => `${Date.now().toString(36)}-${crypto.randomBytes(4).toString('hex')}`;
 const niceName = (n) => String(n || 'Untitled').replace(/\.[a-z0-9]+$/i, '').replace(/[_-]+/g, ' ').trim().slice(0, 80) || 'Untitled';
 
@@ -55,6 +68,9 @@ async function registerImage(file, who) {
   }
   const buf = fs.readFileSync(file.path);
   fs.unlinkSync(file.path);
+  const hash = sha(buf);
+  const had = sameAs(hash);
+  if (had) return had;
   let meta;
   try { meta = await sharp(buf).metadata(); } catch (e) {
     throw Object.assign(new Error(`"${file.originalname}" could not be read as an image.`), { expose: true });
@@ -68,7 +84,7 @@ async function registerImage(file, who) {
   fs.writeFileSync(path.join(DIRS.thumbs, name), small);
   return store.media.insert({
     kind: 'image', url: `/uploads/images/${name}`, thumb: `/uploads/thumbs/${name}`,
-    title: niceName(file.originalname), size: big.data.length, width: big.info.width, height: big.info.height, by: who || '',
+    title: niceName(file.originalname), size: big.data.length, width: big.info.width, height: big.info.height, by: who || '', hash,
   });
 }
 
@@ -81,8 +97,11 @@ function registerVideo(file, who) {
     fs.unlinkSync(file.path);
     throw Object.assign(new Error(`"${file.originalname}" does not look like a real ${file.mimetype === 'video/webm' ? 'WebM' : 'MP4 or MOV'} video.`), { expose: true });
   }
+  const hash = shaFile(file.path);
+  const had = sameAs(hash);
+  if (had) { fs.unlinkSync(file.path); return had; }
   return store.media.insert({
-    kind: 'video', url: `/uploads/videos/${path.basename(file.path)}`, thumb: '',
+    kind: 'video', hash, url: `/uploads/videos/${path.basename(file.path)}`, thumb: '',
     title: niceName(file.originalname), size: file.size, mime: file.mimetype, by: who || '',
   });
 }
@@ -109,6 +128,8 @@ function parseLink(raw) {
 function addLink(raw, title, who) {
   const p = parseLink(raw);
   if (!p) return null;
+  const had = store.media.find((x) => x.kind === 'link' && x.url === p.url);
+  if (had) return { ...had, dup: true };
   return store.media.insert({ kind: 'link', linkKind: p.linkKind, vid: p.id, url: p.url, thumb: '', title: String(title || '').slice(0, 80) || (p.linkKind === 'youtube' ? 'YouTube video' : 'Vimeo video'), by: who || '' });
 }
 

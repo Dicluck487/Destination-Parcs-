@@ -2,7 +2,7 @@
 <section class="section"><div class="container">
   <div class="grid grid--3">
     <% items.forEach(function (e) { %>
-      <article class="panel"><span class="panel__icon"><%- icon('heart') %></span><h2><%= e.name %></h2><p><%= e.involves %></p><h3>We plan for</h3><p class="muted"><%= e.requirements %></p></article>
+      <article class="panel"><% if (e.image) { %><img class="panel__img" src="<%= e.image %>" alt="" loading="lazy"><% } %><span class="panel__icon"><%- icon('heart') %></span><h2><%= e.name %></h2><p><%= e.involves %></p><h3>We plan for</h3><p class="muted"><%= e.requirements %></p></article>
     <% }) %>
   </div>
   <div class="callout block"><%- icon('gift') %><div><h3>Wedding Breaks</h3><p>Venue, accommodation, photo sessions and celebrations bundled together.</p></div><a class="btn btn--leaf" href="/breaks/wedding-breaks">See the break</a></div>

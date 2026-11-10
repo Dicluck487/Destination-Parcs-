@@ -86,6 +86,8 @@ app.use((req, res, next) => {
   res.locals.baseUrl = BASE_URL;
   // /css/main.css?v=<file time>: browsers fetch a fresh copy whenever a stylesheet or script changes
   res.locals.asset = (p) => { try { return `${p}?v=${Math.floor(fs.statSync(path.join(__dirname, 'public', p)).mtimeMs / 1000)}`; } catch (e) { return p; } };
+  res.locals.pageKey = req.path.replace(/\/+$/, '') || '/';
+  res.locals.hubCards = (name) => require('./src/lib/hubs').get(name);
   res.locals.activeNav = '';
   res.locals.pageTitle = '';
   res.locals.site = data.site;           // read per request so admin edits show at once

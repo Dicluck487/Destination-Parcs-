@@ -103,7 +103,8 @@
     </header>
     <div class="tiles">
       <% data.pages.experiences.forEach(function (t) { %>
-        <a class="tile tile--<%= t.key %>" href="<%= t.href %>">
+        <a class="tile tile--<%= t.key %> <%= t.image ? 'tile--pic' : '' %>" href="<%= t.href %>">
+          <% if (t.image) { %><img class="tile__img" src="<%= t.image %>" alt="" loading="lazy"><% } %>
           <span class="tile__icon"><%- icon(t.icon) %></span>
           <span class="tile__name"><%= t.name %></span>
           <span class="tile__blurb"><%= t.blurb %></span>

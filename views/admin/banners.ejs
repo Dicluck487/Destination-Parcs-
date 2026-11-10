@@ -1,16 +1,28 @@
 <form class="ad-edit" method="post" action="/admin/banners" data-dirty-guard>
   <input type="hidden" name="_csrf" value="<%= csrf %>">
   <div class="ad-edit__main">
+    <% let n = 0; groups.forEach(function (g) { %>
     <section class="ad-card">
-      <h2>Page banners</h2>
-      <div class="grid2">
-        <% banners.forEach(function (b) { %><%- include('../partials/admin-media-field', { name: 'banners[' + b[0] + ']', mode: 'image', label: b[1], value: (p.banners || {})[b[0]] || '' }) %><% }) %>
-      </div>
+      <h2><%= g.label %></h2>
+      <% g.pages.forEach(function (x) { const i = n++; %>
+      <details class="ad-fold">
+        <summary><strong><%= (x.o.title || x.title) %></strong><small><%= x.key %></small></summary>
+        <input type="hidden" name="heroes[<%= i %>][key]" value="<%= x.key %>">
+        <div class="grid2">
+          <label class="f"><span>Heading</span><input name="heroes[<%= i %>][title]" value="<%= x.o.title || '' %>" placeholder="<%= x.title %>" maxlength="120"></label>
+          <label class="f"><span>Small heading above</span><input name="heroes[<%= i %>][eyebrow]" value="<%= x.o.eyebrow || '' %>" placeholder="<%= x.eyebrow %>" maxlength="60"></label>
+        </div>
+        <label class="f"><span>Intro line</span><textarea name="heroes[<%= i %>][lead]" rows="2" maxlength="300"><%= x.o.lead || '' %></textarea></label>
+        <%- include('../partials/admin-media-field', { name: 'heroes[' + i + '][image]', mode: 'image', label: 'Banner picture', value: x.o.image || '' }) %>
+      </details>
+      <% }) %>
     </section>
+    <% }) %>
     <section class="ad-card">
-      <h2>Activity type banners</h2>
+      <h2>Other banner pictures</h2>
       <div class="grid2">
-        <% types.forEach(function (t) { %><%- include('../partials/admin-media-field', { name: 'types[' + t.slug + ']', mode: 'image', label: t.name, value: (p.typeCovers || {})[t.slug] || '' }) %><% }) %>
+        <%- include('../partials/admin-media-field', { name: 'venues2', mode: 'image', label: 'Conferences & Venues (second picture)', value: (p.banners || {})['venues-2'] || '' }) %>
+        <% types.forEach(function (t) { %><%- include('../partials/admin-media-field', { name: 'types[' + t.slug + ']', mode: 'image', label: t.name + ' activities', value: (p.typeCovers || {})[t.slug] || '' }) %><% }) %>
       </div>
     </section>
   </div>

@@ -133,7 +133,7 @@
       $('[data-mf-add]', field).addEventListener('click', function () {
         openPicker(field.dataset.mode, function (picked) {
           if (!MULTI[field.dataset.mode]) items.length = 0;
-          picked.forEach(function (p) { items.push(p); });
+          picked.forEach(function (p) { if (!items.some(function (x) { return x.u === p.u; })) items.push(p); });
           serialise(field, items); render(field, items); dirty = true;
         });
       });
@@ -202,7 +202,7 @@
       .then(function (r) { return r.json(); }).then(function (j) { library = j.items; paint(); })
       .catch(function () { grid.innerHTML = '<li class="ad-error">Could not load the library. Refresh the page and try again.</li>'; });
 
-    function add(items) { items.forEach(function (m) { if (kinds.indexOf(m.kind) >= 0) { library.unshift(m); if (multi || !selected.length) { if (!multi) selected = [m.mid]; else selected.push(m.mid); } } }); paint(); }
+    function add(items) { items.forEach(function (m) { if (kinds.indexOf(m.kind) >= 0) { if (!library.some(function (x) { return x.mid === m.mid; })) library.unshift(m); if (multi || !selected.length) { if (!multi) selected = [m.mid]; else selected.push(m.mid); } } }); paint(); }
     function send(files) {
       if (!files.length) return;
       var fd = new FormData(); files.forEach(function (f) { fd.append('files', f); });
@@ -213,7 +213,8 @@
         prog.hidden = true; var j = {}; try { j = JSON.parse(xhr.responseText); } catch (e) { /* ignore */ }
         if (j.items && j.items.length) add(j.items);
         var errs = (j.errors || []).concat(j.error ? [j.error] : []);
-        msg.textContent = errs.length ? errs.join(' ') : (j.items ? j.items.length + ' uploaded and ready to use.' : 'The upload did not work.');
+        var nd = j.dups || 0, nn = (j.items ? j.items.length : 0) - nd;
+        msg.textContent = errs.length ? errs.join(' ') : (j.items ? [nn > 0 ? nn + ' uploaded and ready to use.' : '', nd > 0 ? nd + (nd > 1 ? ' were' : ' was') + ' already in your library, so ' + (nd > 1 ? 'they were' : 'it was') + ' not added again.' : ''].filter(Boolean).join(' ') : 'The upload did not work.');
         msg.className = 'pk__msg' + (errs.length ? ' is-error' : '');
       };
       xhr.onerror = function () { prog.hidden = true; msg.textContent = 'The connection dropped during the upload. Please try again.'; msg.className = 'pk__msg is-error'; };
@@ -249,6 +250,7 @@
         var j = {}; try { j = JSON.parse(xhr.responseText); } catch (e) { /* ignore */ }
         var errs = (j.errors || []).concat(j.error ? [j.error] : []);
         if (errs.length) { prog2.hidden = true; msg2.textContent = errs.join(' '); msg2.className = 'dz__msg is-error'; if (j.items && j.items.length) setTimeout(function () { location.reload(); }, 2500); }
+        else if (j.dups) { prog2.hidden = true; msg2.textContent = j.dups + (j.dups > 1 ? ' files were' : ' file was') + ' already in your library, so ' + (j.dups > 1 ? 'they were' : 'it was') + ' not added again.'; msg2.className = 'dz__msg'; setTimeout(function () { location.reload(); }, 2600); }
         else location.reload();
       };
       xhr.onerror = function () { prog2.hidden = true; msg2.textContent = 'The connection dropped during the upload. Please try again.'; msg2.className = 'dz__msg is-error'; };

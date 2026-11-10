@@ -1,0 +1,5 @@
+<%# params: c {href, icon, title, text, image?}, more %>
+<a class="ccard <%= c.image ? 'ccard--pic' : '' %>" href="<%= c.href %>">
+  <% if (c.image) { %><img class="ccard__img" src="<%= c.image %>" alt="" loading="lazy"><% } %>
+  <span class="ccard__icon"><%- icon(c.icon) %></span><h3><%= c.title %></h3><p><%= c.text %></p><span class="link-arrow"><%= more %> <%- icon('arrow-right') %></span>
+</a>

@@ -44,10 +44,10 @@ router.post('/upload', (req, res) => {
     for (const f of req.files || []) {
       try {
         const rec = f.mimetype.startsWith('image/') ? await uploads.registerImage(f, res.locals.adminUser.username) : uploads.registerVideo(f, res.locals.adminUser.username);
-        out.push({ mid: rec.id, kind: rec.kind, linkKind: '', vid: '', url: rec.url, thumb: rec.thumb, title: rec.title });
+        out.push({ mid: rec.id, kind: rec.kind, linkKind: '', vid: '', url: rec.url, thumb: rec.thumb, title: rec.title, dup: !!rec.dup });
       } catch (e) { errors.push(e.expose ? e.message : `"${f.originalname}" could not be saved.`); }
     }
-    return res.status(out.length || !errors.length ? 200 : 400).json({ items: out, errors });
+    return res.status(out.length || !errors.length ? 200 : 400).json({ items: out, errors, dups: out.filter((x) => x.dup).length });
   });
 });
 
@@ -55,7 +55,7 @@ router.post('/upload', (req, res) => {
 router.post('/link', (req, res) => {
   const rec = uploads.addLink(req.body.url, clean(req.body.title, 80), res.locals.adminUser.username);
   if (!rec) return res.status(400).json({ error: 'That does not look like a YouTube or Vimeo link.' });
-  return res.json({ items: [{ mid: rec.id, kind: 'link', linkKind: rec.linkKind, vid: rec.vid, url: rec.url, thumb: '', title: rec.title }] });
+  return res.json({ items: [{ mid: rec.id, kind: 'link', linkKind: rec.linkKind, vid: rec.vid, url: rec.url, thumb: '', title: rec.title, dup: !!rec.dup }], dups: rec.dup ? 1 : 0 });
 });
 
 // Built-in pictures: remove (to the trash) and restore

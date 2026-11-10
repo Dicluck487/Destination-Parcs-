@@ -1,15 +1,8 @@
 <%- include('../partials/page-hero', { title: 'Corporate & Events', eyebrow: 'Work, together', crumbs: [['Corporate & Events']], image: media.page('corporate'), tone: 'forest' }) %>
 <section class="section"><div class="container">
   <div class="grid grid--3 corp-cards">
-    <% [
-      ['Meetings & Retreats', 'Board retreats, meetings, multi-day retreats and focused work sessions.', 'briefcase', '/corporate/meetings-and-retreats'],
-      ['Team Building & Challenges', corp.teamBuilding.length + ' activities that build trust, strategy and spirit.', 'users', '/corporate/team-building'],
-      ['Nature & CSR Outings', 'Bird watching, farm visits, forest walks and community tourism.', 'leaf', '/corporate/nature-and-csr'],
-      ['Weddings & Celebrations', 'Weddings, traditional ceremonies and anniversary parties.', 'heart', '/corporate/weddings-and-celebrations'],
-      ['Conferences & Venues', 'Venue options, capacity and packages.', 'home', '/corporate/conferences-and-venues'],
-      ['Planning Checklist', 'A downloadable checklist to plan with confidence.', 'download', '/corporate/checklist']
-    ].forEach(function (c) { %>
-      <a class="ccard" href="<%= c[3] %>"><span class="ccard__icon"><%- icon(c[2]) %></span><h3><%= c[0] %></h3><p><%= c[1] %></p><span class="link-arrow">Explore <%- icon('arrow-right') %></span></a>
+    <% hubCards('corporate').forEach(function (c) { %>
+      <%- include('../partials/hub-card', { c: c, more: 'Explore' }) %>
     <% }) %>
   </div>
 </div></section>

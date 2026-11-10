@@ -3,6 +3,7 @@
   <div class="grid grid--3">
     <% items.forEach(function (t) { %>
       <article class="panel panel--link">
+        <% if (t.image) { %><img class="panel__img" src="<%= t.image %>" alt="" loading="lazy"><% } %>
         <% if (t.activity) { %><span class="panel__icon tone-<%= t.activity.tone %>"><%- icon(t.activity.icon) %></span><% } %>
         <h2><% if (t.activity) { %><a href="/things-to-do/<%= t.slug %>"><%= t.name %></a><% } else { %><%= t.name %><% } %></h2>
         <p><%= t.involves %></p>

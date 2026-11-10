@@ -196,3 +196,15 @@ body.admin { background: #f3f1e8; color: var(--ink); font-size: 15px; }
 .lib__thumb--plain img { object-fit: contain; padding: 10px; }
 .lib__title-static { margin: .4rem 0 0; }
 .ad-subcard { background: #f6f3e8; border: 1px dashed #d9d2bf; border-radius: 12px; padding: 14px 16px; margin: 6px 0 16px; }
+
+/* collapsible page rows */
+.ad-fold { border: 1px solid var(--line, #e2e5df); border-radius: 12px; margin: 0 0 10px; background: #fff; }
+.ad-fold > summary { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 12px 16px; cursor: pointer; list-style: none; }
+.ad-fold > summary::-webkit-details-marker { display: none; }
+.ad-fold > summary small { color: #6b7a72; font-size: .78rem; }
+.ad-fold > summary::after { content: "+"; font-weight: 700; margin-left: auto; padding-left: 12px; }
+.ad-fold[open] > summary::after { content: "\2212"; }
+.ad-fold[open] > summary { border-bottom: 1px solid var(--line, #e2e5df); }
+.ad-fold > :not(summary) { margin-left: 16px; margin-right: 16px; }
+.ad-fold > :last-child { margin-bottom: 16px; }
+.ad-fold > summary + * { margin-top: 14px; }

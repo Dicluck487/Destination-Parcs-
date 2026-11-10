@@ -1,0 +1,40 @@
+<form class="ad-edit" method="post" action="/admin/cards" data-dirty-guard>
+  <input type="hidden" name="_csrf" value="<%= csrf %>">
+  <div class="ad-edit__main">
+    <% let n = 0; hubs.forEach(function (h) { %>
+    <section class="ad-card">
+      <h2><%= h.label %></h2>
+      <% h.cards.forEach(function (c) { const i = n++; %>
+      <details class="ad-fold">
+        <summary><strong><%= c.title %></strong><small><%= c.href %></small></summary>
+        <input type="hidden" name="hubs[<%= i %>][href]" value="<%= c.href %>">
+        <label class="f"><span>Title</span><input name="hubs[<%= i %>][title]" value="<%= c.title %>" maxlength="80"></label>
+        <label class="f"><span>Text</span><textarea name="hubs[<%= i %>][text]" rows="2" maxlength="220"><%= c.text %></textarea></label>
+        <%- include('../partials/admin-media-field', { name: 'hubs[' + i + '][image]', mode: 'image', label: 'Picture (optional)', value: c.image || '' }) %>
+      </details>
+      <% }) %>
+    </section>
+    <% }) %>
+    <section class="ad-card">
+      <h2>Meetings & Retreats</h2>
+      <%- include('repeater', { prefix: 'meetings', rows: corp.meetings || [], row: 'rows/corp-item', blank: {}, addLabel: 'Add a card', extra: { fields: [['name', 'Name'], ['involves', 'What it involves', true], ['requirements', 'Plan for']] } }) %>
+    </section>
+    <section class="ad-card">
+      <h2>Team Building & Challenges</h2>
+      <%- include('repeater', { prefix: 'teamBuilding', rows: corp.teamBuilding || [], row: 'rows/corp-item', blank: {}, addLabel: 'Add a card', extra: { hidden: ['slug'], fields: [['name', 'Name'], ['involves', 'What it involves', true], ['duration', 'Duration'], ['value', 'Benefit']] } }) %>
+    </section>
+    <section class="ad-card">
+      <h2>Nature & CSR Outings</h2>
+      <%- include('repeater', { prefix: 'nature', rows: corp.nature || [], row: 'rows/corp-item', blank: {}, addLabel: 'Add a card', extra: { fields: [['name', 'Name'], ['duration', 'Duration'], ['use', 'Best for']] } }) %>
+    </section>
+    <section class="ad-card">
+      <h2>Weddings & Celebrations</h2>
+      <%- include('repeater', { prefix: 'social', rows: corp.social || [], row: 'rows/corp-item', blank: {}, addLabel: 'Add a card', extra: { fields: [['name', 'Name'], ['involves', 'What it involves', true], ['requirements', 'We plan for']] } }) %>
+    </section>
+    <section class="ad-card">
+      <h2>Planning Checklist</h2>
+      <label class="f"><span>One item per line</span><textarea name="checklist" rows="8" maxlength="3000"><%= (corp.checklist || []).join('\n') %></textarea></label>
+    </section>
+  </div>
+  <aside class="ad-edit__side"><div class="ad-card ad-sticky"><h2>Publish</h2><button class="btn btn--leaf btn--block" type="submit"><%- icon('check') %>Save</button></div></aside>
+</form>

@@ -2,7 +2,7 @@
 <section class="section"><div class="container">
   <div class="grid grid--2">
     <% items.forEach(function (m) { %>
-      <article class="panel"><h2><%= m.name %></h2><p><%= m.involves %></p><h3>Plan for</h3><p class="muted"><%= m.requirements %></p></article>
+      <article class="panel"><% if (m.image) { %><img class="panel__img" src="<%= m.image %>" alt="" loading="lazy"><% } %><h2><%= m.name %></h2><p><%= m.involves %></p><h3>Plan for</h3><p class="muted"><%= m.requirements %></p></article>
     <% }) %>
   </div>
   <p class="btn-row block"><a class="btn btn--gold" href="/corporate/quote">Request a quote</a></p>

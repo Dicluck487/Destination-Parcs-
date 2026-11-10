@@ -270,7 +270,7 @@ router.post('/home', (req, res) => {
   const sigSlugs = (content.get('breaks').signature || []).map((x) => x.slug);
   const p = {
     ...old, hero,
-    experiences: f.arr(b.experiences).map((e) => ({ key: f.str(e && e.key, 30) || slugify(e && e.name), name: f.str(e && e.name, 40), blurb: f.str(e && e.blurb, 140), icon: ICON_NAMES.includes(e && e.icon) ? e.icon : 'leaf', href: f.href(e && e.href) || '/things-to-do' })).filter((e) => e.name),
+    experiences: f.arr(b.experiences).map((e) => ({ key: f.str(e && e.key, 30) || slugify(e && e.name), name: f.str(e && e.name, 40), blurb: f.str(e && e.blurb, 140), icon: ICON_NAMES.includes(e && e.icon) ? e.icon : 'leaf', href: f.href(e && e.href) || '/things-to-do', image: f.image(e && e.image) })).filter((e) => e.name),
     featuredSignature: f.arr(b.featured).map(String).filter((s) => sigSlugs.includes(s)).slice(0, 6),
     seasonalBanner: { show: f.bool(b.seasonalShow), badge: f.str(b.seasonalBadge, 40), title: f.str(b.seasonalTitle, 100), text: f.text(b.seasonalText, 300), href: f.href(b.seasonalHref) || '/breaks/seasonal' },
     highlights: f.arr(b.highlights).map((h) => ({ title: f.str(h && h.title, 60), text: f.text(h && h.text, 220) })).filter((h) => h.title),
@@ -340,18 +340,67 @@ router.post('/pictures', (req, res) => {
   return done(req, res, '/admin/pictures', n ? `Saved. ${n} card picture${n === 1 ? '' : 's'} changed and live now.` : 'No changes to save.');
 });
 
-// =============================================================== BANNERS
-const BANNERS = [['plan', 'Plan Your Visit'], ['experience', 'The D.P Experience'], ['stay', 'Stay'], ['breaks', 'Breaks & Packages'], ['corporate', 'Corporate & Events'], ['venues', 'Conferences & Venues (top)'], ['venues-2', 'Conferences & Venues (second image)'], ['weddings', 'Weddings & Celebrations'], ['rendezvous', 'Rendezvous Spaces']];
+// =============================================================== PAGE HEADERS (heading, intro and picture at the top of every page)
+const heroes = require('../../lib/heroes');
 router.get('/banners', (req, res) => {
   const p = content.get('pages');
-  res.render('admin/banners', { pageTitle: 'Page banners', banners: BANNERS, types: data.TYPES, p });
+  const ov = p.heroes || {};
+  const groups = heroes.groups.map((g) => ({ label: g.label, pages: g.pages.map((x) => ({ ...x, o: { ...(ov[x.key] || {}), image: (ov[x.key] || {}).image || (x.banner && (p.banners || {})[x.banner]) || '' } })) }));
+  res.render('admin/banners', { pageTitle: 'Page headers', groups, types: data.TYPES, p });
 });
 router.post('/banners', (req, res) => {
   const old = content.get('pages');
-  const banners = {}; const typeCovers = {};
-  BANNERS.forEach(([k]) => { const v = f.image((req.body.banners || {})[k]); if (v) banners[k] = v; });
+  const sent = f.arr(req.body.heroes);
+  const out = {}; const banners = { ...(old.banners || {}) }; const typeCovers = {};
+  sent.forEach((h) => {
+    const pg = h && heroes.byKey[h.key]; if (!pg) return;
+    const o = { title: f.str(h.title, 120), eyebrow: f.str(h.eyebrow, 60), lead: f.text(h.lead, 300), image: f.image(h.image) };
+    if (pg.banner) { if (o.image) banners[pg.banner] = o.image; else delete banners[pg.banner]; }
+    if (o.title || o.eyebrow || o.lead || o.image) out[pg.key] = Object.fromEntries(Object.entries(o).filter(([, v]) => v));
+  });
+  const second = f.image(req.body.venues2); if (second) banners['venues-2'] = second; else delete banners['venues-2'];
   data.TYPES.forEach((t) => { const v = f.image((req.body.types || {})[t.slug]); if (v) typeCovers[t.slug] = v; });
-  return saved(req, res, 'pages', { ...old, banners, typeCovers }, 'Edited page banners', '/admin/banners', 'Banners saved.');
+  return saved(req, res, 'pages', { ...old, heroes: out, banners, typeCovers }, 'Edited page headers', '/admin/banners', 'Page headers saved. They are live now.');
+});
+
+// =============================================================== PAGE CARDS (link cards and lists with pictures)
+const hubsLib = require('../../lib/hubs');
+const HUB_LABELS = { plan: 'Plan Your Visit page', corporate: 'Corporate & Events page' };
+router.get('/cards', (req, res) => {
+  const hubs = Object.keys(HUB_LABELS).map((k) => ({ label: HUB_LABELS[k], cards: hubsLib.get(k) }));
+  res.render('admin/cards', { pageTitle: 'Page cards', hubs, corp: content.get('corporate') });
+});
+router.post('/cards', (req, res) => {
+  const b = req.body;
+  const pages = content.get('pages');
+  const defs = {}; Object.values(hubsLib.defaults()).forEach((l) => l.forEach((c) => { defs[c.href] = c; }));
+  const hubs = {};
+  f.arr(b.hubs).forEach((h) => {
+    const d = h && defs[h.href]; if (!d) return;
+    const o = { title: f.str(h.title, 80), text: f.text(h.text, 220), image: f.image(h.image) };
+    if (o.title === d.title) delete o.title;
+    if (o.text === d.text) delete o.text;
+    const clean = Object.fromEntries(Object.entries(o).filter(([, v]) => v));
+    if (Object.keys(clean).length) hubs[h.href] = clean;
+  });
+  const list = (v, keys) => f.arr(v).slice(0, 40).map((r) => {
+    const o = {}; keys.forEach(([k, max]) => { o[k] = f.str(r && r[k], max); });
+    const img = f.image(r && r.image); if (img) o.image = img;
+    return o;
+  }).filter((o) => o.name);
+  const corp = {
+    ...content.get('corporate'),
+    meetings: list(b.meetings, [['name', 100], ['involves', 400], ['requirements', 300]]),
+    teamBuilding: list(b.teamBuilding, [['name', 100], ['involves', 400], ['duration', 60], ['value', 120], ['slug', 80]]),
+    nature: list(b.nature, [['name', 100], ['duration', 80], ['use', 160]]),
+    social: list(b.social, [['name', 100], ['involves', 400], ['requirements', 300]]),
+    checklist: String(b.checklist || '').split(/\r?\n/).map((x) => f.str(x, 200)).filter(Boolean).slice(0, 40),
+  };
+  const e1 = commit(req, 'pages', { ...pages, hubs }, 'Edited page cards');
+  if (e1) { flash(req, 'error', `The cards could not be saved (${e1.message}). Nothing was changed.`); return res.redirect('/admin/cards'); }
+  const e2 = commit(req, 'corporate', corp, 'Edited corporate cards');
+  if (e2) { flash(req, 'error', `The corporate cards could not be saved (${e2.message}).`); return res.redirect('/admin/cards'); }
+  return done(req, res, '/admin/cards', 'Page cards saved. They are live now.');
 });
 
 // =============================================================== SITE SETTINGS

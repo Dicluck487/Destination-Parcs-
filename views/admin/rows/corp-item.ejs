@@ -1,0 +1,11 @@
+<%# fields: array of [key, label, long?]; hidden: array of keys kept as they are %>
+<div class="rep__row" data-rep-row>
+  <% (typeof hidden !== 'undefined' ? hidden : []).forEach(function (k) { %><input type="hidden" name="<%= prefix %>[<%= i %>][<%= k %>]" value="<%= r[k] || '' %>"><% }) %>
+  <div class="rep__fields">
+    <% fields.forEach(function (fd) { %>
+      <label class="f"><span><%= fd[1] %></span><% if (fd[2]) { %><textarea name="<%= prefix %>[<%= i %>][<%= fd[0] %>]" rows="2" maxlength="600"><%= r[fd[0]] || '' %></textarea><% } else { %><input name="<%= prefix %>[<%= i %>][<%= fd[0] %>]" value="<%= r[fd[0]] || '' %>" maxlength="160"><% } %></label>
+    <% }) %>
+    <%- include('../../partials/admin-media-field', { name: prefix + '[' + i + '][image]', mode: 'image', label: 'Picture (optional)', value: r.image || '' }) %>
+  </div>
+  <%- include('ctl') %>
+</div>
