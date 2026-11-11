@@ -45,7 +45,7 @@ What goes to the database: guests, bookings, enquiries, quote requests, team log
 
 **First start.** The site creates its tables (prefix `dp_`) and copies any existing JSON data into them once. Files are left untouched. On later starts everything is read from the database.
 
-**How it behaves.** Data is loaded into memory when the site starts, and every change is written to the database straight away, with retries. If the database stops answering, the admin dashboard shows a red "Database problem" note. Run one site process per database.
+**How it behaves.** Data is loaded into memory when the site starts, and every change is written straight to the database in order, with retries. If the database stops answering, the admin dashboard shows a red "Database problem" note. Run one site process per database.
 
 **Create a team login** with `npm run create-admin -- name "Full Name" password`, then restart the site so it picks the new login up. You can also add logins from Team in the admin area while the site is running.
 
